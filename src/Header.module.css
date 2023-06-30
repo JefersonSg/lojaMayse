@@ -1,0 +1,23 @@
+.header {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  display: grid;
+  width: 100%;
+  max-width: 1280px;
+  justify-items: center;
+  color: white;
+}
+.header svg {
+  width: 200px;
+  height: 70px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+.nav ul{
+  display: flex;
+  gap: 70px;
+}
+.nav ul li{
+  font-size: 14px;
+}
