@@ -11,55 +11,55 @@ const Produtos = () => {
         <h3 className="subtitle">Mais Vendidos</h3>
         <div className={styles.produtos}>
           <Produto
-            src="../../public/produtos/Rectangle 8.png"
+            src="../../public/images/produtos/Rectangle 7-1.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
           />
           <Produto
-            src="../../public/produtos/Rectangle 7.png"
+            src="../../public/images/produtos/Rectangle 7.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
           />
           <Produto
-            src="../../public/produtos/Rectangle 7-1.png"
+            src="../../public/images/produtos/Rectangle 7-1.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
           />
           <Produto
-            src="../../public/produtos/Rectangle 7-2.png"
+            src="../../public/images/produtos/Rectangle 7-2.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
           />
           <Produto
-            src="../../public/produtos/Rectangle 7-3.png"
+            src="../../public/images/produtos/Rectangle 7-3.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
           />
           <Produto
-            src="../../public/produtos/Rectangle 7-4.png"
+            src="../../public/images/produtos/Rectangle 7-4.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
           />
           <Produto
-            src="../../public/produtos/Rectangle 7-5.png"
+            src="../../public/images/produtos/Rectangle 7-5.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
           />
           <Produto
-            src="../../public/produtos/Rectangle 7-6.png"
+            src="../../public/images/produtos/Rectangle 7-6.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
           />
           <Produto
-            src="../../public/produtos/Rectangle 8-1.png"
+            src="../../public/images/produtos/Rectangle 8-1.png"
             title="Liberty"
             price="49,90"
             model="trikini in Black with Soutache"
