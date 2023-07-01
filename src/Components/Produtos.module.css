@@ -1,0 +1,30 @@
+.produtosContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  max-width: 1280px;
+  margin-top: 64px;
+}
+.produtosContainer h3 {
+  margin-bottom: 32px;
+}
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(170px, 1fr));
+  gap: 32px;
+  padding: 0 20px;
+}
+@media (max-width:50rem) {
+  .produtosContainer {
+    margin-top: 32px;
+  }
+  .produtos {
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  padding: 0 10px;
+  gap: 8px;
+  }
+  .produtosContainer h3 {
+    margin-bottom: 16px;
+  }
+}

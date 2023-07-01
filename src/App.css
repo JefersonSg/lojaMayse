@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -7,9 +9,11 @@ body {
   margin: 0px;
   color: #333;
   --type-first: Helvetica, Arial, sans-serif;
-  --type-second: 'Spectral', Georgia;
+  --type-second: 'Quicksand', sans-serif;
   font-family: var(--type-first);
+  height: calc(100vh + 30rem);
 }
+
 
 h1,
 h2,
@@ -46,10 +50,49 @@ a {
 
 .container {
   max-width: 80rem;
-  padding: 0 1rem;
   margin: 0 auto;
 }
 
 .mainContainer {
   margin-top: 4rem;
+}
+
+.subtitle{
+  font-weight: 400;
+  font-size: 32px;
+  font-family: var(--type-second);
+}
+@media (max-width:50rem) {
+  .subtitle{
+    font-size: 24px;
+  }
+}
+@media (max-width:40rem) {
+  .subtitle{
+    font-size: 18px;
+  }
+}
+
+.mobile {
+  width: 30px;
+  height: 2px;
+  background-color: white;
+  box-shadow: 0 8px 0 white, 0 -8px 0 white;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  cursor: pointer;
+}
+
+.animeLeft{
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeLeft .3s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
 }

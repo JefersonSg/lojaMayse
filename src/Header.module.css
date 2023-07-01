@@ -9,7 +9,8 @@
   color: white;
 }
 .header svg {
-  width: 200px;
+  /* max-width: 250px; */
+  width: auto;
   height: 70px;
   margin-bottom: 24px;
   cursor: pointer;
@@ -20,4 +21,175 @@
 }
 .nav ul li{
   font-size: 14px;
+  cursor: pointer;
+}
+
+
+/* Parte mobile */
+
+.headerMobile {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr ;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  max-width: 1280px;
+  justify-items: center;
+  color: white;
+}
+.headerNav svg {
+  grid-row: 2;
+  width: auto;
+  height: 70px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.navContainer {
+  z-index: -2;
+  background: rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.navMobile {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px 12px;
+  box-sizing: border-box;
+  color: #333;
+  border-radius: .2rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  height: 100vh;
+  padding-top: 135px;
+  padding-left: 45px;
+  padding-right: 30px;
+}
+
+.navMobileActive {
+  opacity: initial;
+  pointer-events: initial;
+}
+.navMobile ul{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.navMobile ul li{
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 1.2px;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.navMobile ul li::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: url('./assets/svg/svgHeader/chevron_right.svg') no-repeat center center;
+  align-self: flex-end;
+}
+.navMobile ul li:hover{
+  box-shadow:0 1px rgba(0, 0, 0, 0.6);
+}
+
+.mobileButton {
+  position: fixed;
+  top: 75px;
+  left: 40px;
+  background-color: transparent;
+  border-radius: .2rem;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  transition: 0.1s;
+  cursor: pointer;
+  color: white;
+}
+
+.mobileButton::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  box-shadow: 0 6px currentColor, 0 -6px currentColor;
+  transition: .2s;
+}
+
+.mobileButton:focus ,
+.mobileButton:hover,
+.mobileButtonActive{
+  outline: none;
+  color: #333;
+}
+
+.mobileButtonActive::after {
+  transform: rotate(90deg);
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 8px currentColor, 0 -8px currentColor;
+}
+
+@media (max-width:64rem) {
+  .nav ul {
+    display: none;
+  }
+}
+
+@media (max-width:35rem) {
+  .navMobile {
+    top: 0;
+    left: 0px;
+    padding: 20px 12px;
+    /* opacity: 0;
+    pointer-events: none; */
+    padding-top: 135px;
+    padding-left: 25px;
+    padding-right: 30px;
+  }
+  
+  .navMobileActive {
+    opacity: initial;
+    pointer-events: initial;
+  }
+
+  .navMobile ul li{
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 1.2px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  .navMobile ul li::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background: url('./assets/svg/svgHeader/chevron_right.svg') no-repeat center center;
+    align-self: flex-end;
+  }
+
+  
+  .mobileButton {
+    position: fixed;
+    top: 75px;
+    left: 20px;
+    background-color: transparent;
+  }
+  
+
 }
