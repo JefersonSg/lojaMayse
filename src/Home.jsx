@@ -4,10 +4,11 @@ import styles from './Home.module.css';
 import Categorias from './Components/Categorias';
 
 const Home = () => {
+  // const imagePath = `${process.env.PUBLIC_URL}/images/imagem.jpg`;
   return (
     <main className="container">
       <img
-        src="../public/images/artem-labunsky-NV4yuniRcyw-unsplash 1.png"
+        src="../images/artem-labunsky-NV4yuniRcyw-unsplash 1.png"
         alt="Modelo do site"
       />
       <Categorias />

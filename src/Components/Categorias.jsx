@@ -8,24 +8,24 @@ const Categorias = () => {
       <nav className={styles.slide}>
         <ul>
           <Categoria
-            src="../../public/images/paginaInicial/Calcinhas.jpg"
+            src="../images/paginaInicial/Calcinhas.jpg"
             title="Calcinhas"
           />
 
           <Categoria
-            src="../../public/images/paginaInicial/sutians.jpg"
+            src="../images/paginaInicial/sutians.jpg"
             title="Sutiãns"
           />
           <Categoria
-            src="../../public/images/paginaInicial/Calcinhas basicas.jpg"
+            src="../images/paginaInicial/Calcinhas basicas.jpg"
             title="Calcinhas basicas"
           />
           <Categoria
-            src="../../public/images/paginaInicial/CalcinhasRenda.jpg"
+            src="../images/paginaInicial/CalcinhasRenda.jpg"
             title="Calcinhas de renda"
           />
           <Categoria
-            src="../../public/images/paginaInicial/acessorios.png"
+            src="../images/paginaInicial/acessorios.png"
             title="Acessorios"
           />
         </ul>
