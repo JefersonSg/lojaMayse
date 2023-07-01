@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <main className="container">
       <img
-        src="../public/artem-labunsky-NV4yuniRcyw-unsplash 1.png"
+        src="../public/images/artem-labunsky-NV4yuniRcyw-unsplash 1.png"
         alt="Modelo do site"
       />
       <Categorias />
