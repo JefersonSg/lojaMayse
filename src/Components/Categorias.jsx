@@ -10,7 +10,7 @@ import Acessorios from '../../public/paginaInicial/acessorios.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Categorias = () => {
-  const [slidesPerView, setSlidePerView] = useState(2);
+  const [slidesPerView, setSlidePerView] = useState(3);
   const [width, setWidth] = useState(600);
 
   useEffect(() => {
@@ -19,6 +19,7 @@ const Categorias = () => {
         setSlidePerView(3);
         setWidth(440);
       } else if (window.innerWidth <= 450 && window.innerWidth > 380) {
+        setSlidePerView(3);
         setWidth(340);
       } else if (window.innerWidth <= 380) {
         setWidth(300);
