@@ -17,7 +17,7 @@
   object-fit: cover;
   border-radius: 99999px;
   transition: .1s;
-
+  pointer-events: none;
 }
 
 .selectCategoria p {
