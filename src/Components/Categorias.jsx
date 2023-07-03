@@ -46,7 +46,7 @@ const Categorias = () => {
         spaceBetween={0}
         pagination={{ clickable: true }}
         width={width}
-        style={{ padding: '0 20px', boxSizing: 'border-box' }}
+        style={{ padding: '0 20px 40px 20px', boxSizing: 'border-box' }}
         navigation
       >
         <SwiperSlide>
