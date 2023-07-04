@@ -81,7 +81,7 @@ const Header = () => {
           <li className={styles.links}>ACESSÓRIOS</li>
         </ul>
       </nav>
-      {!changeHeader && (
+      {!changeHeader && mobile && (
         <div className={`${styles.logo2}`}>
           <LogoMobile2 />
         </div>
