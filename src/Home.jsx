@@ -7,7 +7,7 @@ import imageHome from '../public/fotoHome.png';
 const Home = () => {
   // const imagePath = `${process.env.PUBLIC_URL}/images/imagem.jpg`;
   return (
-    <main className={`${styles.home} container`}>
+    <main className={`container`}>
       <img src={imageHome} alt="" />
       <Categorias />
       <Produtos />

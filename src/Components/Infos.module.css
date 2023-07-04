@@ -10,3 +10,11 @@
   justify-content: center;
   color: white;
 }
+
+.infos::before {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 15px;
+  background: url('../assets/svg/svgHeader/caminhaoWhite.svg') no-repeat center center;
+}

@@ -17,7 +17,7 @@
 }
 @media (max-width:50rem) {
   .produtosContainer {
-    margin-top: 32px;
+    margin-top: 16px;
   }
   .produtos {
   grid-template-columns: repeat(2, minmax(140px, 1fr));
