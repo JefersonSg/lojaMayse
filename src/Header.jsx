@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 import useMedia from './Hooks/useMedia';
 import { ReactComponent as Logo } from './assets/svg/svgHeader/logoWhite.svg';
@@ -10,23 +10,25 @@ const Header = () => {
   const mobile = useMedia('(max-width: 64rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
   const [changeHeader, setChangeHeader] = React.useState(true);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   React.useEffect(() => {
     function infiniteScroll() {
       const scroll = window.scrollY;
       const heigth = document.body.offsetHeight - window.innerHeight;
+      setChangeHeader(false);
 
-      if (scroll > heigth * 0.75) {
-        console.log('true');
-        console.log(scroll, heigth);
-
+      if (pathname === '/' && scroll) {
+        setChangeHeader(true);
+      } else if (pathname === '/' && !scroll) {
         setChangeHeader(false);
       } else {
-        console.log('false');
-
         setChangeHeader(true);
       }
     }
+    infiniteScroll();
 
     window.addEventListener('wheel', infiniteScroll);
     window.addEventListener('scroll', infiniteScroll);
@@ -34,13 +36,13 @@ const Header = () => {
       window.removeEventListener('wheel', infiniteScroll);
       window.removeEventListener('scroll', infiniteScroll);
     };
-  }, [changeHeader]);
+  }, [changeHeader, pathname]);
   function handleOutsideClick({ target, currentTarget }) {
     if (target === currentTarget) {
       setMobileMenu(false);
     }
   }
-  const { pathname } = useLocation();
+
   React.useEffect(() => {
     return setMobileMenu(false);
   }, [pathname]);
@@ -48,11 +50,16 @@ const Header = () => {
   return (
     <header
       className={`${mobile ? styles.headerMobile : styles.header}
-    ${!changeHeader && styles.header2}`}
+    ${changeHeader && styles.header2}`}
     >
-      {changeHeader && (
+      {!changeHeader && (
         <div className={styles.logo}>
           <Logo />
+        </div>
+      )}
+      {changeHeader && !mobile && (
+        <div onClick={() => navigate('/')} className={`${styles.logoHeader2}`}>
+          <LogoMobile2 />
         </div>
       )}
 
@@ -81,12 +88,13 @@ const Header = () => {
           <li className={styles.links}>ACESSÓRIOS</li>
         </ul>
       </nav>
-      {!changeHeader && mobile && (
-        <div className={`${styles.logo2}`}>
+
+      {changeHeader && mobile && (
+        <div className={`${styles.logo2} ${styles.mobileLogo}`}>
           <LogoMobile2 />
         </div>
       )}
-      {!changeHeader && (
+      {changeHeader && (
         <div className={`${styles.bag}`}>
           <Bag />
         </div>

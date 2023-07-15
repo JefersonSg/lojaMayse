@@ -1,0 +1,34 @@
+.imagens {
+  display: grid;
+  grid-template-columns: 85px 500px;
+  gap: 16px;
+  max-width:600px;
+  margin: 0 auto;
+}
+.miniImages {
+  display: grid;
+  grid-template-rows: repeat(auto-fill , 85px );
+  gap: 16px 0px;
+}
+.miniImages div{
+  width: 85px;
+  height: 85px;
+  display: flex;
+  object-fit: contain;
+  border: 3px solid #FFBFD0;
+  cursor: pointer;
+}
+.miniImages div.active {
+  border-color:  #E12959;
+}
+.miniImages div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.imagemPrincipal {
+  justify-self: end;
+}
+.imagens img {
+  pointer-events: none;
+}

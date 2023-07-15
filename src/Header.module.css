@@ -2,27 +2,48 @@
   position: relative;
 }
 .header {
-  position: fixed;
+  position: sticky;
   top: 50px;
   left: 0;
   display: grid;
   width: 100%;
-  max-width: 1280px;
   justify-items: center;
   color: white;
   z-index: 100;
+  transform: translateY(-10px);
+  transition: all .1s;
+  animation: hidenFirst .3s ease forwards;
 }
+@keyframes hidenFirst {
+  to{
+    opacity: 1;
+    transform: initial;
+  }
+}
+
 .header2{
   background-color: white;
-  height: 60px;
-  top: 40px;
+  height: 120px;
+  top: 0;
   max-width: none;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+  box-shadow: 0 1px 0px rgba(0, 0, 0, .2);
+  padding: 10px 0;
   color: #333;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 100;
+  transform: translateY(40px);
+  opacity: 0;
+  animation: hiden .3s ease forwards;
+}
+
+@keyframes hiden {
+  to{
+    opacity: 1;
+    transform: initial;
+  }
 }
 .bag {
   width: 20px;
@@ -48,28 +69,23 @@
   fill: #333;
 }
 
-
-.header2 nav ul li{
-  position: relative;
-}
-.header .links::after{
-  content: '';
-  display: block;
-  width: 2px;
-  height: 10px;
-  background: black;
-  top: 3px;
-  left: 130%;
-  position: absolute;
-}
-
-
 .logo{
   width: auto;
   height: 70px;
   margin-bottom: 24px;
   cursor: pointer;
 }
+.logoHeader2 {
+  flex: 1;
+  display: grid;
+  justify-items: center;
+  cursor: pointer;
+}
+
+.header2 nav ul li{
+  position: relative;
+}
+
 .nav ul{
   display: flex;
   gap: 70px;
@@ -93,6 +109,10 @@
   justify-items: center;
   color: white;
   z-index: 99;
+  animation: none;
+  opacity: 1;
+  transform: initial;
+  transition: .2s ;
 }
 
 .headerNav svg {
@@ -129,15 +149,18 @@
 }
 
 .headerMobile.header2 {
-  position: fixed;
+  position: sticky;
   display: grid;
   grid-template-columns: 1fr ;
-  top: 40px;
+  top: 0px;
   left: 0;
   width: 100%;
   max-width: none;
   justify-items: center;
   color: white;
+  animation: none;
+  opacity: 1;
+  transform: initial;
 }
 
 
