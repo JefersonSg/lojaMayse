@@ -1,18 +1,38 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import useMedia from './Hooks/useMedia';
 import { ReactComponent as Logo } from './assets/svg/svgHeader/logoWhite.svg';
 import { ReactComponent as Bag } from './assets/svg/svgHeader/bag.svg';
 import { ReactComponent as LogoMobile2 } from './assets/svg/svgHeader/logo2.svg';
+import useFetch from './Hooks/useFetch';
+import api from './helpers/api';
 
 const Header = () => {
+  const [categorias, setCategorias] = React.useState('');
+  const [token] = React.useState(window.localStorage.getItem('token') || '');
+  const { data, error, loading, request } = useFetch();
+
   const mobile = useMedia('(max-width: 64rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
   const [changeHeader, setChangeHeader] = React.useState(true);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const location = useLocation();
+  const params = useParams();
+
+  // Get Categories
+  React.useEffect(() => {
+    async function getCategory() {
+      const response = await request(`${api.getUri()}categorys/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCategorias(response.json.categorys);
+    }
+    getCategory();
+  }, [request, token]);
 
   React.useEffect(() => {
     function infiniteScroll() {
@@ -42,7 +62,6 @@ const Header = () => {
       setMobileMenu(false);
     }
   }
-
   React.useEffect(() => {
     return setMobileMenu(false);
   }, [pathname]);
@@ -53,14 +72,14 @@ const Header = () => {
     ${changeHeader && styles.header2}`}
     >
       {!changeHeader && (
-        <div className={styles.logo}>
+        <NavLink to="/" end className={styles.logo}>
           <Logo />
-        </div>
+        </NavLink>
       )}
       {changeHeader && !mobile && (
-        <div onClick={() => navigate('/')} className={`${styles.logoHeader2}`}>
+        <NavLink to="/" end className={`${styles.logoHeader2}`}>
           <LogoMobile2 />
-        </div>
+        </NavLink>
       )}
 
       {mobile && (
@@ -80,13 +99,16 @@ const Header = () => {
         ${mobileMenu ? styles.navMobileActive : ''}
         ${mobileMenu ? 'animeLeft' : ''}`}
       >
-        <ul>
-          <li className={styles.links}>LINGERIE</li>
-          <li className={styles.links}>SUTIÃNS</li>
-          <li className={styles.links}>CALCINHAS BASICAS</li>
-          <li className={styles.links}>CALCINHAS DE RENDA</li>
-          <li className={styles.links}>ACESSÓRIOS</li>
-        </ul>
+        {categorias &&
+          categorias.map((categoria) => (
+            <NavLink
+              className={styles.links}
+              to={`/produto/categorias/${categoria._id}`}
+              key={categoria._id}
+            >
+              {categoria.Category.toUpperCase()}
+            </NavLink>
+          ))}
       </nav>
 
       {changeHeader && mobile && (

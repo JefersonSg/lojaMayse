@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 125px;
   transition: .1s;
+  cursor: pointer;
 }
 
 .img {

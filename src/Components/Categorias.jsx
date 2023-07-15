@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Categoria from './Categoria';
 import styles from './Categorias.module.css';
-import Calcinha from '../../public/paginaInicial/Calcinhas.jpg';
-import Sutiãns from '../../public/paginaInicial/sutians.jpg';
-import CalcinhasBasicas from '../../public/paginaInicial/Calcinhas basicas.jpg';
-import CalcinhasRenda from '../../public/paginaInicial/CalcinhasRenda.jpg';
-import Acessorios from '../../public/paginaInicial/acessorios.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './slides.css';
+import useFetch from '../Hooks/useFetch';
+import api from '../helpers/api';
 
 const Categorias = () => {
+  const [categorias, setCategorias] = React.useState('');
+  const [token] = React.useState(window.localStorage.getItem('token') || '');
+  const { data, error, loading, request } = useFetch();
+
   const [slidesPerView, setSlidePerView] = useState(2);
   const [width, setWidth] = useState(600);
   const [navigate, setNavigate] = useState(true);
@@ -46,6 +47,18 @@ const Categorias = () => {
     };
   }, []);
 
+  React.useEffect(() => {
+    async function getCategory() {
+      const response = await request(`${api.getUri()}categorys/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCategorias(response.json.categorys);
+    }
+    getCategory();
+  }, [request, token]);
+
   return (
     <>
       <div className={`${styles.nav}`}>
@@ -56,7 +69,7 @@ const Categorias = () => {
           spaceBetween={0}
           ref={slide}
           pagination={{ clickable: true }}
-          width={width}
+          width={600}
           style={{
             padding: '0 20px 30px 20px',
             boxSizing: 'border-box',
@@ -65,21 +78,16 @@ const Categorias = () => {
           navigation={navigate}
           className={styles.mySwaper}
         >
-          <SwiperSlide className="swipers">
-            <Categoria img={Calcinha} title="Calcinhas" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Categoria img={Sutiãns} title="Sutiãns" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Categoria img={CalcinhasBasicas} title="Calcinhas basicas" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Categoria img={CalcinhasRenda} title="Calcinhas de renda" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Categoria img={Acessorios} title="Acessorios" />
-          </SwiperSlide>
+          {categorias &&
+            categorias.map((categoria) => (
+              <SwiperSlide key={categoria._id}>
+                <Categoria
+                  img={categoria.image}
+                  link={categoria._id}
+                  title={categoria.Category}
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </>

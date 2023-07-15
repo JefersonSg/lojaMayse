@@ -9,8 +9,6 @@
   margin-bottom: 32px;
 }
 
-
-
 @media (max-width:1000px) {
   .inner{
     gap: 40px;

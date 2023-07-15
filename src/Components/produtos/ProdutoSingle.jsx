@@ -35,10 +35,10 @@ const ProdutoSingle = () => {
         const amounts = product.stock.sizeP.amount;
 
         let coresOn = [];
-        amounts.forEach((amount, i) => {
-          const compare = +amount > 0;
+        for (let i = 0; i < amounts.length; i++) {
+          const compare = +amounts[i] > 0;
           coresOn[i] = compare;
-        });
+        }
         setCorOn(coresOn);
         return;
       }
@@ -49,10 +49,10 @@ const ProdutoSingle = () => {
         const amounts = product.stock.sizeM.amount;
 
         let coresOn = [];
-        amounts.forEach((amount, i) => {
-          const compare = +amount > 0;
+        for (let i = 0; i < amounts.length; i++) {
+          const compare = +amounts[i] > 0;
           coresOn[i] = compare;
-        });
+        }
         setCorOn(coresOn);
 
         return;
@@ -62,10 +62,10 @@ const ProdutoSingle = () => {
         const amounts = product.stock.sizeG.amount;
 
         let coresOn = [];
-        amounts.forEach((amount, i) => {
-          const compare = +amount > 0;
+        for (let i = 0; i < amounts.length; i++) {
+          const compare = +amounts[i] > 0;
           coresOn[i] = compare;
-        });
+        }
         setCorOn(coresOn);
         return;
       }
@@ -74,10 +74,10 @@ const ProdutoSingle = () => {
         const amounts = product.stock.sizeGG.amount;
 
         let coresOn = [];
-        amounts.forEach((amount, i) => {
-          const compare = +amount > 0;
+        for (let i = 0; i < amounts.length; i++) {
+          const compare = +amounts[i] > 0;
           coresOn[i] = compare;
-        });
+        }
         setCorOn(coresOn);
 
         return;
@@ -115,18 +115,17 @@ const ProdutoSingle = () => {
     const amounts = product.stock[tamanho].amount;
 
     let coresOn = [];
-    amounts.forEach((amount, i) => {
-      const compare = +amount > 0;
+    for (let i = 0; i < amounts.length; i++) {
+      const compare = +amounts[i] > 0;
       coresOn[i] = compare;
-    });
+    }
     setCorOn(coresOn);
   }
 
   function selectColor(e) {
-    const color = e.target.innerText;
+    const color = e.target.getAttribute('value');
     setColorActive(color);
   }
-  console.log(cores);
   return (
     <>
       <div className="container">

@@ -82,15 +82,16 @@
   cursor: pointer;
 }
 
-.header2 nav ul li{
+.header2 nav a{
   position: relative;
 }
 
-.nav ul{
+.nav{
   display: flex;
+  margin-top: 16px;
   gap: 70px;
 }
-.nav ul li{
+.nav a{
   font-size: 14px;
   cursor: pointer;
 }
@@ -128,7 +129,7 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
-  top: 0;
+  top: 0px;
   left: 0;
 }
 .navMobile {
@@ -164,46 +165,42 @@
 }
 
 
-.navMobile.header2 .links{
+.navMobile .links{
   position: relative;
 }
-.navMobile.header2 nav ul li::after{
-  content: '';
-  display: block;
-  width: 2px;
-  height: 10px;
-  background: black;
-  top: 3px;
-  left: 130%;
-  position: absolute;
-}
 
+.links:global(.active){
+  border-bottom: 2px solid black;
+}
 .navMobileActive {
   opacity: initial;
   pointer-events: initial;
+  width: 300px;
 }
-.navMobile ul{
+.navMobile{
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
-.navMobile ul li{
+.navMobile .links{
   font-size: 14px;
   cursor: pointer;
   letter-spacing: 1.2px;
   box-shadow: 0 1px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 1fr auto;
+  align-items: center;
 }
-.navMobile ul li::after {
+.navMobile .links::after {
   content: '';
+  display: block;
   width: 20px;
   height: 20px;
   display: inline-block;
   background: url('./assets/svg/svgHeader/chevron_right.svg') no-repeat center center;
   align-self: flex-end;
 }
-.navMobile ul li:hover{
+.navMobile .links:hover{
   box-shadow:0 1px rgba(0, 0, 0, 0.6);
 }
 

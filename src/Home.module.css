@@ -1,0 +1,6 @@
+.fotoHome {
+  object-fit: cover;
+}
+.fotoHome img {
+  object-fit: fill;
+}

@@ -7,7 +7,9 @@ import imageHome from '../public/fotoHome.png';
 const Home = () => {
   return (
     <main className={`HomeContainer`}>
-      <img src={imageHome} alt="" />
+      <div className={styles.fotoHome}>
+        <img src={imageHome} alt="" />
+      </div>
       <Categorias />
       <Produtos />
     </main>

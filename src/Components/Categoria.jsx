@@ -1,11 +1,19 @@
 import React from 'react';
 import styles from './Categoria.module.css';
+import api from '../helpers/api';
+import { useNavigate } from 'react-router-dom';
 
-const Categoria = ({ img, title }) => {
+const Categoria = ({ img, title, link }) => {
+  const url = `${api.getUri()}files/category/`;
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.selectCategoria}>
+    <div
+      className={styles.selectCategoria}
+      onClick={() => navigate(`/produto/categorias/${link}`)}
+    >
       <div className={styles.img}>
-        <img src={img} alt={title} />
+        <img src={`${url}${img}`} alt={title} />
       </div>
       <p>{title}</p>
     </div>
