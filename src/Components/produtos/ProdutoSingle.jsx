@@ -6,6 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Photos from '../photo/Photos';
 import api from '../../helpers/api';
 import { color } from 'framer-motion';
+import PageAtual from './PageAtual';
 
 const ProdutoSingle = () => {
   const [product, setProduct] = React.useState('');
@@ -126,9 +127,11 @@ const ProdutoSingle = () => {
     const color = e.target.getAttribute('value');
     setColorActive(color);
   }
+  console.log(product);
   return (
     <>
       <div className="container">
+        {product && <PageAtual categoriaAtual={product.category} />}
         <div className={styles.informacoes}>
           {product.images && (
             <div className={styles.modalPhoto}>

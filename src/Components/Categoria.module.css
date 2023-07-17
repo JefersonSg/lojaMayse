@@ -10,7 +10,6 @@
   width: 125px;
   height: 125px;
   transition: .1s;
-
 }
 .img img {  
   width: 125px;
@@ -69,25 +68,6 @@
   
   .selectCategoria p {
     font-size: 14px;
-    margin-top: 16px;
-  }
-}
-@media (max-width: 40rem) {
-  .selectCategoria{
-    width: 60px;
-  }
-  
-  .img {
-    width: 60px;
-    height: 60px;
-  }
-  .img img {  
-    width: 60px;
-    height: 60px;
-  }
-  
-  .selectCategoria p {
-    font-size: 11px;
     margin-top: 16px;
   }
 }

@@ -5,6 +5,7 @@ import useFetch from '../../Hooks/useFetch';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import api from '../../helpers/api';
+import PageAtual from './PageAtual';
 
 const ProdutosCategorias = () => {
   const [token] = React.useState(window.localStorage.getItem('token') || '');
@@ -34,6 +35,7 @@ const ProdutosCategorias = () => {
   return (
     <>
       <section className={styles.produtosContainer}>
+        {categoria && <PageAtual categoriaAtual={categoria.Category} />}
         <h3 className="subtitle">{categoria && categoria.Category}</h3>
         <div className={styles.produtos}>
           {data &&

@@ -1,44 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import Categoria from './Categoria';
 import styles from './Categorias.module.css';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-import './slides.css';
 import useFetch from '../Hooks/useFetch';
 import api from '../helpers/api';
+
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Navigation, Pagination, Virtual, A11y } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import SlideNextButton from './SlideNextButton';
+import { useNavigate } from 'react-router-dom';
 
 const Categorias = () => {
   const [categorias, setCategorias] = React.useState('');
   const [token] = React.useState(window.localStorage.getItem('token') || '');
   const { data, error, loading, request } = useFetch();
+  const navigate = useNavigate();
 
-  const [slidesPerView, setSlidePerView] = useState(2);
-  const [width, setWidth] = useState(600);
-  const [navigate, setNavigate] = useState(true);
-  const [resize, setResize] = useState(false);
-  const slide = React.useRef();
+  const swiper = useSwiper();
+  const [navigation, setNavigate] = React.useState(true);
+  const [between, setBetween] = React.useState(150);
 
   // ajusta os itens
   useEffect(() => {
     function handleResize() {
-      // if (window.innerWidth <= 800 && window.innerWidth > 600) {
-      //   setNavigate(true);
-      //   setSlidePerView(2);
-      //   setWidth(500);
-      // } else if (window.innerWidth <= 600 && window.innerWidth > 380) {
-      //   setNavigate(false);
-      //   setSlidePerView(2);
-      //   setWidth(340);
-      // } else if (window.innerWidth <= 380) {
-      //   setNavigate(false);
-      //   setSlidePerView(2);
-      //   setWidth(300);
-      // } else {
-      //   setNavigate(true);
-      //   setSlidePerView(3);
-      //   setWidth(800);
-      // }
-      setSlidePerView(2);
+      if (window.innerWidth <= 600) {
+        setNavigate(false);
+        setBetween(50);
+      } else {
+        setNavigate(true);
+        setBetween(150);
+      }
     }
     handleResize();
 
@@ -61,32 +55,38 @@ const Categorias = () => {
     getCategory();
   }, [request, token]);
 
+  let slides;
+
+  if (categorias) {
+    slides = categorias.map((categoria, index) => categoria);
+  }
+
+  const url = `${api.getUri()}files/category/`;
   return (
     <>
       <div className={`${styles.nav}`}>
         <h3 className="subtitle">Veja por categorias</h3>
 
         <Swiper
-          slidesPerView={slidesPerView}
-          spaceBetween={0}
-          ref={slide}
+          modules={[Navigation, Pagination, A11y, Virtual]}
+          slidesPerView={3}
+          spaceBetween={between}
+          loop={true}
           pagination={{ clickable: true }}
-          width={400}
-          style={{
-            padding: '0 20px 30px 20px',
-            zIndex: 0,
-          }}
-          navigation={navigate}
-          className={styles.mySwaper}
+          navigation={navigation}
+          virtual
         >
-          {categorias &&
-            categorias.map((categoria) => (
-              <SwiperSlide key={categoria._id}>
-                <Categoria
-                  img={categoria.image}
-                  link={categoria._id}
-                  title={categoria.Category}
-                />
+          {slides &&
+            slides.map((categoria, index) => (
+              <SwiperSlide
+                onClick={() => navigate(`/produtos/categoria/${categoria._id}`)}
+                key={categoria._id}
+                virtualIndex={index}
+              >
+                <div className={styles.slides}>
+                  <img src={`${url}${categoria.image}`} alt={categoria.image} />
+                  <h3>{categoria.Category}</h3>
+                </div>
               </SwiperSlide>
             ))}
         </Swiper>
