@@ -15,28 +15,30 @@ const Categorias = () => {
   const [slidesPerView, setSlidePerView] = useState(2);
   const [width, setWidth] = useState(600);
   const [navigate, setNavigate] = useState(true);
+  const [resize, setResize] = useState(false);
   const slide = React.useRef();
 
   // ajusta os itens
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth <= 800 && window.innerWidth > 600) {
-        setNavigate(true);
-        setSlidePerView(3);
-        setWidth(500);
-      } else if (window.innerWidth <= 600 && window.innerWidth > 380) {
-        setNavigate(false);
-        setSlidePerView(3);
-        setWidth(340);
-      } else if (window.innerWidth <= 380) {
-        setNavigate(false);
-        setSlidePerView(3);
-        setWidth(300);
-      } else {
-        setNavigate(true);
-        setSlidePerView(3);
-        setWidth(800);
-      }
+      // if (window.innerWidth <= 800 && window.innerWidth > 600) {
+      //   setNavigate(true);
+      //   setSlidePerView(2);
+      //   setWidth(500);
+      // } else if (window.innerWidth <= 600 && window.innerWidth > 380) {
+      //   setNavigate(false);
+      //   setSlidePerView(2);
+      //   setWidth(340);
+      // } else if (window.innerWidth <= 380) {
+      //   setNavigate(false);
+      //   setSlidePerView(2);
+      //   setWidth(300);
+      // } else {
+      //   setNavigate(true);
+      //   setSlidePerView(3);
+      //   setWidth(800);
+      // }
+      setSlidePerView(2);
     }
     handleResize();
 
@@ -69,10 +71,9 @@ const Categorias = () => {
           spaceBetween={0}
           ref={slide}
           pagination={{ clickable: true }}
-          width={600}
+          width={400}
           style={{
             padding: '0 20px 30px 20px',
-            boxSizing: 'border-box',
             zIndex: 0,
           }}
           navigation={navigate}

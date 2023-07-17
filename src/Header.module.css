@@ -1,248 +1,217 @@
-.body {
-  position: relative;
-}
 .header {
   position: sticky;
-  top: 50px;
-  left: 0;
-  display: grid;
   width: 100%;
-  justify-items: center;
-  color: white;
-  z-index: 100;
-  transform: translateY(-10px);
-  transition: all .1s;
-  animation: hidenFirst .3s ease forwards;
+  z-index: 2000;
+  padding: 20px 0;
 }
-@keyframes hidenFirst {
-  to{
-    opacity: 1;
-    transform: initial;
-  }
+.header.styleHome {
+  padding: 20px;
+}
+.header.styleHome.style2 {
+  padding: 10px 20px;
 }
 
-.header2{
-  background-color: white;
-  height: 120px;
-  top: 0;
-  max-width: none;
-  box-shadow: 0 1px 0px rgba(0, 0, 0, .2);
+.header.style2 {
   padding: 10px 0;
-  color: #333;
+}
+
+.nav .mobile,
+.style2 .nav {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  z-index: 100;
-  transform: translateY(40px);
-  opacity: 0;
-  animation: hiden .3s ease forwards;
+  justify-content: space-between;
+  padding: 0;
 }
-
-@keyframes hiden {
-  to{
-    opacity: 1;
-    transform: initial;
-  }
-}
-.bag {
-  width: 20px;
-  height: 20px;
+.nav .bag {
   position: absolute;
-  top: 15px;
+  bottom: 20px;
   right: 40px;
-  display: block;
-  width: 20px;
-  height: 20px;
 }
-.bag::after {
-  content: '';
-  display: none !important;
+.style2 .nav .bag ,
+.mobile .bag {
+  position: initial;
+  bottom: initial;
+  right: initial;
 }
-
-.logo2 svg{
-  top: 0px;
-  position: relative;
-  width: 130px;
+.header.style2 ,
+.header.styleHome.style2 {
+    background: white;
+    top: 0px;
+    box-shadow: 0 0 2PX 1px rgba(0, 0, 0, .5);
+  }
+.noHome {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, .5);
 }
-.logo2 svg{
-  fill: #333;
-}
-
-.logo{
-  width: auto;
-  height: 70px;
-  margin-bottom: 24px;
-  cursor: pointer;
-}
-.logoHeader2 {
-  flex: 1;
-  display: grid;
-  justify-items: center;
-  cursor: pointer;
+.style2 .logo{
+display: none;
 }
 
-.header2 nav a{
-  position: relative;
+.noHome .mobile .logo svg,
+.style2 .logo2 svg{
+  width: 100px;
+  height: 40px;
 }
-
-.nav{
-  display: flex;
-  margin-top: 16px;
-  gap: 70px;
-}
-.nav a{
-  font-size: 14px;
-  cursor: pointer;
-}
-
-
-/* Parte mobile */
-
-.headerMobile {
-  position: fixed;
-  display: grid;
-  grid-template-columns: 1fr ;
-  top: 50px;
-  left: 0;
-  width: 100%;
-  max-width: 1280px;
-  justify-items: center;
+.styleHome .nav .navComputer .links{
   color: white;
-  z-index: 99;
-  animation: none;
-  opacity: 1;
-  transform: initial;
-  transition: .2s ;
 }
-
-.headerNav svg {
-  grid-row: 2;
-  width: auto;
-  height: 70px;
-  margin-bottom: 24px;
-  cursor: pointer;
-}
-
-.navContainer {
-  background: rgba(0, 0, 0, 0.2);
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0px;
-  left: 0;
-}
-.navMobile {
-  position: fixed;
-  top: 0;
-  left: 0px;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px 12px;
-  box-sizing: border-box;
+.styleHome.style2 .nav .navComputer .links{
   color: #333;
-  border-radius: .2rem;
-  opacity: 0;
-  pointer-events: none;
-  height: 100vh;
-  padding-top: 135px;
-  padding-left: 45px;
-  padding-right: 30px;
 }
 
-.headerMobile.header2 {
-  position: sticky;
+.style2 .nav ul .links{
+  color: #333;
+}
+.logo {
+  justify-self: center;
+  margin-bottom: 16px;
+}
+
+.nav {
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr ;
-  top: 0px;
-  left: 0;
-  width: 100%;
-  max-width: none;
-  justify-items: center;
-  color: white;
-  animation: none;
-  opacity: 1;
-  transform: initial;
+  justify-content: center;
 }
 
-
-.navMobile .links{
-  position: relative;
-}
-
-.links:global(.active){
-  border-bottom: 2px solid black;
-}
-.navMobileActive {
-  opacity: initial;
-  pointer-events: initial;
-  width: 300px;
-}
-.navMobile{
+.nav ul {
   display: flex;
-  flex-direction: column;
   gap: 32px;
 }
-.navMobile .links{
+.bag {
+  cursor: pointer;
+}
+
+
+.links:global(.active) {
+  box-shadow: 0 1px black;
+}
+.logo a:global(.active){
+  border: none;
+}
+.logo2 a:global(.active){
+  border: none;
+}
+
+.links:hover {
+    box-shadow: 0 1px black;
+}
+
+
+/* Mobile */
+.nav.mobile {
+  display: grid;
+  grid-template-columns: 100px 110px;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.styleHome .nav.mobile {
+  padding: 0 ;
+}
+.objetos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  gap: 32px;
+}
+.styleHome .nav .navMobile .links{
+  color: #333;
+}
+.navMobile .links {
   font-size: 14px;
   cursor: pointer;
   letter-spacing: 1.2px;
-  box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px #0000001a;
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center;
+  gap: 32px;
+}
+.navMobile {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  transform: translateZ(0);
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+  color: #333;
+  width: max-content;
+  top: 0;
+  left:0 ;
+  padding: 135px 30px 20px 45px;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+}
+.mobile .logo {
+  justify-self: initial;
+  margin-bottom: 0;
 }
 .navMobile .links::after {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background: url('./assets/svg/svgHeader/chevron_right.svg') no-repeat center center;
-  align-self: flex-end;
-}
-.navMobile .links:hover{
-  box-shadow:0 1px rgba(0, 0, 0, 0.6);
+  content: "";
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    background: url('/src/assets/svg/svgHeader/chevron_right.svg') no-repeat center center;
+    align-self: flex-end;
 }
 
+.navMobile.active {
+  opacity: 1;
+  pointer-events: initial;
+}
 .mobileButton {
-  position: fixed;
-  top: 75px;
-  left: 40px;
   background-color: transparent;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   height: 40px;
   width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  transition: 0.1s;
+  transition: .1s;
   cursor: pointer;
-  color: white;
   z-index: 2000;
 }
-.header2 .mobileButton {
-  top: 50px;
-  color: #333;
-
+.mobileButton.buttonWhite {
+  color: #fff;
+}
+.navContainer {
+  display: block;
+  position: fixed;
+  transform: translateZ(0);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .4);
+  z-index: 2;
+  backdrop-filter: blur(3px);
 }
 
 .mobileButton::after {
-  content: '';
+  content: "";
   display: block;
   width: 40px;
   height: 2px;
   background: currentColor;
   border-radius: 2px;
-  box-shadow: 0 6px currentColor, 0 -6px currentColor;
-  transition: .2s;
+  box-shadow: 0 6px currentColor,0 -6px currentColor;
+  transition: .1s;
+}
+
+.mobileButton.buttonWhite:focus ,
+.mobileButton.buttonWhite:hover,
+.mobileButton.buttonWhiteActive{
+  outline: none;
+  color:white;
 }
 
 .mobileButton:focus ,
 .mobileButton:hover,
 .mobileButtonActive{
   outline: none;
-  color: #333;
+  color:#333;
 }
 
 .mobileButtonActive::after {
@@ -252,53 +221,25 @@
   box-shadow: 0 8px currentColor, 0 -8px currentColor;
 }
 
-@media (max-width:64rem) {
-  .nav ul {
-    display: none;
+@media (max-width:700px) {
+
+  .header.styleHome {
+    padding: 10px 20px;
   }
+
+  .nav.mobile {
+    grid-template-columns: 150px 100px;
+    padding: 0 20px;
+  }
+
+  .logo svg{
+    width: 150px;
+    height: 70px;
+  }
+
 }
-
 @media (max-width:35rem) {
-  .navMobile {
-    top: 0;
-    left: 0px;
-    padding: 20px 12px;
-    /* opacity: 0;
-    pointer-events: none; */
-    padding-top: 135px;
-    padding-left: 25px;
-    padding-right: 30px;
+  .objetos {
+    gap: 16px;
   }
-  
-  .navMobileActive {
-    opacity: initial;
-
-    pointer-events: initial;
-  }
-
-  .navMobile ul li{
-    font-size: 14px;
-    cursor: pointer;
-    letter-spacing: 1.2px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-  }
-  .navMobile ul li::after {
-    content: '';
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    background: url('./assets/svg/svgHeader/chevron_right.svg') no-repeat center center;
-    align-self: flex-end;
-  }
-
-  
-  .mobileButton {
-    position: fixed;
-    top: 75px;
-    left: 20px;
-    background-color: transparent;
-  }
-  
-
 }

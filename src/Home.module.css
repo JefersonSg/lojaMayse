@@ -1,6 +1,200 @@
+.homeContainer {
+  margin: 0 auto;
+  margin-top: -150px;
+}
+.homeInit{
+  position: relative;
+  max-height: 80vh;
+  min-height: 50vh;
+}
 .fotoHome {
+  max-width: none;
+  width: 100%;
+  max-height: 80vh;
+  min-height: 50vh;
   object-fit: cover;
 }
 .fotoHome img {
-  object-fit: fill;
+  max-width: none;
+}
+
+.wrapInit {
+  display: flex;
+  position: relative;
+  z-index: 98;
+  bottom: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonInit {
+  min-width: 300px;
+  min-height: 60px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 0px 0px 0px 1px rgba(255,255,255,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+.buttonInit::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid white;
+  box-shadow: 0 0 60px rgba(250,255,203,.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.buttonInit:hover, .buttonInit:focus {
+  color: #313133;
+  transform: translateY(-6px);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.buttonInit:hover::before, .buttonInit:focus::before {
+  opacity: 1;
+}
+
+.buttonInit::after {
+  content: '';
+  width: 300px; height: 60px;
+  border-radius: 100%;
+  border: 6px solid white;
+  position: absolute;
+  border-radius: 9999px;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+.buttonInit:hover::after, .buttonInit:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 300px;
+    height: 60px;
+    opacity: 1;
+  }
+  100% {
+    width: 350px;
+    height:150px;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .buttonInit {
+    font-size: 16px;
+    min-width: 250px;
+    min-height: 60px;
+    width: 250px;
+    }
+    .buttonInit::before {
+        min-width: calc(250px + 12px);
+        min-height: calc(60px + 12px);
+        box-shadow: 0 0 60px rgba(250,255,203,.64);
+      }
+      .buttonInit::after {
+        width: 250px; height: 60px;
+        border: 6px solid white;
+      }
+      @keyframes ring {
+        0% {
+          width: 250px;
+          height: 60px;
+          opacity: 1;
+        }
+        100% {
+          width: 350px;
+          height:150px;
+          opacity: 0;
+        }
+      }
+}
+@media (max-width: 700px) {
+  .buttonInit {
+    font-size: 12px;
+    min-width: 200px;
+    min-height: 40px;
+    width: 200px;
+    height: 40;
+    }
+    .buttonInit::before {
+        min-width: calc(200px + 12px);
+        min-height: calc(40px + 12px);
+        box-shadow: 0 0 40px rgba(250,255,203,.64);
+        border: 4px solid white;
+      }
+      .buttonInit::after {
+        width: 200px; height: 40px;
+        border: 6px solid white;
+      }
+      @keyframes ring {
+        0% {
+          width: 200px;
+          height: 40px;
+          opacity: 1;
+        }
+        100% {
+          width: 250px;
+          height:80px;
+          opacity: 0;
+        }
+      }
+}
+
+@media (max-width: 500px) {
+  .wrapInit {
+    bottom: 60px;
+  }
+  .buttonInit {
+    font-size: 10px;
+    min-width: 150px;
+    min-height: 40px;
+    width: 170px;
+    height: 40;
+    }
+    .buttonInit::before {
+        min-width: calc(170px + 12px);
+        min-height: calc(40px + 12px);
+        box-shadow: 0 0 20px rgba(250,255,203,.64);
+      }
+      .buttonInit::after {
+        width: 150px; height: 40px;
+        border: 4px solid white;
+      }
+      @keyframes ring {
+        0% {
+          width: 170px;
+          height: 40px;
+          opacity: 1;
+        }
+        100% {
+          width: 190px;
+          height:60px;
+          opacity: 0;
+        }
+      }
 }

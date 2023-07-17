@@ -4,7 +4,8 @@ import styles from './Header.module.css';
 import useMedia from './Hooks/useMedia';
 import { ReactComponent as Logo } from './assets/svg/svgHeader/logoWhite.svg';
 import { ReactComponent as Bag } from './assets/svg/svgHeader/bag.svg';
-import { ReactComponent as LogoMobile2 } from './assets/svg/svgHeader/logo2.svg';
+import { ReactComponent as BagWhite } from './assets/svg/svgHeader/bagWhite.svg';
+import { ReactComponent as LogoBlack } from './assets/svg/svgHeader/logo2.svg';
 import useFetch from './Hooks/useFetch';
 import api from './helpers/api';
 
@@ -15,7 +16,7 @@ const Header = () => {
 
   const mobile = useMedia('(max-width: 64rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
-  const [changeHeader, setChangeHeader] = React.useState(true);
+  const [scroll1, setScroll1] = React.useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,29 +35,31 @@ const Header = () => {
     getCategory();
   }, [request, token]);
 
+  // Scrolls
   React.useEffect(() => {
     function infiniteScroll() {
-      const scroll = window.scrollY;
+      const scroll = Math.floor(window.scrollY);
       const heigth = document.body.offsetHeight - window.innerHeight;
-      setChangeHeader(false);
+      const scrollagem = scroll < heigth * 0.5;
+      // HOME
+      setScroll1(false);
 
-      if (pathname === '/' && scroll) {
-        setChangeHeader(true);
-      } else if (pathname === '/' && !scroll) {
-        setChangeHeader(false);
+      //Home Computer
+
+      if (!scroll) {
+        setScroll1(false);
       } else {
-        setChangeHeader(true);
+        setScroll1(true);
       }
     }
     infiniteScroll();
 
-    window.addEventListener('wheel', infiniteScroll);
     window.addEventListener('scroll', infiniteScroll);
     return () => {
-      window.removeEventListener('wheel', infiniteScroll);
       window.removeEventListener('scroll', infiniteScroll);
     };
-  }, [changeHeader, pathname]);
+  }, [pathname]);
+
   function handleOutsideClick({ target, currentTarget }) {
     if (target === currentTarget) {
       setMobileMenu(false);
@@ -65,62 +68,64 @@ const Header = () => {
   React.useEffect(() => {
     return setMobileMenu(false);
   }, [pathname]);
-
   return (
     <header
-      className={`${mobile ? styles.headerMobile : styles.header}
-    ${changeHeader && styles.header2}`}
+      className={`${styles.header}
+      ${pathname === '/' ? styles.styleHome : styles.noHome}
+      ${scroll1 ? styles.style2 : ''}
+      `}
     >
-      {!changeHeader && (
-        <NavLink to="/" end className={styles.logo}>
-          <Logo />
-        </NavLink>
-      )}
-      {changeHeader && !mobile && (
-        <NavLink to="/" end className={`${styles.logoHeader2}`}>
-          <LogoMobile2 />
-        </NavLink>
-      )}
+      <nav className={`${styles.nav} ${mobile ? styles.mobile : ''}`}>
+        {/* HOME PAGE SEM SCROLL */}
+        <div className={`${scroll1 ? styles.logo2 : styles.logo}`}>
+          <NavLink to="/" end>
+            {pathname === '/' && !scroll1 ? <Logo /> : <LogoBlack />}
+          </NavLink>
+        </div>
 
-      {mobile && (
-        <button
-          className={`${styles.mobileButton} ${
-            mobileMenu ? styles.mobileButtonActive : ''
-          }`}
-          onClick={() => setMobileMenu(!mobileMenu)}
-        ></button>
-      )}
+        <ul
+          className={`${mobile ? styles.navMobile : styles.navComputer} ${
+            mobileMenu ? styles.active : ''
+          }
+          ${mobileMenu ? 'animeLeft' : ''}`}
+        >
+          <li>
+            {' '}
+            <NavLink className={styles.links} to={`/produtos/lancamentos`}>
+              LANÇAMENTOS
+            </NavLink>
+          </li>
+          {categorias &&
+            categorias.map((categoria) => (
+              <li key={categoria._id}>
+                <NavLink
+                  className={styles.links}
+                  to={`/produtos/categoria/${categoria._id}`}
+                  key={categoria._id}
+                >
+                  {categoria.Category.toUpperCase()}
+                </NavLink>
+              </li>
+            ))}
+        </ul>
+        <div className={styles.objetos}>
+          <div className={`${styles.bag}`}>
+            {pathname === '/' && !scroll1 ? <BagWhite /> : <Bag />}
+          </div>
+          {mobile && (
+            <button
+              className={`${styles.mobileButton} ${
+                pathname === '/' && !scroll1 && styles.buttonWhite
+              } ${mobileMenu ? styles.mobileButtonActive : ''}`}
+              onClick={() => setMobileMenu(!mobileMenu)}
+            ></button>
+          )}
+        </div>
+      </nav>
       <div
-        className={`${mobileMenu ? styles.navContainer : ''}`}
+        className={`${mobileMenu ? styles.navContainer : styles.off}`}
         onClick={handleOutsideClick}
       ></div>
-      <nav
-        className={`${mobile ? styles.navMobile : styles.nav} 
-        ${mobileMenu ? styles.navMobileActive : ''}
-        ${mobileMenu ? 'animeLeft' : ''}`}
-      >
-        {categorias &&
-          categorias.map((categoria) => (
-            <NavLink
-              className={styles.links}
-              to={`/produto/categorias/${categoria._id}`}
-              key={categoria._id}
-            >
-              {categoria.Category.toUpperCase()}
-            </NavLink>
-          ))}
-      </nav>
-
-      {changeHeader && mobile && (
-        <div className={`${styles.logo2} ${styles.mobileLogo}`}>
-          <LogoMobile2 />
-        </div>
-      )}
-      {changeHeader && (
-        <div className={`${styles.bag}`}>
-          <Bag />
-        </div>
-      )}
     </header>
   );
 };

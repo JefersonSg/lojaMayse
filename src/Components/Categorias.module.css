@@ -13,6 +13,9 @@
   .inner{
     gap: 40px;
     }
+    .nav {
+      margin-top: 0;
+    }
 }
 @media (max-width:50rem) {
   .inner{

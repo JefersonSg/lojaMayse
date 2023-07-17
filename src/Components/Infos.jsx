@@ -7,11 +7,15 @@ const Infos = () => {
     <>
       {pathname === '/' ? (
         <div className={styles.infos}>
-          Frete Grátis <span>acima de R$249,90</span>
+          <p>
+            FRETE GRÁTIS <span>acima de R$249,90</span>
+          </p>
         </div>
       ) : (
         <div className={styles.infos2}>
-          Frete Grátis <span>acima de R$249,90</span>
+          <p>
+            FRETE GRÁTIS <span>acima de R$249,90</span>
+          </p>
         </div>
       )}
     </>

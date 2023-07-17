@@ -10,7 +10,7 @@ const Categoria = ({ img, title, link }) => {
   return (
     <div
       className={styles.selectCategoria}
-      onClick={() => navigate(`/produto/categorias/${link}`)}
+      onClick={() => navigate(`/produtos/categoria/${link}`)}
     >
       <div className={styles.img}>
         <img src={`${url}${img}`} alt={title} />

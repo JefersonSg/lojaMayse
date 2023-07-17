@@ -25,6 +25,11 @@
   font-weight: 600;
   color: #333;
 }
+.infos p,
+.infos2 p{
+  font-weight: 700;
+}
+.infos span,
 .infos2 span {
   font-weight: 500;
 }
@@ -44,4 +49,15 @@
   width: 25px;
   height: 15px;
   background: url('../assets/svg/svgHeader/caminhao.svg') no-repeat center center;
+}
+
+@media (max-width: 700px) {
+  .infos p,
+  .infos span{
+    font-size: 12px;
+  }
+  .infos2 p,
+  .infos2 span{
+    font-size: 12px;
+  }
 }

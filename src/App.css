@@ -14,7 +14,6 @@ body {
   height: calc(100vh + 30rem);
 }
 
-
 h1,
 h2,
 h3,
@@ -48,11 +47,7 @@ a {
   color: #333;
 }
 
-.HomeContainer {
-  max-width: 80rem;
-  margin: 0 auto;
-  margin-top: -130px;
-}
+
 .container {
   max-width: 80rem;
   margin: 0 auto;
