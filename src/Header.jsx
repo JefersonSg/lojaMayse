@@ -68,6 +68,8 @@ const Header = () => {
   React.useEffect(() => {
     return setMobileMenu(false);
   }, [pathname]);
+
+  const dashboard = pathname.includes('dashboard');
   return (
     <header
       className={`${styles.header}
@@ -75,57 +77,61 @@ const Header = () => {
       ${scroll1 ? styles.style2 : ''}
       `}
     >
-      <nav className={`${styles.nav} ${mobile ? styles.mobile : ''}`}>
-        {/* HOME PAGE SEM SCROLL */}
-        <div className={`${scroll1 ? styles.logo2 : styles.logo}`}>
-          <NavLink to="/" end>
-            {pathname === '/' && !scroll1 ? <Logo /> : <LogoBlack />}
-          </NavLink>
-        </div>
+      {pathname !== '/dashboard' && (
+        <>
+          <nav className={`${styles.nav} ${mobile ? styles.mobile : ''}`}>
+            {/* HOME PAGE SEM SCROLL */}
+            <div className={`${scroll1 ? styles.logo2 : styles.logo}`}>
+              <NavLink to="/" end>
+                {pathname === '/' && !scroll1 ? <Logo /> : <LogoBlack />}
+              </NavLink>
+            </div>
 
-        <ul
-          className={`${mobile ? styles.navMobile : styles.navComputer} ${
-            mobileMenu ? styles.active : ''
-          }
+            <ul
+              className={`${mobile ? styles.navMobile : styles.navComputer} ${
+                mobileMenu ? styles.active : ''
+              }
           ${mobileMenu ? 'animeLeft' : ''}`}
-        >
-          <li>
-            {' '}
-            <NavLink className={styles.links} to={`/produtos/lancamentos`}>
-              LANÇAMENTOS
-            </NavLink>
-          </li>
-          {categorias &&
-            categorias.map((categoria) => (
-              <li key={categoria._id}>
-                <NavLink
-                  className={styles.links}
-                  to={`/produtos/categoria/${categoria._id}`}
-                  key={categoria._id}
-                >
-                  {categoria.Category.toUpperCase()}
+            >
+              <li>
+                {' '}
+                <NavLink className={styles.links} to={`/produtos/lancamentos`}>
+                  LANÇAMENTOS
                 </NavLink>
               </li>
-            ))}
-        </ul>
-        <div className={styles.objetos}>
-          <div className={`${styles.bag}`}>
-            {pathname === '/' && !scroll1 ? <BagWhite /> : <Bag />}
-          </div>
-          {mobile && (
-            <button
-              className={`${styles.mobileButton} ${
-                pathname === '/' && !scroll1 && styles.buttonWhite
-              } ${mobileMenu ? styles.mobileButtonActive : ''}`}
-              onClick={() => setMobileMenu(!mobileMenu)}
-            ></button>
-          )}
-        </div>
-      </nav>
-      <div
-        className={`${mobileMenu ? styles.navContainer : styles.off}`}
-        onClick={handleOutsideClick}
-      ></div>
+              {categorias &&
+                categorias.map((categoria) => (
+                  <li key={categoria._id}>
+                    <NavLink
+                      className={styles.links}
+                      to={`/produtos/categoria/${categoria._id}`}
+                      key={categoria._id}
+                    >
+                      {categoria.Category.toUpperCase()}
+                    </NavLink>
+                  </li>
+                ))}
+            </ul>
+            <div className={styles.objetos}>
+              <div className={`${styles.bag}`}>
+                {pathname === '/' && !scroll1 ? <BagWhite /> : <Bag />}
+              </div>
+              {mobile && (
+                <button
+                  className={`${styles.mobileButton} ${
+                    pathname === '/' && !scroll1 && styles.buttonWhite
+                  } ${mobileMenu ? styles.mobileButtonActive : ''}`}
+                  onClick={() => setMobileMenu(!mobileMenu)}
+                ></button>
+              )}
+            </div>
+          </nav>
+          <div
+            className={`${mobileMenu ? styles.navContainer : styles.off}`}
+            onClick={handleOutsideClick}
+          ></div>
+        </>
+      )}
     </header>
   );
 };

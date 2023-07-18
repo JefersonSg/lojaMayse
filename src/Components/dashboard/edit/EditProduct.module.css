@@ -1,0 +1,72 @@
+.form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checks {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.checks li{
+  cursor: pointer;
+  padding: 7px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.stocks {
+  border: 1px solid rgba(0, 0, 0, .5);
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+.checks li.active {
+  border: 2px solid rgba(0, 0, 0, 1);
+  color: black;
+  font-weight: 600;
+  position: relative;
+}
+.checks li.active::before {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 108%;
+  top: 35px;
+  left: -1px;
+  background: black;
+  position: absolute;
+}
+.divColors {
+  border: 1px solid black;
+  margin-top: 32px;
+  padding:  20px;
+}
+.divColors label {
+  border-top: 1px solid black;
+}
+.botoes {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.error {
+  margin: 0 auto;
+  margin-top: 16px;
+  text-align: center;
+  padding: 8px 15px;
+  border-radius: 5px;
+  position: fixed;
+  top: 100px;
+  right: 10%;
+  background: #333;
+  width: max-content;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+}

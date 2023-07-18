@@ -1,42 +1,30 @@
 import React from 'react';
 import styles from './Produtos.module.css';
 import Produto from './Produto';
-import useFetch from '../../Hooks/useFetch';
-import { useNavigate, useParams } from 'react-router-dom';
+import useFetch from '../../../Hooks/useFetch';
+import { useNavigate } from 'react-router-dom';
 
-import api from '../../helpers/api';
-import BreadCrumbs from './Breadcrumbs';
+import api from '../../../helpers/api';
 
-const ProdutosCategorias = () => {
+const Produtos = () => {
   const [token] = React.useState(window.localStorage.getItem('token') || '');
-  const [categoria, setCategoria] = React.useState('');
   const navigate = useNavigate();
-  const params = useParams();
 
   const { request, error, loading, data } = useFetch();
 
   React.useEffect(() => {
-    request(`${api.getUri()}products/categories/${params['id']}`, {
+    request(`${api.getUri()}products/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-  }, [request, token, params]);
-
-  React.useEffect(() => {
-    async function getCategory() {
-      const categoria = await api
-        .get(`categorys/${params['id']}`)
-        .then((response) => setCategoria(response.data.category));
-    }
-    getCategory();
-  }, [request, token, params]);
-
+  }, [request, token]);
   return (
     <>
+      <p className={'ButtonCriar'} onClick={() => navigate('/dashboard/criar')}>
+        Crie um novo produto
+      </p>
       <section className={styles.produtosContainer}>
-        {categoria && <BreadCrumbs categoriaAtual={categoria._id} />}
-        <h3 className="subtitle">{categoria && categoria.Category}</h3>
         <div className={styles.produtos}>
           {data &&
             data.products.map(
@@ -58,4 +46,4 @@ const ProdutosCategorias = () => {
   );
 };
 
-export default ProdutosCategorias;
+export default Produtos;

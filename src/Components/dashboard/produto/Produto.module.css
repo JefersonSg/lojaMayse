@@ -1,0 +1,47 @@
+.produto {
+  display: grid;
+  gap: 16px;
+}
+.produto img {
+  border-radius: .2rem;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .3), 0px 0px 4px rgba(0, 0, 0, .2);
+}
+.infos {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  gap: 16px;
+  font-family: var(--type-second);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.title {
+  text-align: start;
+}
+.price {
+  text-align: start;
+  width: max-content;
+  margin-right: 30px;
+}
+.model {
+  grid-row: 2;
+  grid-column: 1/-1;
+  text-align: start;
+  font-weight: 400;
+  font-size: 14px;
+}
+@media (max-width: 50rem) {
+  .infos {
+    gap: 8px;
+    font-size: 14px;
+  }
+  .price {
+  margin-right: 10px;
+
+  }
+
+  .model {
+    font-size: 12px;
+  }
+}

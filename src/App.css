@@ -54,8 +54,26 @@ a {
   padding-top: 120px;
 }
 
+.containerSingle {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-top: 20px;
+}
 .mainContainer {
   margin-top: 4rem;
+}
+.form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-weight: 500;
+  font-size: 64px;
+  margin-bottom: 64px;
 }
 
 .subtitle{
@@ -96,4 +114,76 @@ a {
     opacity: 1;
     transform: initial;
   }
+}
+.animeRight{
+  opacity: 0;
+  transform: translateX(40px);
+  animation: animeRight .3s forwards;
+}
+
+@keyframes animeRight {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+
+.ButtonCriar{
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 64px;
+  background-color: black;
+  cursor: pointer;
+  border: none;
+  padding: 16px 32px;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  border-radius: 12px;
+}
+
+.ButtonCriar::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg,red,blue,deeppink,blue,red,blue,deeppink
+  ,blue);
+  background-size: 800%;
+  border-radius: 10px;
+  filter: blur(8px);
+  animation: glowing 25s linear infinite;
+  transition: 0.2s;
+}
+
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.error {
+  margin: 0 auto;
+  margin-top: 16px;
+  text-align: center;
+  padding: 8px 15px;
+  border-radius: 5px;
+  position: fixed;
+  top: 100px;
+  right: 10%;
+  background: #333;
+  width: max-content;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
 }

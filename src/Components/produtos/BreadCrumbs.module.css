@@ -1,0 +1,30 @@
+.breadcrumbs {
+  font-family: var(--type-second);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  line-height: 16px;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  font-weight: 400;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  width: 100%;
+  max-width: 1280px;
+  padding-left: 4.0625rem;
+}
+.breadcrumbs nav {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+.breadcrumbs nav ul {
+  display: flex;
+  gap: 8px;
+}
+.breadcrumbs a:first-child{
+  color: #767676;
+}
+.breadcrumbs nav ul li.active {
+  color: black;
+}

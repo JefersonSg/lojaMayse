@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import api from '../Helpers/api';
+import api from '../helpers/api';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const useAuth = () => {
@@ -9,7 +9,6 @@ const useAuth = () => {
   useEffect(() => {
     const { pathname } = location;
     const token = window.localStorage.getItem('token');
-    console.log(token);
     if (token) {
       api.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
@@ -25,7 +24,7 @@ const useAuth = () => {
     window.localStorage.removeItem('token');
     api.defaults.headers.Authorization = undefined;
 
-    navigate('/login');
+    navigate('/dashboard/login');
   }
 
   async function authUser(data) {
@@ -33,7 +32,7 @@ const useAuth = () => {
 
     localStorage.setItem('token', data.token);
 
-    navigate('/');
+    navigate('/dashboard');
   }
 
   async function login(user) {

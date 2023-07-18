@@ -1,0 +1,86 @@
+
+
+.checks {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.checks li{
+  cursor: pointer;
+  padding: 7px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.stocks {
+  border: 1px solid rgba(0, 0, 0, .5);
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+.checks li.active {
+  border: 2px solid rgba(0, 0, 0, 1);
+  color: black;
+  font-weight: 600;
+  position: relative;
+}
+.checks li.active::before {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 108%;
+  top: 35px;
+  left: -1px;
+  background: black;
+  position: absolute;
+}
+.divColors {
+  border: 1px solid black;
+  margin-top: 32px;
+  padding:  20px;
+}
+.divColors label {
+  border-top: 1px solid black;
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-sizing: border-box;
+  padding-top: 16px;
+}
+.botoes button:nth-child(1) {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  text-transform: uppercase;
+}
+
+.botoes button:nth-child(1):hover {
+  outline: none;
+  box-shadow: 0 0px 0px 3px white, 0 0px 0px 4px rgba(0, 0, 0, 0.8);
+}
+.botoes button:nth-child(2):hover {
+  outline: none;
+  box-shadow: 0 0px 0px 3px red, 0 0px 0px 4px rgba(0, 0, 0, 0.8);
+}
+
+.botoes button:nth-child(2) {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: red;
+  color: #611B00;
+  cursor: pointer;
+  width: 140px;
+  height: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+
