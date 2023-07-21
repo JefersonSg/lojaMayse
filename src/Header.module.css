@@ -111,7 +111,7 @@ display: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 130px;
+  width: 120px;
   gap: 32px;
 }
 .links {
@@ -244,8 +244,42 @@ display: none;
   }
 
 }
+
 @media (max-width:35rem) {
+  .header.noHome {
+    padding: 20px 10px;
+  }
+  .header.styleHome,
+  .header.styleHome.style2,
+  .header.style2
+  {
+    padding: 0 10px;
+  }
   .objetos {
+    width: 80px;
+    position: relative;
+    right: -30px;
     gap: 16px;
   }
+  .nav.mobile {
+    grid-template-columns: 80px 100px;
+    padding: 0;
+    height: 50px;
+  }
+  .style2 .logo2 svg,
+  .logo svg{
+    width: 80px;
+  }
+    .logo svg {
+      height: 50px;
+    }
+  .bag svg{
+    width: 20px;
+    height: 20px;
+  }
+  .mobileButton {
+    width: 35px;
+    height: 30px;
+  }
+
 }

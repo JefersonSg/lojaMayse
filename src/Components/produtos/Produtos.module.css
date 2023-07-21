@@ -5,12 +5,12 @@
   margin: 0 auto;
   text-align: center;
   max-width: 1280px;
-  margin-top: 32px;
   min-height: 600px;
 }
-.produtosContainer h3 {
-  margin-bottom: 32px;
+.subtitleProduct {
+  margin-bottom: 64px !important;
 }
+
 .criar{
   width: max-content;
   margin: 0 auto;

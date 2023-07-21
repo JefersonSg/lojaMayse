@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './Produto.module.css';
 import api from '../../helpers/api';
+import { NavLink } from 'react-router-dom';
 
 const Produto = ({ src, title, price, model, id }) => {
   const url = `${api.getUri()}files/products/`;
   return (
-    <a className={styles.produto} href={`/produto/${id}`}>
+    <NavLink className={styles.produto} to={`/produtos/${id}`}>
       <div>
         <img src={`${url}${src}`} alt={title} />
       </div>
@@ -14,7 +15,7 @@ const Produto = ({ src, title, price, model, id }) => {
         <span className={styles.price}>R$ {price}</span>
         <span className={styles.model}>{model}</span>
       </div>
-    </a>
+    </NavLink>
   );
 };
 

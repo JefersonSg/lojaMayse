@@ -1,18 +1,17 @@
 .imagens {
   display: grid;
-  grid-template-columns: 85px 500px;
+  grid-template-columns: 75px minmax(250px, 500px);
   gap: 16px;
   max-width:600px;
   margin: 0 auto;
 }
 .miniImages {
   display: grid;
-  grid-template-rows: repeat(auto-fill , 85px );
+  grid-template-rows: repeat(auto-fill , 75px );
   gap: 16px 0px;
 }
 .miniImages div{
-  width: 85px;
-  height: 85px;
+  width: auto;
   display: flex;
   object-fit: contain;
   border: 3px solid #FFBFD0;
@@ -32,3 +31,19 @@
 .imagens img {
   pointer-events: none;
 }
+
+@media (max-width:50rem) {
+  .imagens,
+  .imagemPrincipal img{
+    height: auto;
+    max-height: 600px;
+  }
+  .imagemPrincipal img {
+    width: min-max(300px, 700px);
+  }
+  .imagens {
+    max-width: 500px;
+  }
+
+}
+

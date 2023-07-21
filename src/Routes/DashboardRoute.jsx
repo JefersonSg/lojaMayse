@@ -16,13 +16,13 @@ const DashboardRoute = () => {
       <Infos />
       <Header />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/criar" element={<CreateProduct />} />
         <Route path="/categorias" element={<CreateCategory />} />
         <Route path="/categorias/:id" element={<EditCategory />} />
         <Route path="/produto/:id" element={<SingleProduct />} />
         <Route path="/edit/:id" element={<EditProduct />} />
-        <Route path="/" element={<Home />} />
       </Routes>
     </>
   );

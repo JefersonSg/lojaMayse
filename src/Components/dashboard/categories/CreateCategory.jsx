@@ -95,7 +95,7 @@ const CreateCategory = () => {
     }
     getCategory();
   }
-  const url = 'http://localhost:5000/files/category/';
+  const url = `${api.getUri()}files/category/`;
 
   return (
     <section className="container">

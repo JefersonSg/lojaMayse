@@ -7,7 +7,7 @@ import Photos from '../photo/Photos';
 import api from '../../helpers/api';
 import { color } from 'framer-motion';
 import BreadCrumbs from './Breadcrumbs';
-import Infos from '../dashboard/Infos';
+import Infos from '../Infos';
 import Header from '../../Header';
 
 const ProdutoSingle = () => {
@@ -93,7 +93,6 @@ const ProdutoSingle = () => {
       }
     }
   }, [product]);
-
   React.useEffect(() => {
     async function produtoId() {
       const data = await request(`${api.getUri()}products/${params['id']}`, {
@@ -135,8 +134,6 @@ const ProdutoSingle = () => {
   }
   return (
     <>
-      <Infos />
-      <Header />
       <div className="containerSingle">
         {product && (
           <BreadCrumbs
@@ -189,7 +186,7 @@ const ProdutoSingle = () => {
                 </div>
               </div>
               <div className={styles.estoque}>
-                <h3>Tamanhos</h3>
+                <h3 className="subtitle">Tamanhos</h3>
                 <div
                   onClick={handleCores}
                   className={`${styles.sizes} ${
@@ -228,7 +225,9 @@ const ProdutoSingle = () => {
               </div>
               <div className={styles.descricao}>
                 <p>DESCRICAO</p>
-                <span className={styles.descricaoTexto}>{product.model}</span>
+                <span className={styles.descricaoTexto}>
+                  {product.description}
+                </span>
               </div>
             </section>
           </main>

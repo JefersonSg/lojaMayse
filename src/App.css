@@ -12,6 +12,7 @@ body {
   --type-second: 'Quicksand', sans-serif;
   font-family: var(--type-first);
   height: calc(100vh + 30rem);
+  height: 100%;
 }
 
 h1,
@@ -76,11 +77,22 @@ a {
   margin-bottom: 64px;
 }
 
-.subtitle{
+.subtitle {
+  font-family:Quicksand ;
+  font-size: 24px;
+  letter-spacing: 1.5px;
+  line-height: 24px;
   font-weight: 400;
-  font-size: 32px;
-  font-family: var(--type-second);
+  position: relative;
+  width: max-content;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  margin-bottom: 16px;
 }
+
 @media (max-width:50rem) {
   .subtitle{
     font-size: 24px;

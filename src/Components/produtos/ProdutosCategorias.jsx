@@ -36,7 +36,9 @@ const ProdutosCategorias = () => {
     <>
       <section className={styles.produtosContainer}>
         {categoria && <BreadCrumbs categoriaAtual={categoria._id} />}
-        <h3 className="subtitle">{categoria && categoria.Category}</h3>
+        <h3 className={`subtitle ${styles.subtitleProduct}`}>
+          {categoria && categoria.Category}
+        </h3>
         <div className={styles.produtos}>
           {data &&
             data.products.map(

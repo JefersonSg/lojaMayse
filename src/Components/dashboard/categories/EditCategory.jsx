@@ -48,14 +48,16 @@ const CreateCategory = () => {
     }
 
     await api
-      .patch(`http://localhost:5000/categorys/${params['id']}`, formData, {
+      .patch(`categorys/${params['id']}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => navigate('/dashboard/categorias'));
+      .then(() => navigate('/dashboard/categorias'));
   }
-  const url = 'http://localhost:5000/files/category/';
+
+  const url = `${api.getUri()}files/category/`;
+
   return (
     <section className="container">
       <>

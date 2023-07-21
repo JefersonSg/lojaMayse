@@ -3,6 +3,7 @@ import Categoria from './Categoria';
 import styles from './Categorias.module.css';
 import useFetch from '../Hooks/useFetch';
 import api from '../helpers/api';
+import './slides.css';
 
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Navigation, Pagination, Virtual, A11y } from 'swiper/modules';
@@ -10,7 +11,6 @@ import { Navigation, Pagination, Virtual, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import SlideNextButton from './SlideNextButton';
 import { useNavigate } from 'react-router-dom';
 
 const Categorias = () => {
@@ -71,8 +71,9 @@ const Categorias = () => {
           modules={[Navigation, Pagination, A11y, Virtual]}
           slidesPerView={3}
           spaceBetween={between}
-          loop={true}
           pagination={{ clickable: true }}
+          width={500}
+          style={{ padding: '0 50px' }}
           navigation={navigation}
           virtual
         >

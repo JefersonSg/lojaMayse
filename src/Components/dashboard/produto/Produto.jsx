@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './Produto.module.css';
+import api from '../../../helpers/api';
 
 const Produto = ({ src, title, price, model, id }) => {
-  const url = 'http://localhost:5000/files/products/';
+  const url = `${api.getUri()}files/products/`;
   return (
     <a className={styles.produto} href={`/dashboard/produto/${id}`}>
       <div>
