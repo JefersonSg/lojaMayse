@@ -50,7 +50,6 @@ const EditProduct = () => {
       }
     }, 200);
   }
-
   React.useEffect(() => {
     async function produtoId() {
       const data = await request(`${api.getUri()}products/${params['id']}`, {
@@ -106,7 +105,6 @@ const EditProduct = () => {
   function handleStockChange(e, index) {
     let size;
     const produto = { ...product };
-    console.log(e.target.type);
     if (e.target.type === 'text') {
       produto.colors[index] = e.target.value;
       setProduct(produto);
@@ -121,14 +119,12 @@ const EditProduct = () => {
       produto.codeColors[index] = e.target.value;
       setProduct(produto);
     }
-
-    // produto['stock'][size][itemAtivo][i] = e.target.value;
-    // setProduct(produto);
   }
   function onFileChange(e) {
     setProduct({ ...product, ['images']: e.target.files });
     setImagesProducts(false);
     setImagesProducts(Array.from(e.target.files));
+    window.scrollTo(0, 0);
   }
 
   const handleSubmit = async (e) => {
@@ -159,7 +155,6 @@ const EditProduct = () => {
 
     if (!product.colors) {
       setErrorForm('informe todas as cores disponiveis neste tamanho');
-      console.log(product.stock);
       return;
     }
     if (
@@ -203,7 +198,6 @@ const EditProduct = () => {
       formData.append(key, productData[key]);
     });
     if (imagesProducts) {
-      console.log(imagesProducts);
       for (let i = 0; i < imagesProducts.length; i++) {
         const imagemAtual = imagesProducts[i].type;
         if (
@@ -227,7 +221,7 @@ const EditProduct = () => {
         },
       })
       .then((response) => {
-        navigate(`/produto/${product._id}`);
+        navigate(`/dashboard/produto/${product._id}`);
         return response.data;
       })
       .catch((err) => {
@@ -250,12 +244,12 @@ const EditProduct = () => {
   return (
     <div className="container">
       <h1>Edite o produto</h1>
-      {product && !imagesProducts && (
+      {product && (
         <Photos image1={product.images[0]} imagesAll={product.images} />
       )}
-      {imagesProducts && (
+      {/* {imagesProducts && (
         <Photos preview1={imagesProducts[0]} previewAll={imagesProducts} />
-      )}
+      )} */}
 
       <form
         className={styles.form}
@@ -402,9 +396,8 @@ const EditProduct = () => {
             <Input label="Tamanho P" type="hidden" name="size" {...sizeP} />
             <p>Digite a quantidade disponivel para cada cor </p>
             {coresInputs.map((cor, i) => (
-              <div>
+              <div key={cor}>
                 <Input
-                  key={cor}
                   label={`cor ${product.colors[i]}`}
                   type="number"
                   name="colorAmountP"
@@ -420,9 +413,8 @@ const EditProduct = () => {
             <Input label="Tamanho M" type="hidden" name="size" {...sizeM} />
             <p>Digite a quantidade disponivel para cada cor </p>
             {coresInputs.map((cor, i) => (
-              <div>
+              <div key={cor}>
                 <Input
-                  key={cor}
                   label={`cor ${product.colors[i]}`}
                   type="number"
                   name="colorAmountM"
@@ -438,9 +430,8 @@ const EditProduct = () => {
             <Input label="Tamanho G" type="hidden" name="size" {...sizeG} />
             <p>Digite a quantidade disponivel para cada cor </p>
             {coresInputs.map((cor, i) => (
-              <div>
+              <div key={cor}>
                 <Input
-                  key={cor}
                   label={`cor ${product.colors[i]}`}
                   type="number"
                   name="colorAmountG"
@@ -456,9 +447,8 @@ const EditProduct = () => {
             <Input label="Tamanho GG" type="hidden" name="size" {...sizeGG} />
             <p>Digite a quantidade disponivel para cada cor </p>
             {coresInputs.map((cor, i) => (
-              <div>
+              <div key={cor}>
                 <Input
-                  key={cor}
                   label={`cor ${product.colors[i]}`}
                   type="number"
                   name="colorAmountGG"

@@ -163,7 +163,7 @@ const CreateProduct = ({ productData }) => {
       }
     }
 
-    await request('http://localhost:5000/products/create', {
+    await request(`${api.getUri()}products/create`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Photo.module.css';
+import api from '../../../helpers/api';
 
 const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
   const [imagePrincipal, setImagePrincipal] = React.useState(
@@ -8,7 +9,7 @@ const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
 
   const [images, setImages] = React.useState(imagesAll || previewAll);
 
-  const url = 'http://localhost:5000/files/products/';
+  const url = `${api.getUri()}files/products/`;
 
   return (
     <>

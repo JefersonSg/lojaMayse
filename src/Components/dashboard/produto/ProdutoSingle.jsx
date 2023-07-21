@@ -193,7 +193,9 @@ const ProdutoSingle = () => {
               </div>
 
               <div className={styles.botoes}>
-                <Button onClick={() => navigate(`/edit/${params['id']}`)}>
+                <Button
+                  onClick={() => navigate(`/dashboard/edit/${params['id']}`)}
+                >
                   EDITAR
                 </Button>
                 <Button onClick={() => setModalDelete(true)}>DELETAR</Button>

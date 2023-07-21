@@ -7,7 +7,7 @@ import Home from '../Components/dashboard/Home';
 import CreateCategory from '../Components/dashboard/categories/CreateCategory';
 import EditCategory from '../Components/dashboard/categories/EditCategory';
 import SingleProduct from '../Components/dashboard/produto/ProdutoSingle';
-import EditProduct from '../Components/dashboard/produto/Produto';
+import EditProduct from '../Components/dashboard/edit/EditProduct';
 import CreateProduct from '../Components/dashboard/create/CreateProduct';
 
 const DashboardRoute = () => {

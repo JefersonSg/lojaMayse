@@ -11,22 +11,16 @@ const Infos = () => {
     <div className={styles.infos}>
       {authenticated ? (
         <>
-          <li
-            style={{ marginLeft: '80px', cursor: 'pointer' }}
-            onClick={() => navigate('/')}
-          >
+          <li style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
             Ir para a Loja
           </li>
           <li
-            style={{ marginLeft: '80px', cursor: 'pointer' }}
+            style={{ cursor: 'pointer' }}
             onClick={() => navigate('/dashboard')}
           >
             Ir para a home
           </li>
-          <li
-            style={{ marginLeft: '80px', cursor: 'pointer' }}
-            onClick={logout}
-          >
+          <li style={{ cursor: 'pointer' }} onClick={logout}>
             Sair
           </li>
         </>
