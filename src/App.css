@@ -119,7 +119,29 @@ a {
   transform: translateX(-20px);
   animation: animeLeft .3s forwards;
 }
-
+.animeLeftRight{
+  opacity: 0;
+  transform: translateX(40px);
+  animation: animeLeftRight 7s forwards;
+}
+@keyframes animeLeftRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  } 
+  7% {
+    opacity: 1;
+    transform: initial;
+  }
+  80% {
+    opacity: 1;
+    transform: initial;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(100vw);
+  }
+}
 @keyframes animeLeft {
   to {
     opacity: 1;

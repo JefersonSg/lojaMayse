@@ -25,7 +25,7 @@ const ProdutoSingle = () => {
   React.useEffect(() => {
     const temporizador = setTimeout(function closeError() {
       setErrorForm(false);
-    }, 5000);
+    }, 7000);
 
     return () => {
       clearTimeout(temporizador);
@@ -264,7 +264,8 @@ const ProdutoSingle = () => {
                   onClick={handleCores}
                   className={`${styles.sizes} ${
                     product.stock.sizeM.amount[0] ? '' : styles.emFalta
-                  }${active === 'M' ? styles.active : ''}`}
+                  }${!emFalta[1] && active === 'M' ? styles.active : ''}
+                  ${emFalta[1] ? styles.emFalta : ''}`}
                 >
                   <h4>M</h4>
                 </div>
@@ -272,7 +273,8 @@ const ProdutoSingle = () => {
                   onClick={handleCores}
                   className={`${styles.sizes} ${
                     product.stock.sizeG.amount[0] ? '' : styles.emFalta
-                  }${active === 'G' ? styles.active : ''}`}
+                  }${!emFalta[2] && active === 'G' ? styles.active : ''}
+                  ${emFalta[2] ? styles.emFalta : ''}`}
                 >
                   <h4>G</h4>
                 </div>
@@ -280,13 +282,25 @@ const ProdutoSingle = () => {
                   onClick={handleCores}
                   className={`${styles.sizes} ${
                     product.stock.sizeGG.amount[0] ? '' : styles.emFalta
-                  }${active === 'GG' ? styles.active : ''}`}
+                  }${!emFalta[2] && active === 'GG' ? styles.active : ''}
+                  ${emFalta[2] ? styles.emFalta : ''}`}
                 >
                   <h4>GG</h4>
                 </div>
               </div>
               <div className={styles.adicionar}>
                 <button
+                  onClick={(e) => {
+                    if (!travarCarrinho) {
+                      const bag = {
+                        size: active,
+                        color: colorSelected,
+                        id: params['id'],
+                      };
+
+                      window.localStorage.setItem('bag', JSON.stringify(bag));
+                    }
+                  }}
                   className={`${styles.addBag} ${
                     travarCarrinho ? styles.bagOff : ''
                   }`}
@@ -303,7 +317,9 @@ const ProdutoSingle = () => {
             </section>
           </main>
         )}
-        {errorForm && <span className={`error animeRight`}>{errorForm}</span>}
+        {errorForm && (
+          <span className={`error animeLeftRight`}>{errorForm}</span>
+        )}
       </div>
     </>
   );

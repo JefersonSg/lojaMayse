@@ -226,7 +226,20 @@ display: none;
   height: 4px;
   box-shadow: 0 8px currentColor, 0 -8px currentColor;
 }
-
+.itensBag {
+  position: relative;
+  display: flex;
+  top: 8px;
+  right: -15px;
+  background-color: red;
+  font-size: 12px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
 @media (max-width:700px) {
 
   .header.styleHome {
