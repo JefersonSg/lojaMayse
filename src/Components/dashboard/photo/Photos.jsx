@@ -22,13 +22,7 @@ const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
                 key={imagem + i}
                 className={`${imagem === imagePrincipal ? styles.active : ''}`}
               >
-                <img
-                  key={`${imagem + i}2`}
-                  src={
-                    previewAll ? URL.createObjectURL(imagem) : `${url}${imagem}`
-                  }
-                  alt=""
-                />
+                <img key={`${imagem + i}2`} src={`${url}${imagem}`} alt="" />
               </div>
             ))}
           </div>
@@ -44,7 +38,7 @@ const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
           </div>
         </div>
       </div>
-      {/* {previewAll && (
+      {previewAll && (
         <div>
           <div className={styles.imagens}>
             <div className={styles.miniImages}>
@@ -65,7 +59,7 @@ const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
             </div>
           </div>
         </div>
-      )} */}
+      )}
     </>
   );
 };

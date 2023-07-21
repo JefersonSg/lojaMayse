@@ -15,16 +15,15 @@ const EditProduct = () => {
   const [errorForm, setErrorForm] = React.useState('');
   const navigate = useNavigate();
   0;
-  const [imagesProducts, setImagesProducts] = React.useState(false);
+  const [imagesProducts, setImagesProducts] = React.useState(null);
+  const [imagePrincipal, setImagePrincipal] = React.useState(null);
   const params = useParams();
 
-  const [formP, setFormP] = React.useState(false);
   const [coresInputs, setCoresInputs] = React.useState([1]);
 
+  const [formP, setFormP] = React.useState(false);
   const [formM, setFormM] = React.useState(false);
-
   const [formG, setFormG] = React.useState(false);
-
   const [formGG, setFormGG] = React.useState(false);
 
   const [categorias, setCategorias] = React.useState('');
@@ -59,6 +58,7 @@ const EditProduct = () => {
         },
       });
       setProduct(data.json.product);
+      setImagePrincipal(data.json.product.images[0]);
       await setForms(data);
     }
     produtoId();
@@ -122,11 +122,12 @@ const EditProduct = () => {
   }
   function onFileChange(e) {
     setProduct({ ...product, ['images']: e.target.files });
-    setImagesProducts(false);
     setImagesProducts(Array.from(e.target.files));
+    // setImagePrincipal(imagesProducts);
+    setImagePrincipal(e.target.files[0]);
     window.scrollTo(0, 0);
   }
-
+  // console.log(imagePrincipal);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -240,16 +241,64 @@ const EditProduct = () => {
     }
     getCategory();
   }, [request, token]);
+  const url = `${api.getUri()}files/products/`;
 
   return (
     <div className="container">
       <h1>Edite o produto</h1>
-      {product && (
-        <Photos image1={product.images[0]} imagesAll={product.images} />
+      {product && !imagesProducts && (
+        <div>
+          <div className={styles.imagens}>
+            <div className={styles.miniImages}>
+              {product.images.map((imagem, i) => (
+                <div
+                  onClick={(e) => setImagePrincipal(imagem)}
+                  key={imagem + i}
+                  className={`${
+                    imagem === imagePrincipal ? styles.active : ''
+                  }`}
+                >
+                  <img key={`${imagem + i}2`} src={`${url}${imagem}`} alt="" />
+                </div>
+              ))}
+            </div>
+            <div className={styles.imagemPrincipal}>
+              <img src={`${url}${imagePrincipal}`} alt="" />
+            </div>
+          </div>
+        </div>
       )}
-      {/* {imagesProducts && (
-        <Photos preview1={imagesProducts[0]} previewAll={imagesProducts} />
-      )} */}
+      {imagesProducts && (
+        <div>
+          <div className={styles.imagens}>
+            <div className={styles.miniImages}>
+              {imagesProducts.map((imagem, i) => (
+                <div
+                  onClick={(e) => {
+                    setImagePrincipal(imagem);
+                  }}
+                  key={imagem + i}
+                  className={`${
+                    imagem === imagePrincipal ? styles.active : ''
+                  }`}
+                >
+                  <img
+                    key={`${imagem + i}2`}
+                    src={imagesProducts ? URL.createObjectURL(imagem) : ''}
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
+            <div className={styles.imagemPrincipal}>
+              <img
+                src={imagePrincipal ? URL.createObjectURL(imagePrincipal) : ''}
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       <form
         className={styles.form}
@@ -317,6 +366,11 @@ const EditProduct = () => {
                   placeholder="ex: azul..."
                   value={product.colors ? product.colors[i] : ''}
                   onChange={(e) => handleStockChange(e, i)}
+                  onKeyDown={(e) => {
+                    if (e.keyCode === 13) {
+                      e.preventDefault();
+                    }
+                  }}
                 />
                 <input
                   type="color"
@@ -473,7 +527,7 @@ const EditProduct = () => {
           </div>
         ) : (
           <div className={styles.botoes}>
-            <Button>CONFIRMAR EDIÇÃO</Button>
+            <Button>CONFIRMAR</Button>
             <Button
               onClick={(e) => {
                 e.preventDefault();

@@ -16,7 +16,21 @@ const ProdutoSingle = () => {
   const [token] = React.useState(window.localStorage.getItem('token') || '');
   const [image, setImage] = React.useState('');
   const [images, setImages] = React.useState('');
+  const [emFalta, setEmFalta] = React.useState([]);
   const params = useParams();
+  const [errorForm, setErrorForm] = React.useState('');
+  const [indexColorActive, setIndexColorActive] = React.useState(0);
+  const [travarCarrinho, setTravarCarrinho] = React.useState(false);
+
+  React.useEffect(() => {
+    const temporizador = setTimeout(function closeError() {
+      setErrorForm(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(temporizador);
+    };
+  }, [errorForm]);
 
   // Botão de adição
   const [quantidade, setQuantidade] = React.useState(1);
@@ -28,10 +42,9 @@ const ProdutoSingle = () => {
   const [cores, setCores] = React.useState('');
   const [codes, setCodes] = React.useState('');
   const [corOn, setCorOn] = React.useState([]);
-  const [colorActive, setColorActive] = React.useState('');
 
   // FORM BAG
-  const [colorSelected, setColorSelected] = React.useState(null);
+  const [colorSelected, setColorSelected] = React.useState('');
 
   React.useEffect(() => {
     if (product) {
@@ -116,7 +129,7 @@ const ProdutoSingle = () => {
   function handleCores(e) {
     const tamanho = 'size' + e.target.innerText;
     const letra = e.target.innerText;
-    setActive(letra);
+
     const amounts = product.stock[tamanho].amount;
 
     let coresOn = [];
@@ -124,13 +137,58 @@ const ProdutoSingle = () => {
       const compare = +amounts[i] > 0;
       coresOn[i] = compare;
     }
+
+    if (coresOn[indexColorActive]) {
+      setActive(letra);
+      setTravarCarrinho(false);
+    }
     setCorOn(coresOn);
   }
 
   function selectColor(e) {
     const color = e.target.getAttribute('value');
-    setColorActive(color);
-    setColorSelected(e.target.value);
+    setColorSelected(color);
+  }
+
+  async function handleCheckColor(e, i) {
+    // verify amount
+    setIndexColorActive(i);
+    let verify = [...emFalta];
+    const emFaltaP = +product.stock.sizeP.amount[i]
+      ? (verify[0] = false)
+      : (verify[0] = true);
+    const emFaltaM = +product.stock.sizeM.amount[i]
+      ? (verify[1] = false)
+      : (verify[1] = true);
+    const emFaltaG = +product.stock.sizeG.amount[i]
+      ? (verify[2] = false)
+      : (verify[2] = true);
+    const emFaltaGG = +product.stock.sizeGG.amount[i]
+      ? (verify[3] = false)
+      : (verify[3] = true);
+
+    if (active === 'P' && emFaltaP) {
+      setErrorForm('A cor selecionada está indisponivel no tamanho P');
+      setTravarCarrinho(true);
+    } else if (active === 'M' && emFaltaM) {
+      setErrorForm('A cor selecionada está indisponivel no tamanho M');
+      setTravarCarrinho(true);
+    } else if (active === 'G' && emFaltaG) {
+      setErrorForm('A cor selecionada está indisponivel no tamanho G');
+      setTravarCarrinho(true);
+    } else if (active === 'GG' && emFaltaGG) {
+      setErrorForm('A cor selecionada está indisponivel no tamanho GG');
+      setTravarCarrinho(true);
+    } else {
+      setErrorForm('');
+      setTravarCarrinho(false);
+      setAddBag({
+        size: active,
+        color: colorSelected,
+        id_product: params['id'],
+      });
+    }
+    setEmFalta(verify);
   }
   return (
     <>
@@ -158,13 +216,18 @@ const ProdutoSingle = () => {
                 <div className={styles.form_radio_container}>
                   {cores &&
                     cores.map((cor, i) => (
-                      <div key={i} className={styles.colorInput}>
+                      <div key={i} className={`${styles.colorInput}`}>
                         <label
+                          onClick={(e) => {
+                            handleCheckColor(e, i);
+                          }}
                           className={colorSelected === cor ? styles.active : ''}
                         >
                           {cor}
+                          {colorSelected}
                           <span
-                            className={styles.spanColor}
+                            className={`${styles.spanColor}
+                            `}
                             style={{ backgroundColor: `${codes[i]}` }}
                           ></span>
                           <input
@@ -173,11 +236,8 @@ const ProdutoSingle = () => {
                             value={cor}
                             id={`cor${i}`}
                             onChange={selectColor}
-                            className={`${styles.cores} ${styles.formRadio} ${
-                              colorActive === cor && corOn[i]
-                                ? styles.active
-                                : ''
-                            } ${!corOn[i] ? styles.corOff : ''}`}
+                            checked={colorSelected === cor}
+                            className={`${styles.cores} ${styles.formRadio} `}
                             key={cor + i}
                           />
                         </label>
@@ -188,10 +248,15 @@ const ProdutoSingle = () => {
               <div className={styles.estoque}>
                 <h3 className="subtitle">Tamanhos</h3>
                 <div
-                  onClick={handleCores}
+                  onClick={(e) => {
+                    handleCores(e);
+                  }}
                   className={`${styles.sizes} ${
                     product.stock.sizeP.amount[0] ? '' : styles.emFalta
-                  } ${active === 'P' ? styles.active : ''}`}
+                  } ${!emFalta[0] && active === 'P' ? styles.active : ''}
+                  ${emFalta[0] ? styles.emFalta : ''}
+                  
+                  `}
                 >
                   <h4>P</h4>
                 </div>
@@ -221,7 +286,13 @@ const ProdutoSingle = () => {
                 </div>
               </div>
               <div className={styles.adicionar}>
-                <button className={styles.addBag}>ADICIONAR AO CARRINHO</button>
+                <button
+                  className={`${styles.addBag} ${
+                    travarCarrinho ? styles.bagOff : ''
+                  }`}
+                >
+                  ADICIONAR AO CARRINHO
+                </button>
               </div>
               <div className={styles.descricao}>
                 <p>DESCRICAO</p>
@@ -232,6 +303,7 @@ const ProdutoSingle = () => {
             </section>
           </main>
         )}
+        {errorForm && <span className={`error animeRight`}>{errorForm}</span>}
       </div>
     </>
   );

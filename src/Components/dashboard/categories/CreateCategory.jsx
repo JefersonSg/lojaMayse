@@ -77,7 +77,7 @@ const CreateCategory = () => {
     category.setValue('');
     setImage('');
     setPreview('');
-    const response = await request('http://localhost:5000/categorys/create', {
+    const response = await request(`${api.getUri()}categorys/create`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,

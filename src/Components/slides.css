@@ -1,12 +1,65 @@
 .swiper-button-prev {
-  color: black;
-  position: absolute;
-  display: block;
-  left: -2px;
+  color: black !important;
+  position: relative !important;
+  display: inline-block !important;
+  top: -0px !important;
+  left: 0% !important;
+  transform: translate(-365px, -420%) !important;
+  padding: 10px !important;
 }
 .swiper-button-next {
-  color: black;
-  position: absolute;
-  display: block;
-  right: -2px;
+  color: black !important;
+  position: relative !important;
+  display: inline-block !important;
+  top: 0% !important;
+  left: 50% !important;
+  transform: translate(-130%, -420%) !important;
+  padding: 10px !important;
 }
+.swiper {
+  position: relative;
+  width: calc(100vw - 5%);
+  box-sizing: border-box;
+  padding:0 50px !important;
+  max-width: 800px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-0%);
+  height: 250px;
+}
+.swiper-pagination {
+  position: absolute !important;
+  bottom: 60px !important;
+}
+.slides,
+.swiper-slide {
+  max-height: max-content !important;
+  height: 50px !important;
+}
+.swiper .swiper-slide:last-child {
+  margin-right: 100px !important;
+}
+
+@media (max-width: 600px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    --swiper-navigation-size: 35px;
+    top: -30px !important;
+  }
+
+  .swiper {
+    height: 200px;
+  }
+  .swiper-pagination {
+    bottom: 20px !important;
+  }
+}
+@media (max-width: 400px) {
+  .swiper {
+    width: calc(100vw - 10%);
+    padding: 0 50px 0 0 !important;
+  }
+
+}
+
+

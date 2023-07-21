@@ -26,12 +26,13 @@ const Categorias = () => {
   // ajusta os itens
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth <= 600) {
+      console.log(slides);
+      if (window.innerWidth <= 800) {
         setNavigate(false);
         setBetween(50);
       } else {
         setNavigate(true);
-        setBetween(150);
+        setBetween(100);
       }
     }
     handleResize();
@@ -72,8 +73,6 @@ const Categorias = () => {
           slidesPerView={3}
           spaceBetween={between}
           pagination={{ clickable: true }}
-          width={500}
-          style={{ padding: '0 50px' }}
           navigation={navigation}
           virtual
         >

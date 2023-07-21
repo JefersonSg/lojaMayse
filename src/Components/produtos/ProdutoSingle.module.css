@@ -63,6 +63,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr;
 }
+
 .colorInput {
   display: grid;
   position: relative;
@@ -71,9 +72,14 @@ h1 {
 .colorInput label {
   border: 1px solid #ccc;
   border-radius: 50%;
+  cursor: pointer;
 }
 .colorInput label.active {
   border: 2px solid black;
+}
+.colorInput label.colorOff span {
+  pointer-events: none;
+  opacity: 0.3;
 }
 .colorInput input {
   background-color: #fff;
@@ -107,6 +113,7 @@ h1 {
   position: relative;
   grid-template-columns: repeat(auto-fill, 4rem);
   gap: 2rem;
+  height: 35px;
   align-items: center;
 }
 .spanColor {
@@ -127,10 +134,7 @@ h1 {
   color: transparent;
   padding: 2px;
 }
-.cores.corOff {
-  pointer-events: none;
-  opacity: 0.3;
-}
+
 
 .formRadio:checked {
   border-color: #333;
@@ -160,7 +164,8 @@ h1 {
 .sizes.emFalta {
   color: #999;
   border-color: #C3C3C3;
-  pointer-events: none;
+  cursor: not-allowed;
+  text-decoration: line-through;
 }
 .sizes.active {
   border: 3px solid black;
@@ -191,6 +196,11 @@ line-height: 22px;
 width: calc(100% - 4.5rem);
 position: relative;
 left: -2.25rem;
+}
+.bagOff {
+  cursor: not-allowed;
+  background: #666;
+  color: #E7E7E7;
 }
 
 .descricao {
