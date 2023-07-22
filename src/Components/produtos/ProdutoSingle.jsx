@@ -35,6 +35,9 @@ const ProdutoSingle = () => {
   // Botão de adição
   const [quantidade, setQuantidade] = React.useState(1);
   const [addBag, setAddBag] = React.useState(1);
+  const [storageBag, setStorageBag] = React.useState(
+    localStorage.getItem('bag') && JSON.parse(localStorage.getItem('bag')),
+  );
 
   const [active, setActive] = React.useState('');
 
@@ -45,6 +48,8 @@ const ProdutoSingle = () => {
 
   // FORM BAG
   const [colorSelected, setColorSelected] = React.useState('');
+
+  let carrinho = [];
 
   React.useEffect(() => {
     if (product) {
@@ -168,16 +173,16 @@ const ProdutoSingle = () => {
       : (verify[3] = true);
 
     if (active === 'P' && emFaltaP) {
-      setErrorForm('A cor selecionada está indisponivel no tamanho P');
+      setErrorForm(`A cor escolhida não está disponivel no tamanho P`);
       setTravarCarrinho(true);
     } else if (active === 'M' && emFaltaM) {
-      setErrorForm('A cor selecionada está indisponivel no tamanho M');
+      setErrorForm('A cor escolhida não está disponivel no tamanho M');
       setTravarCarrinho(true);
     } else if (active === 'G' && emFaltaG) {
-      setErrorForm('A cor selecionada está indisponivel no tamanho G');
+      setErrorForm('A cor escolhida não está disponivel no tamanho G');
       setTravarCarrinho(true);
     } else if (active === 'GG' && emFaltaGG) {
-      setErrorForm('A cor selecionada está indisponivel no tamanho GG');
+      setErrorForm('A cor escolhida não está disponivel no tamanho GG');
       setTravarCarrinho(true);
     } else {
       setErrorForm('');
@@ -291,14 +296,21 @@ const ProdutoSingle = () => {
               <div className={styles.adicionar}>
                 <button
                   onClick={(e) => {
+                    const infos = [...storageBag];
+                    console.log(infos);
                     if (!travarCarrinho) {
                       const bag = {
                         size: active,
                         color: colorSelected,
                         id: params['id'],
+                        amount: 1,
                       };
+                      // infos.push(bag);
+                      console.log(infos.length);
 
-                      window.localStorage.setItem('bag', JSON.stringify(bag));
+                      // window.location.reload();
+                      console.log(storageBag);
+                      localStorage.setItem('bag', JSON.stringify(infos));
                     }
                   }}
                   className={`${styles.addBag} ${

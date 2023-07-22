@@ -207,16 +207,21 @@ a {
 }
 .error {
   margin: 0 auto;
-  margin-top: 16px;
   text-align: center;
   padding: 8px 15px;
   border-radius: 5px;
   position: fixed;
   top: 100px;
-  right: 20px;
+  right: 10px;
   background: #333;
   width: max-content;
   font-weight: 500;
   font-size: 16px;
   color: white;
+}
+@media (max-width:35rem) {
+  .error {
+    font-size: 12px;
+    right: 3px;
+  }
 }

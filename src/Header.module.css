@@ -29,7 +29,7 @@
 }
 .style2 .nav .bag ,
 .mobile .bag {
-  position: initial;
+  position: relative;
   bottom: initial;
   right: initial;
 }
@@ -227,10 +227,10 @@ display: none;
   box-shadow: 0 8px currentColor, 0 -8px currentColor;
 }
 .itensBag {
-  position: relative;
+  position: absolute;
   display: flex;
-  top: 8px;
-  right: -15px;
+  top: -10px;
+  right: -20px;
   background-color: red;
   font-size: 12px;
   font-weight: 600;

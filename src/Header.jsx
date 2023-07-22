@@ -17,7 +17,9 @@ const Header = () => {
   const mobile = useMedia('(max-width: 64rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
   const [scroll1, setScroll1] = React.useState(false);
-  const itensBag = React.useState(localStorage.getItem('bag') || '');
+  const itensBag = React.useState(
+    JSON.parse(localStorage.getItem('bag')) || false,
+  );
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -70,7 +72,7 @@ const Header = () => {
   React.useEffect(() => {
     return setMobileMenu(false);
   }, [pathname]);
-
+  console.log(itensBag);
   const dashboard = pathname.includes('dashboard');
   return (
     <header
@@ -116,7 +118,11 @@ const Header = () => {
             </ul>
             <div className={styles.objetos}>
               <div className={`${styles.bag}`}>
-                {itensBag ? <span className={styles.itensBag}>1</span> : ''}
+                {itensBag[0] ? (
+                  <span className={styles.itensBag}>{itensBag[0].length}</span>
+                ) : (
+                  ''
+                )}
                 {pathname === '/' && !scroll1 ? <BagWhite /> : <Bag />}
               </div>
               {mobile && (

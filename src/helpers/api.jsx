@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'https://mayse.fun/',
+  baseURL: 'http://localhost:5000/',
 });
