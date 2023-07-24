@@ -8,6 +8,7 @@
   border-radius: 10px;
   gap: 16px;
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, .2);
+  position: relative;
 }
 .image {
   height: 100px;
@@ -35,11 +36,66 @@
   font-size: 12px;
   letter-spacing: 1.1px;
 }
+/* Cores */
+
 .color {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, .3);
+  width: max-content;
+  padding: 0px 10px 0px 10px;
+  text-align: center;
   font-style: var(--type-second);
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 1.1px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.color.selectMode {
+  border-bottom: none;
+  padding-bottom: 5px;
+}
+.divColorSelected {
+  display: grid;
+  grid-template-columns: 15px 70px 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.corSelecionada {
+  width: 11px;
+  height: 11px;
+  border-radius: 99999px;
+  margin-right: 4px;
+}
+.opcoesColors {
+  position: absolute;
+  background: white;
+  top: 20px;
+  left: -1px;
+  width: 127px;
+  border: inherit;
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  padding: 10px 10px 10px 10px;
+  z-index: 10000;
+}
+.opcoesColors ul {
+  display: flex;
+
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.1px;
+}
+.opcoesColors ul li {
+  display: grid;
+  grid-template-columns: 15px 70px 20px;
+
 }
 
 .addAmount {
@@ -56,6 +112,57 @@
   padding: 0;
   width: 30px;
   height: 30px;
+}
+
+.lixeira {
+  position: relative;
+  display:block ;
+  top: -80px;
+  right: -90px;
+  fill: #999;
+  cursor: pointer;
+  width: max-content;
+}
+
+.modalDelete {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .1);
+  z-index: 3000;
+}
+
+.gridDelete {
+  margin: 0 auto;
+  background-color: black;
+  padding: 16px 20px;
+  color: white;
+  letter-spacing: 1.1px;
+}
+.botoes {
+  display: flex;
+  margin-top: 32px;
+}
+.botoes button {
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  font-family: var(--type-second);
+  cursor: pointer;
+  border-radius: 5px;
+}
+.botoes button:hover {
+  box-shadow: 0 0 0px 2px rgba(240, 240, 240, .8);
 }
 
 @media (max-width:550px) {

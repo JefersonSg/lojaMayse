@@ -43,6 +43,7 @@ const ProdutoSingle = () => {
 
   // Seletor de cores
   const [cores, setCores] = React.useState('');
+  const [codeColorActive, setCodeColorActive] = React.useState('');
   const [codes, setCodes] = React.useState('');
   const [corOn, setCorOn] = React.useState([]);
 
@@ -109,6 +110,7 @@ const ProdutoSingle = () => {
       }
     }
   }, [product]);
+
   React.useEffect(() => {
     async function produtoId() {
       const data = await request(`${api.getUri()}products/${params['id']}`, {
@@ -121,13 +123,12 @@ const ProdutoSingle = () => {
       setImage(data.json.product.images[0]);
       setImages(data.json.product.images);
       setCodes(data.json.product.codeColors);
+      setCodeColorActive(data.json.product.codeColors[0]);
       setCores(data.json.product.colors);
       setColorSelected(data.json.product.colors[0]);
     }
     produtoId();
   }, [params, request, token]);
-
-  const navigate = useNavigate();
 
   function handleCores(e) {
     const tamanho = 'size' + e.target.innerText;
@@ -223,6 +224,7 @@ const ProdutoSingle = () => {
                         <label
                           onClick={(e) => {
                             handleCheckColor(e, i);
+                            setCodeColorActive(codes[i]);
                           }}
                           className={colorSelected === cor ? styles.active : ''}
                         >
@@ -301,11 +303,12 @@ const ProdutoSingle = () => {
                         size: active,
                         color: colorSelected,
                         id: params['id'],
+                        codeColor: codeColorActive,
                         amount: 1,
                       };
+                      console.log(bag);
                       infos.push(bag);
 
-                      console.log(storageBag);
                       localStorage.setItem('bag', JSON.stringify(infos));
                       window.location.reload();
                     }

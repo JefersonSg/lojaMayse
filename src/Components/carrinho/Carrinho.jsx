@@ -12,7 +12,6 @@ const Carrinho = () => {
       ? JSON.parse(localStorage.getItem('bag'))
       : false,
   );
-  console.log(itens);
 
   React.useEffect(() => {
     const fetchBag = async () => {
@@ -31,14 +30,22 @@ const Carrinho = () => {
     fetchBag();
   }, [itens, request]);
   const url = `${api.getUri()}files/products/`;
-
   return (
     <div className={styles.bagItens}>
       <h2 className="subtitle">Seus itens no carrinho</h2>
       {itensCarrinho &&
         itensCarrinho.map(
           (
-            { name, images, brand, colors, description, price, stock },
+            {
+              name,
+              images,
+              brand,
+              colors,
+              description,
+              price,
+              stock,
+              codeColors,
+            },
             index,
           ) => (
             <div key={index}>
@@ -50,10 +57,12 @@ const Carrinho = () => {
                 description={description}
                 price={price}
                 stock={stock}
+                codes={codeColors}
                 sizeSelected={itens[index].size}
                 colorSelected={itens[index].color}
                 amountSelected={itens[index].amount}
                 index={index}
+                itens={itens}
               />
             </div>
           ),
