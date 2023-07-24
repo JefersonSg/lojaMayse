@@ -92,8 +92,12 @@ display: none;
   border: none;
 }
 
-.links:hover {
-    box-shadow: 0 1px black;
+
+.styleHome .links:hover {
+  box-shadow: 0 1px white;
+}
+.style2 .links:hover {
+  box-shadow: 0 1px black;
 }
 
 

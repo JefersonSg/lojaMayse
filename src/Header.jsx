@@ -72,7 +72,6 @@ const Header = () => {
   React.useEffect(() => {
     return setMobileMenu(false);
   }, [pathname]);
-  console.log(itensBag);
   const dashboard = pathname.includes('dashboard');
   return (
     <header
@@ -117,14 +116,18 @@ const Header = () => {
                 ))}
             </ul>
             <div className={styles.objetos}>
-              <div className={`${styles.bag}`}>
-                {itensBag[0] ? (
-                  <span className={styles.itensBag}>{itensBag[0].length}</span>
-                ) : (
-                  ''
-                )}
-                {pathname === '/' && !scroll1 ? <BagWhite /> : <Bag />}
-              </div>
+              <NavLink to={'/checkout'}>
+                <div className={`${styles.bag}`}>
+                  {itensBag[0] ? (
+                    <span className={styles.itensBag}>
+                      {itensBag[0].length}
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                  {pathname === '/' && !scroll1 ? <BagWhite /> : <Bag />}
+                </div>
+              </NavLink>
               {mobile && (
                 <button
                   className={`${styles.mobileButton} ${

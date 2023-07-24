@@ -49,8 +49,6 @@ const ProdutoSingle = () => {
   // FORM BAG
   const [colorSelected, setColorSelected] = React.useState('');
 
-  let carrinho = [];
-
   React.useEffect(() => {
     if (product) {
       if (product.stock.sizeP.amount) {
@@ -296,7 +294,7 @@ const ProdutoSingle = () => {
               <div className={styles.adicionar}>
                 <button
                   onClick={(e) => {
-                    const infos = [...storageBag];
+                    const infos = storageBag ? [...storageBag] : [];
                     console.log(infos);
                     if (!travarCarrinho) {
                       const bag = {
@@ -305,12 +303,11 @@ const ProdutoSingle = () => {
                         id: params['id'],
                         amount: 1,
                       };
-                      // infos.push(bag);
-                      console.log(infos.length);
+                      infos.push(bag);
 
-                      // window.location.reload();
                       console.log(storageBag);
                       localStorage.setItem('bag', JSON.stringify(infos));
+                      window.location.reload();
                     }
                   }}
                   className={`${styles.addBag} ${

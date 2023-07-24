@@ -10,6 +10,7 @@ import DashboardRoute from './Routes/DashboardRoute';
 import ProdutoSingle from './Components/produtos/ProdutoSingle';
 
 import { UserProvider } from './context/UserContext';
+import CarrinhoRouter from './Routes/CarrinhoRouter';
 
 function App() {
   const ScrollToTop = () => {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/produtos/*" element={<ProdutosRoute />} />
             <Route path="/dashboard/*" element={<DashboardRoute />} />
+            <Route path="/checkout/*" element={<CarrinhoRouter />} />
           </Routes>
           <Footer />
         </UserProvider>

@@ -26,7 +26,6 @@ const Categorias = () => {
   // ajusta os itens
   useEffect(() => {
     function handleResize() {
-      console.log(slides);
       if (window.innerWidth <= 800) {
         setNavigate(false);
         setBetween(50);
