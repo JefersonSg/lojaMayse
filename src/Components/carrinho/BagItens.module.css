@@ -295,7 +295,17 @@
   .price {
     font-size: 14px;
   }
-  
+  .gridDelete {
+    padding: 40px 20px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    position: relative;
+    top: -80px;
+  }
+  .botoes button {
+    width: 120px;
+    font-size: 14px;
+  }
 
 }
 @media (max-width:450px) {
@@ -369,6 +379,7 @@
   .addAmount span {
     display: block;
     width: 20px;
+    height: 25px;
     font-size: 12px;
   }
   .addAmount button {
