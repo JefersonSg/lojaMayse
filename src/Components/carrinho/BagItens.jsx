@@ -18,6 +18,8 @@ const BagItens = ({
   sizeSelected,
   colorSelected,
   amountSelected,
+  valorCarrinho,
+  setValorCarrinho,
   index,
   itens,
 }) => {
@@ -55,9 +57,11 @@ const BagItens = ({
     [stock],
   );
 
+  const total = amountSelected * price;
+
   React.useEffect(() => {
     handleCheckColor('', colorsIndex);
-  }, [handleCheckColor, colorsIndex]);
+  }, [handleCheckColor, colorsIndex, setValorCarrinho]);
   return (
     <div className={styles.bagItem}>
       <div
@@ -84,6 +88,7 @@ const BagItens = ({
               let quantidade = [...amounts];
               quantidade[index].amount = +amounts[index].amount + 1;
               setAmounts(quantidade);
+              setValorCarrinho(valorCarrinho + price);
               window.localStorage.setItem('bag', JSON.stringify(amounts));
             }}
           >
@@ -96,6 +101,9 @@ const BagItens = ({
               quantidade[index].amount =
                 +amounts[index].amount > 1 ? +amounts[index].amount - 1 : 1;
               setAmounts(quantidade);
+              if (valorCarrinho >= price && quantidade[index].amount > 1) {
+                setValorCarrinho(valorCarrinho - price);
+              }
               window.localStorage.setItem('bag', JSON.stringify(amounts));
             }}
           >
@@ -267,11 +275,14 @@ const BagItens = ({
 
               <button
                 onClick={(e) => {
-                  const newItens = [...itens];
+                  const newItens = JSON.parse(localStorage.getItem('bag'));
+                  console.log(newItens);
                   newItens.splice(index, 1);
+
                   window.localStorage.setItem('bag', JSON.stringify(newItens));
                   setModalDelete(false);
                   e.target.parentElement.parentElement.parentElement.parentElement.remove();
+                  window.location.reload();
                 }}
               >
                 Excluir

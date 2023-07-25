@@ -7,11 +7,15 @@ import BagItens from './BagItens';
 const Carrinho = () => {
   const { data, error, loading, request } = useFetch();
   const [itensCarrinho, setItensCarrinho] = React.useState(null);
+  const [valorCarrinho, setValorCarrinho] = React.useState(0);
+
   const [itens, setItens] = React.useState(
     localStorage.getItem('bag')
       ? JSON.parse(localStorage.getItem('bag'))
       : false,
   );
+
+  const preco = valorCarrinho.toLocaleString('pt-BR').split(',');
 
   React.useEffect(() => {
     const fetchBag = async () => {
@@ -29,6 +33,18 @@ const Carrinho = () => {
     };
     fetchBag();
   }, [itens, request]);
+
+  React.useEffect(() => {
+    let valorInicial = 0;
+    if (itensCarrinho) {
+      itens.forEach((item, i) => {
+        item.amount;
+        valorInicial += +itensCarrinho[i].price * +item.amount;
+      });
+      setValorCarrinho(valorInicial);
+    }
+  }, [itens, itensCarrinho]);
+
   const url = `${api.getUri()}files/products/`;
   return (
     <div className={styles.bagItens}>
@@ -63,11 +79,25 @@ const Carrinho = () => {
                 amountSelected={itens[index].amount}
                 index={index}
                 itens={itens}
+                valorCarrinho={valorCarrinho}
+                setValorCarrinho={setValorCarrinho}
               />
             </div>
           ),
         )}
-      <button className="ButtonCriar">Concluir Compra</button>
+      <section className={styles.checkCompra}>
+        <p className={styles.total}>
+          <span>R$</span> {preco[0] ? preco[0] : '0'},
+          <span>
+            {preco[1]
+              ? preco[1].length === 2
+                ? preco[2]
+                : `${preco[1]}0`
+              : '00'}
+          </span>
+        </p>
+        <button className="">FINALIZAR</button>
+      </section>
     </div>
   );
 };

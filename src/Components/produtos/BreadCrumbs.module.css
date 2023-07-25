@@ -28,3 +28,16 @@
 .breadcrumbs nav ul li.active {
   color: black;
 }
+
+@media (max-width:35rem) {
+  .breadcrumbs nav ul {
+    gap: 4px;
+    font-size: 10px;
+  }
+  .breadcrumbs nav {
+    padding: 0.5rem 0;
+  }
+  .breadcrumbs {
+    padding: 0.5rem 0.5rem;
+  }
+}

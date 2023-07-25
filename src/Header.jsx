@@ -22,9 +22,6 @@ const Header = () => {
   );
 
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const params = useParams();
 
   // Get Categories
   React.useEffect(() => {
@@ -78,13 +75,14 @@ const Header = () => {
       className={`${styles.header}
       ${pathname === '/' ? styles.styleHome : styles.noHome}
       ${scroll1 ? styles.style2 : ''}
+      ${mobile ? styles.headerMobile : ''}
       `}
     >
       {pathname !== '/dashboard' && (
         <>
           <nav className={`${styles.nav} ${mobile ? styles.mobile : ''}`}>
             {/* HOME PAGE SEM SCROLL */}
-            <div className={`${scroll1 ? styles.logo2 : styles.logo}`}>
+            <div className={`${scroll1 ? styles.logo2 : styles.logo} `}>
               <NavLink to="/" end>
                 {pathname === '/' && !scroll1 ? <Logo /> : <LogoBlack />}
               </NavLink>

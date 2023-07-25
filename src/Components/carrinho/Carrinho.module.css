@@ -1,7 +1,37 @@
 .bagItens {
   padding: 20px;
+  min-height: 80vh;
+}
+.checkCompra {
+  width: 100%;
+  background-color: white;
+  /* border-top: 1px solid rgba(0, 0, 0, .5); */
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: max-content;
+  padding: 10px 20px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, .5),0 0 4px 0 rgba(0, 0, 0, .2)
 }
 
+.checkCompra button {
+  border: none;
+  background-color: black;
+  height: 50px;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+.total {
+  font-weight: 700;
+  color: red;
+}
+.total span {
+  font-size: 8px;
+}
 
 @media (max-width:550px) {
   .bagItens {

@@ -230,7 +230,19 @@ left: -2.25rem;
     flex-direction: column;
     gap: 2rem;
   }
+  .price {
+    font-size: 16px;
+  }
   .colors {
-    margin-top: 32px;
+    margin-top: 8px;
+  }
+  .estoque{
+    margin-top: 16px;
+  }
+  .adicionar{
+    margin-top: 16px;
+  }
+  .descricao {
+    margin-top: 16px;
   }
 }
