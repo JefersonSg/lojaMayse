@@ -1,3 +1,10 @@
 .bagItens {
   padding: 20px;
 }
+
+
+@media (max-width:550px) {
+  .bagItens {
+    padding: 10px;
+  }
+}
