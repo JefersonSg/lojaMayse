@@ -135,6 +135,7 @@ display: none;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 32px;
+  align-items: center;
 }
 .navMobile {
   display: flex;
@@ -142,7 +143,7 @@ display: none;
   position: fixed;
   transform: translateZ(0);
   height: 100vh;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   box-sizing: border-box;
   color: #333;
   width: max-content;
@@ -299,4 +300,17 @@ display: none;
     height: 30px;
   }
 
+}
+
+@media (max-width:450px) {
+  .navMobile {
+    width: 230px;
+    padding: 135px 20px 20px 20px;
+  }
+  .nav ul {
+    gap: 16px;
+  }
+  .navMobile .links {
+    font-size: 12px;
+  }
 }

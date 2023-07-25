@@ -97,7 +97,7 @@ a {
     font-size: 24px;
   }
 }
-@media (max-width:40rem) {
+@media (max-width:35rem) {
   .subtitle{
     font-size: 18px;
   }
