@@ -4,6 +4,9 @@
   gap: 16px 0;
   height: max-content;
 }
+.divImage {
+  height: minmax(330px, 500px);
+}
 .produto img {
   border-radius: .2rem;
   width: 100%;

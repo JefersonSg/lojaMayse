@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import api from '../../../helpers/api';
+import { Navigate } from 'react-router-dom';
 
 const User = () => {
   const [user, setUser] = useState({});
   const [token] = useState(localStorage.getItem('token') || '');
 
   React.useEffect(() => {
-    api
-      .get('/users/checkuser', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setUser(response.data);
-      });
+    if (token) {
+      api
+        .get('/users/checkuser', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setUser(response.data);
+        });
+    }
   }, [token]);
 
   return (

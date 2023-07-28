@@ -198,9 +198,15 @@ const EditProduct = () => {
     await Object.keys(productData).forEach((key) => {
       formData.append(key, productData[key]);
     });
+
     if (imagesProducts) {
+      imagesProducts.forEach((image) => {
+        formData.append('images', image);
+      });
+
       for (let i = 0; i < imagesProducts.length; i++) {
         const imagemAtual = imagesProducts[i].type;
+        productData.images;
         if (
           imagemAtual !== 'image/jpeg' &&
           imagemAtual !== 'image/jpg' &&
@@ -242,8 +248,6 @@ const EditProduct = () => {
     getCategory();
   }, [request, token]);
   const url = import.meta.env.VITE_APP_IMAGE_URL;
-
-  console.log(url);
 
   return (
     <div className="container">
@@ -342,12 +346,7 @@ const EditProduct = () => {
             setProduct({ ...product, [target.id]: target.value })
           }
         >
-          <option
-            value=""
-            selected
-            disabled
-            style={{ display: 'none' }}
-          ></option>
+          <option value="" disabled style={{ display: 'none' }}></option>
           {categorias &&
             categorias.map((categoria) => (
               <option value={categoria._id} key={categoria._id}>
@@ -533,7 +532,7 @@ const EditProduct = () => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                navigate(`/produto/${product._id}`);
+                navigate(`/dashboard/produto/${product._id}`);
               }}
             >
               VOLTAR

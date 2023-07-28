@@ -29,6 +29,7 @@ const Carrinho = () => {
           );
       });
       const products = await Promise.all(bagItens);
+
       if (products[0]) {
         return setItensCarrinho(products);
       }
@@ -98,9 +99,6 @@ const Carrinho = () => {
       ) : (
         <h3 className={`${styles.nada} subtitle`}>
           Nenhum item foi encontrado no carrinho
-          {setTimeout(() => {
-            removeBag();
-          }, 5000)}
         </h3>
       )}
       <section className={styles.checkCompra}>

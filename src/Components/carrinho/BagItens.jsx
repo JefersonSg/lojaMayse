@@ -44,7 +44,7 @@ const BagItens = ({
   const [G, setG] = React.useState(undefined);
   const [GG, setGG] = React.useState(undefined);
 
-  const url = process.env.REACT_APP_IMAGE_URL;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
 
   const colorsIndex = colors.findIndex((cor) => cor === colorSelected);
 

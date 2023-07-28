@@ -9,6 +9,8 @@ import EditCategory from '../Components/dashboard/categories/EditCategory';
 import SingleProduct from '../Components/dashboard/produto/ProdutoSingle';
 import EditProduct from '../Components/dashboard/edit/EditProduct';
 import CreateProduct from '../Components/dashboard/create/CreateProduct';
+import { UserProvider } from '../context/UserContext';
+import ProtectedRoute from '../helpers/ProtectedRoute';
 
 const DashboardRoute = () => {
   return (
@@ -16,13 +18,63 @@ const DashboardRoute = () => {
       <Infos />
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/criar" element={<CreateProduct />} />
-        <Route path="/categorias" element={<CreateCategory />} />
-        <Route path="/categorias/:id" element={<EditCategory />} />
-        <Route path="/produto/:id" element={<SingleProduct />} />
-        <Route path="/edit/:id" element={<EditProduct />} />
+        <Route
+          path="/login"
+          element={
+            <ProtectedRoute>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/criar"
+          element={
+            <ProtectedRoute>
+              <CreateProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/categorias"
+          element={
+            <ProtectedRoute>
+              <CreateCategory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/categorias/:id"
+          element={
+            <ProtectedRoute>
+              <EditCategory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/produto/:id"
+          element={
+            <ProtectedRoute>
+              <SingleProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditProduct />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

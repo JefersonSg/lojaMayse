@@ -11,7 +11,7 @@ body {
   --type-first: Helvetica, Arial, sans-serif;
   --type-second: 'Quicksand', sans-serif;
   font-family: var(--type-first);
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 h1,
@@ -68,6 +68,7 @@ a {
   margin: 0 auto;
   margin-top: 64px;
   display: flex;
+  padding: 0 20px;
   flex-direction: column;
 }
 .title {
@@ -96,10 +97,24 @@ a {
   .subtitle{
     font-size: 24px;
   }
+  .title{
+    font-size: 48px;
+    margin-bottom: 32px;
+    padding-top: 16px;
+  }
 }
 @media (max-width:35rem) {
   .subtitle{
     font-size: 18px;
+  }
+
+  .title{
+    font-size: 32px;
+    margin-bottom: 8px;
+    padding: 8px;
+  }
+  .form {
+    margin-top: 16px;
   }
 }
 

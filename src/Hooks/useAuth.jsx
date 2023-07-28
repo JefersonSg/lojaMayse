@@ -6,18 +6,22 @@ const useAuth = () => {
   const navigate = useNavigate();
   const [authenticated, setAuthenticated] = React.useState(true);
   const location = useLocation();
+  const [token, setToken] = React.useState(
+    window.localStorage.getItem('token') || false,
+  );
+
   useEffect(() => {
     const { pathname } = location;
-    const token = window.localStorage.getItem('token');
+
     if (token) {
       api.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
       return;
-    } else {
-      setAuthenticated(false);
-      return;
     }
-  }, [location]);
+
+    setAuthenticated(false);
+    return;
+  }, [location, token]);
 
   function logout() {
     setAuthenticated(false);
@@ -25,6 +29,7 @@ const useAuth = () => {
     api.defaults.headers.Authorization = undefined;
 
     navigate('/dashboard/login');
+    window.location.reload();
   }
 
   async function authUser(data) {
@@ -32,7 +37,7 @@ const useAuth = () => {
 
     localStorage.setItem('token', data.token);
 
-    navigate('/dashboard');
+    window.location.reload();
   }
 
   async function login(user) {

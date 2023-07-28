@@ -12,6 +12,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useNavigate } from 'react-router-dom';
+import Image from '../helpers/Image';
+import ImageCategory from '../helpers/ImageCategory';
 
 const Categorias = () => {
   const [categorias, setCategorias] = React.useState('');
@@ -84,7 +86,10 @@ const Categorias = () => {
                 virtualIndex={index}
               >
                 <div className={styles.slides}>
-                  <img src={`${url}${categoria.image}`} alt={categoria.image} />
+                  <ImageCategory
+                    src={`${url}${categoria.image}`}
+                    alt={categoria.image}
+                  />
                   <h3>{categoria.Category}</h3>
                 </div>
               </SwiperSlide>
