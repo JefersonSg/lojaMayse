@@ -94,6 +94,9 @@ a {
 }
 
 @media (max-width:50rem) {
+  .containerSingle {
+    padding: 0;
+  }
   .subtitle{
     font-size: 24px;
   }

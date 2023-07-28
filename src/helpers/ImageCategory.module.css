@@ -1,6 +1,8 @@
 .wrapperImg {
   display: grid;
   height: 100%;
+  width: 100%;
+
 }
 
 .img {
@@ -31,6 +33,9 @@
 }
 
 @media (max-width: 35rem) {
+  .wrapperImg {
+    width: 100px;
+  }
   .skeleton{
     width: 100px;
   }

@@ -27,6 +27,7 @@
 
 .title {
   text-align: start;
+  text-transform: uppercase;
 }
 .price {
   text-align: start;

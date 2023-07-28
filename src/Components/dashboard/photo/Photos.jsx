@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Photo.module.css';
 import api from '../../../helpers/api';
+import Image from '../../../helpers/Image';
 
 const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
   const [imagePrincipal, setImagePrincipal] = React.useState(
@@ -17,17 +18,17 @@ const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
         <div className={styles.imagens}>
           <div className={styles.miniImages}>
             {images.map((imagem, i) => (
-              <div
+              <Image
+                key={`${imagem + i}2`}
+                src={url + imagem}
+                alt=""
                 onClick={(e) => setImagePrincipal(imagem)}
-                key={imagem + i}
                 className={`${imagem === imagePrincipal ? styles.active : ''}`}
-              >
-                <img key={`${imagem + i}2`} src={`${url}${imagem}`} alt="" />
-              </div>
+              />
             ))}
           </div>
           <div className={styles.imagemPrincipal}>
-            <img
+            <Image
               src={
                 previewAll
                   ? URL.createObjectURL(imagePrincipal)

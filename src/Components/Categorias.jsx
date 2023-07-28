@@ -5,15 +5,14 @@ import useFetch from '../Hooks/useFetch';
 import api from '../helpers/api';
 import './slides.css';
 
+import { useNavigate } from 'react-router-dom';
+import ImageCategory from '../helpers/ImageCategory';
+
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Navigation, Pagination, Virtual, A11y } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { useNavigate } from 'react-router-dom';
-import Image from '../helpers/Image';
-import ImageCategory from '../helpers/ImageCategory';
 
 const Categorias = () => {
   const [categorias, setCategorias] = React.useState('');
@@ -71,6 +70,7 @@ const Categorias = () => {
         <h3 className="subtitle">Veja por categorias</h3>
 
         <Swiper
+          className="swiperCategory"
           modules={[Navigation, Pagination, A11y, Virtual]}
           slidesPerView={3}
           spaceBetween={between}
@@ -81,6 +81,7 @@ const Categorias = () => {
           {slides &&
             slides.map((categoria, index) => (
               <SwiperSlide
+                className="swiperSlide-category"
                 onClick={() => navigate(`/produtos/categoria/${categoria._id}`)}
                 key={categoria._id}
                 virtualIndex={index}

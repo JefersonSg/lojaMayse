@@ -1,0 +1,21 @@
+.swiperPhotos {
+  height: 400px;
+  width: calc(100vw - 1%);
+}
+.swiper-pagination  {
+  bottom: -10px !important;
+}
+
+@media (max-width:40rem) {
+  .swiperPhotos{
+    height: 600px;
+  }
+}
+
+@media (max-width:30rem) {
+  .swiperPhotos{
+    height: 600px;
+  width: calc(100vw - 20px);
+  }
+}
+

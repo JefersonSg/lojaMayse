@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  justify-content: center;
 }
 .slides img {
   height: 125px;
@@ -21,6 +22,7 @@
   border: 1px solid #e6e6e6;
 }
 .slides h3 {
+  width: 100px;
   text-transform: uppercase;
   padding-bottom: 0.3125rem;
   font-family: Quicksand;
@@ -32,6 +34,7 @@
   text-align: center;
   color: #000;
   padding-top: 8px;
+  align-self: center;
 }
 
 @media (max-width:1000px) {
@@ -46,14 +49,12 @@
   .inner{
     gap: 40px;
     }
-
-    .nav {
-      position: relative;
-      top: -20px;
-    }
 }
 
 @media (max-width:35rem) {
+  .slides {
+    width: 100px;
+  }
 .slides img {
   height: 100px;
   width: 100px;

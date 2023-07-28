@@ -5,17 +5,15 @@
 .homeInit{
   position: relative;
   max-height: 700px;
-  min-height: 300px;
+  min-height: 40vh;
 }
 .fotoHome {
+
   max-width: 100%;
   width: 100%;
   max-height: 700px;
-  min-height: 300px;
+  min-height: 40vh;
   object-fit: cover;
-}
-.fotoHome img {
-  max-width: 100%;
 }
 
 .wrapInit {
@@ -134,6 +132,15 @@ content: '';
       }
 }
 @media (max-width: 700px) {
+  .fotoHome {
+    position: relative;
+    top: 50px;
+    min-height: 32vh;
+    height: 32vh;
+  }
+  .wrapInit {
+    bottom: 20px;
+  }
   .buttonInit {
     font-size: 12px;
     min-width: 200px;
@@ -166,9 +173,7 @@ content: '';
 }
 
 @media (max-width: 500px) {
-  .wrapInit {
-    bottom: 60px;
-  }
+
   .buttonInit {
     font-size: 10px;
     min-width: 150px;
