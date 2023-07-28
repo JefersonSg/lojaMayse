@@ -241,7 +241,9 @@ const EditProduct = () => {
     }
     getCategory();
   }, [request, token]);
-  const url = `${api.getUri()}files/products/`;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
+
+  console.log(url);
 
   return (
     <div className="container">

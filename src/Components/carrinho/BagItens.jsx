@@ -44,7 +44,8 @@ const BagItens = ({
   const [G, setG] = React.useState(undefined);
   const [GG, setGG] = React.useState(undefined);
 
-  const url = `${api.getUri()}files/products/`;
+  const url = process.env.REACT_APP_IMAGE_URL;
+
   const colorsIndex = colors.findIndex((cor) => cor === colorSelected);
 
   const handleCheckColor = React.useCallback(

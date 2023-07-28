@@ -56,7 +56,7 @@ const CreateCategory = () => {
       .then(() => navigate('/dashboard/categorias'));
   }
 
-  const url = `${api.getUri()}files/category/`;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
 
   return (
     <section className="container">

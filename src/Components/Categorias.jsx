@@ -61,7 +61,8 @@ const Categorias = () => {
     slides = categorias.map((categoria, index) => categoria);
   }
 
-  const url = `${api.getUri()}files/category/`;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
+
   return (
     <>
       <div className={`${styles.nav}`}>

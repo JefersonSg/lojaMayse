@@ -2,6 +2,10 @@
   padding: 20px;
   min-height: 80vh;
 }
+.nada {
+  margin-top: 32px;
+  font-size: 12px;
+}
 .checkCompra {
   width: 100%;
   background-color: white;

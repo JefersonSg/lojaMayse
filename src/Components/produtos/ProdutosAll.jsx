@@ -27,14 +27,14 @@ const Produtos = () => {
         <div className={styles.produtos}>
           {data &&
             data.products.map(
-              ({ _id, name, price, brand, model, images, stock }) => (
+              ({ _id, name, price, brand, description, images, stock }) => (
                 <Produto
                   key={_id}
                   src={images[0]}
                   title={name}
                   price={price}
                   brand={brand}
-                  model={model}
+                  model={description}
                   id={_id}
                 />
               ),

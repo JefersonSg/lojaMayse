@@ -4,7 +4,8 @@ import api from '../../helpers/api';
 import { NavLink } from 'react-router-dom';
 
 const Produto = ({ src, title, price, model, id }) => {
-  const url = `${api.getUri()}files/products/`;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
+
   return (
     <NavLink className={styles.produto} to={`/produtos/${id}`}>
       <div>

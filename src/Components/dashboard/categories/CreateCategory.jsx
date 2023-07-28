@@ -95,7 +95,7 @@ const CreateCategory = () => {
     }
     getCategory();
   }
-  const url = `${api.getUri()}files/category/`;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
 
   return (
     <section className="container">
@@ -129,51 +129,53 @@ const CreateCategory = () => {
         </>
       )}
       <div className={styles.categorias}>
-        {categorias &&
-          categorias.map((categoria, i) => (
-            <div key={i}>
-              <div className={styles.categorys}>
-                <img src={`${url}${categoria.image}`} alt="" />
-              </div>
-              <h3>{categoria.Category}</h3>
-              <div className={styles.botoes}>
-                <Button
-                  onClick={async (e) => {
-                    e.preventDefault();
+        <div className={styles.wraper}>
+          {categorias &&
+            categorias.map((categoria, i) => (
+              <div key={i}>
+                <div className={styles.categorys}>
+                  <img src={`${url}${categoria.image}`} alt="" />
+                </div>
+                <h3>{categoria.Category}</h3>
+                <div className={styles.botoes}>
+                  <Button
+                    onClick={async (e) => {
+                      e.preventDefault();
 
-                    await api.delete(`/categorys/${categoria._id}`, {
-                      headers: {
-                        Authorization: `Bearer ${token}`,
-                      },
-                    });
-
-                    async function getCategory() {
-                      const response = await request(
-                        `${api.getUri()}categorys/`,
-                        {
-                          headers: {
-                            Authorization: `Bearer ${token}`,
-                          },
+                      await api.delete(`/categorys/${categoria._id}`, {
+                        headers: {
+                          Authorization: `Bearer ${token}`,
                         },
-                      );
-                      setCategorias(response.json.categorys);
-                    }
-                    getCategory();
-                  }}
-                >
-                  Deletar
-                </Button>
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(`/dashboard/categorias/${categoria._id}`);
-                  }}
-                >
-                  Editar
-                </Button>
+                      });
+
+                      async function getCategory() {
+                        const response = await request(
+                          `${api.getUri()}categorys/`,
+                          {
+                            headers: {
+                              Authorization: `Bearer ${token}`,
+                            },
+                          },
+                        );
+                        setCategorias(response.json.categorys);
+                      }
+                      getCategory();
+                    }}
+                  >
+                    Deletar
+                  </Button>
+                  <Button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(`/dashboard/categorias/${categoria._id}`);
+                    }}
+                  >
+                    Editar
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
       {errorForm && <span className={`error animeRight`}>{errorForm}</span>}
     </section>

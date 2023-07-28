@@ -171,7 +171,7 @@ const CreateProduct = ({ productData }) => {
       body: formData, // Defina o corpo da solicitação como o objeto FormData
     })
       .then((response) => response.json)
-      .then((json) => navigate(`/produto/${json.newProduct._id}`));
+      .then((json) => navigate(`/dashboard/produto/${json.newProduct._id}`));
   };
 
   function handleCLick(e) {

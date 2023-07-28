@@ -29,7 +29,10 @@ const Carrinho = () => {
           );
       });
       const products = await Promise.all(bagItens);
-      return setItensCarrinho(products);
+      if (products[0]) {
+        return setItensCarrinho(products);
+      }
+      return;
     };
     fetchBag();
   }, [itens, request]);
@@ -45,11 +48,18 @@ const Carrinho = () => {
     }
   }, [itens, itensCarrinho]);
 
-  const url = `${api.getUri()}files/products/`;
+  function removeBag() {
+    if (itensCarrinho) {
+      return;
+    }
+    return localStorage.removeItem('bag');
+  }
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
+
   return (
     <div className={styles.bagItens}>
       <h2 className="subtitle">Seus itens no carrinho</h2>
-      {itensCarrinho &&
+      {itensCarrinho ? (
         itensCarrinho.map(
           (
             {
@@ -84,7 +94,15 @@ const Carrinho = () => {
               />
             </div>
           ),
-        )}
+        )
+      ) : (
+        <h3 className={`${styles.nada} subtitle`}>
+          Nenhum item foi encontrado no carrinho
+          {setTimeout(() => {
+            removeBag();
+          }, 5000)}
+        </h3>
+      )}
       <section className={styles.checkCompra}>
         <p className={styles.total}>
           <span>R$</span> {preco[0] ? preco[0] : '0'},

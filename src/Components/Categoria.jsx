@@ -4,7 +4,8 @@ import api from '../helpers/api';
 import { useNavigate } from 'react-router-dom';
 
 const Categoria = ({ img, title, link }) => {
-  const url = `${api.getUri()}files/category/`;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
+
   const navigate = useNavigate();
 
   return (

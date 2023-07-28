@@ -3,7 +3,8 @@ import styles from './Produto.module.css';
 import api from '../../../helpers/api';
 
 const Produto = ({ src, title, price, model, id }) => {
-  const url = `${api.getUri()}files/products/`;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
+
   return (
     <a className={styles.produto} href={`/dashboard/produto/${id}`}>
       <div>

@@ -69,7 +69,7 @@ const Header = () => {
   React.useEffect(() => {
     return setMobileMenu(false);
   }, [pathname]);
-  const dashboard = pathname.includes('dashboard');
+
   return (
     <header
       className={`${styles.header}

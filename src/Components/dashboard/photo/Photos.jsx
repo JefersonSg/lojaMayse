@@ -9,7 +9,7 @@ const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
 
   const [images, setImages] = React.useState(imagesAll || previewAll);
 
-  const url = `${api.getUri()}files/products/`;
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
 
   return (
     <>
