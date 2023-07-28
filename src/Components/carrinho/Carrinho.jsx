@@ -56,7 +56,7 @@ const Carrinho = () => {
     return localStorage.removeItem('bag');
   }
   const url = import.meta.env.VITE_APP_IMAGE_URL;
-
+  console.log(preco);
   return (
     <div className={styles.bagItens}>
       <h2 className="subtitle">Seus itens no carrinho</h2>
@@ -107,7 +107,7 @@ const Carrinho = () => {
           <span>
             {preco[1]
               ? preco[1].length === 2
-                ? preco[2]
+                ? preco[1]
                 : `${preco[1]}0`
               : '00'}
           </span>
