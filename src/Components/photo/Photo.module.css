@@ -34,6 +34,25 @@
 }
 
 /* Mobile */
+.totalSlides {
+  width: 35px;
+  height: 20px;
+  font-size: 12px;
+  font-family: var(--type-second);
+  font-family: 400;
+  border-radius: 9999px;
+  letter-spacing: 1.5px;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
+  left: 50%;
+  transform: translate(-50%, -20%);
+}
 
 @media (max-width:50rem) {
   .imagens,
@@ -60,8 +79,8 @@
   }
 }
 @media (max-width:40rem) {
-  /* .imagens {
+  .imagens {
     height: 600px;
-  } */
+  }
 }
 

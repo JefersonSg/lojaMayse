@@ -32,3 +32,24 @@
     background-position: -200%;
   }
 }
+
+@media (max-width:35rem) {
+  .img,
+  .wrapperImg {
+    height: 600px;
+    max-height: 600px;
+  }
+}
+
+@media (max-width:30rem) {
+  .img,
+  .wrapperImg {
+    height: 500px;
+  }
+}
+@media (max-width:24rem) {
+  .img,
+  .wrapperImg {
+    height: 450px;
+  }
+}
