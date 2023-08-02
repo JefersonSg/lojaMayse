@@ -11,7 +11,7 @@
   padding-left: 10px;
 }
 .breadcrumbs nav {
-padding: 0.5rem 0;
+padding: 2rem 0 0 1rem;
 }
 .breadcrumbs nav ul {
   display: flex;
@@ -26,15 +26,11 @@ padding: 0.5rem 0;
 
 @media (max-width:50rem) {
   .breadcrumbs nav {
-    padding: 0.275rem 0;
+    padding: 1.5rem 0 1rem 0;
   }
   .breadcrumbs nav ul {
     gap: 4px;
     font-size: 10px;
-  }
-
-  .breadcrumbs {
-    padding: 0.5rem 0.5rem;
   }
 }
 
@@ -44,10 +40,7 @@ padding: 0.5rem 0;
     font-size: 10px;
   }
   .breadcrumbs nav {
-    padding: 0.5rem 0;
+    padding: 1rem 0 1rem 0;
   }
-  .breadcrumbs {
-    padding: 0.5rem 0.5rem;
-    display: none;
-  }
+
 }

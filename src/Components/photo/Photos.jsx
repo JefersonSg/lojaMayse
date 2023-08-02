@@ -17,10 +17,12 @@ const Photos = ({ imagesAll, image1 }) => {
   const [images, setImages] = React.useState(imagesAll);
   const [slideAtual, setSlideAtual] = React.useState(1);
   const [totalSlides, setTotalSlides] = React.useState(0);
+  const [widthAtual, setWidthAtual] = React.useState(undefined);
   SwiperCore.use([Pagination]);
 
   const url = import.meta.env.VITE_APP_IMAGE_URL;
   React.useEffect(() => {
+    setWidthAtual(window.innerWidth);
     if (window.innerWidth >= 560) {
       setMobile(false);
       return;
@@ -44,7 +46,6 @@ const Photos = ({ imagesAll, image1 }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
   const swiperRef = React.useRef(null);
 
   useEffect(() => {
@@ -53,6 +54,29 @@ const Photos = ({ imagesAll, image1 }) => {
       : [1];
 
     setTotalSlides(slides.length);
+  }, []);
+
+  const [larguraJanela, setLarguraJanela] = React.useState(
+    document.documentElement.scrollWidth,
+  );
+
+  useEffect(() => {
+    let medidaAnterior = document.documentElement.scrollWidth;
+    const handleResize = () => {
+      let medidaAtual = document.documentElement.scrollWidth;
+      if (medidaAnterior > medidaAtual) {
+        console.log('é maior');
+        return setLarguraJanela(document.documentElement.scrollWidth - 1);
+      }
+      return setLarguraJanela(document.documentElement.scrollWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Remover o event listener quando o componente é desmontado
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const handleSlideChange = (swiper) => {
@@ -69,7 +93,9 @@ const Photos = ({ imagesAll, image1 }) => {
             modules={[Navigation, Pagination, A11y, Virtual, Thumbs]}
             ref={swiperRef}
             slidesPerView={1}
+            spaceBetween={50}
             loop={true}
+            style={{ width: larguraJanela }}
             watchSlidesProgress
             onSlideChange={handleSlideChange}
           >

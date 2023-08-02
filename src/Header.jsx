@@ -14,7 +14,7 @@ const Header = () => {
   const [token] = React.useState(window.localStorage.getItem('token') || '');
   const { data, error, loading, request } = useFetch();
 
-  const mobile = useMedia('(max-width: 64rem)');
+  const mobile = useMedia('(max-width: 43.75rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
   const [scroll1, setScroll1] = React.useState(false);
   const itensBag = React.useState(
@@ -74,7 +74,6 @@ const Header = () => {
     <header
       className={`${styles.header}
       ${pathname === '/' ? styles.styleHome : styles.noHome}
-      ${scroll1 ? styles.style2 : ''}
       ${mobile ? styles.headerMobile : ''}
       `}
     >
@@ -82,9 +81,9 @@ const Header = () => {
         <>
           <nav className={`${styles.nav} ${mobile ? styles.mobile : ''}`}>
             {/* HOME PAGE SEM SCROLL */}
-            <div className={`${scroll1 ? styles.logo2 : styles.logo} `}>
+            <div className={styles.logo}>
               <NavLink to="/" end>
-                {pathname === '/' && !scroll1 ? <Logo /> : <LogoBlack />}
+                {pathname === '/' ? <Logo /> : <LogoBlack />}
               </NavLink>
             </div>
 
@@ -123,13 +122,13 @@ const Header = () => {
                   ) : (
                     ''
                   )}
-                  {pathname === '/' && !scroll1 ? <BagWhite /> : <Bag />}
+                  {pathname === '/' ? <BagWhite /> : <Bag />}
                 </div>
               </NavLink>
               {mobile && (
                 <button
                   className={`${styles.mobileButton} ${
-                    pathname === '/' && !scroll1 && styles.buttonWhite
+                    pathname === '/' && styles.buttonWhite
                   } ${mobileMenu ? styles.mobileButtonActive : ''}`}
                   onClick={() => setMobileMenu(!mobileMenu)}
                 ></button>

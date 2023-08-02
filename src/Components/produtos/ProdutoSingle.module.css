@@ -237,6 +237,13 @@ left: -2.25rem;
     display: flex ;
     flex-direction: column;
     gap: 1rem;
+    padding: 0;
+  }
+  .ProductView_images {
+    width: 100%;
+  }
+  .ProductView_details {
+    padding: 0 10px;
   }
   .price {
     font-size: 16px;
@@ -256,6 +263,9 @@ left: -2.25rem;
 }
 
 @media (max-width:35rem) {
+  .ProductView_container {
+    width: 100%;
+  }
   .form_radio_container {
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, 2rem);

@@ -1,5 +1,5 @@
 .header {
-  position: sticky;
+  position: relative;
   width: 100%;
   z-index: 2000;
   padding: 20px 0;
@@ -7,16 +7,8 @@
 .header.styleHome {
   padding: 20px;
 }
-.header.styleHome.style2 {
-  padding: 10px 20px;
-}
 
-.header.style2 {
-  padding: 10px 0;
-}
-
-.nav .mobile,
-.style2 .nav {
+.nav .mobile {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,40 +19,24 @@
   bottom: 20px;
   right: 40px;
 }
-.style2 .nav .bag ,
 .mobile .bag {
   position: relative;
   bottom: initial;
   right: initial;
 }
-.header.style2 ,
-.header.styleHome.style2 {
-    background: white;
-    top: 0px;
-    box-shadow: 0 0 2PX 1px rgba(0, 0, 0, .5);
-  }
+
 .noHome {
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, .5);
-}
-.style2 .logo{
-display: none;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, .5);
 }
 
-.noHome .mobile .logo svg,
-.style2 .logo2 svg{
+.noHome .mobile .logo svg{
   width: 100px;
   height: 40px;
 }
 .styleHome .nav .navComputer .links{
   color: white;
 }
-.styleHome.style2 .nav .navComputer .links{
-  color: #333;
-}
 
-.style2 .nav ul .links{
-  color: #333;
-}
 .logo {
   justify-self: center;
   margin-bottom: 16px;
@@ -96,10 +72,6 @@ display: none;
 .styleHome .links:hover {
   box-shadow: 0 1px white;
 }
-.style2 .links:hover {
-  box-shadow: 0 1px black;
-}
-
 
 /* Mobile */
 .nav.mobile {
@@ -247,13 +219,26 @@ display: none;
 }
 @media (max-width:700px) {
 
+  .nav.mobile {
+    height: 60px;
+    padding: 0;
+  }
+
+  .header.noHome {
+    padding: 20px 10px;
+  }
+  .header.headerMobile,
   .header.styleHome {
-    padding: 10px 20px;
+    padding: 0 10px;
+  }
+  .header.styleHome {
+    padding: 10px 0px;
   }
 
   .nav.mobile {
-    grid-template-columns: 150px 100px;
-    padding: 0 20px;
+    height: 60px;
+    padding: 0;
+    align-items: center;
   }
 
   .logo svg{
@@ -264,30 +249,17 @@ display: none;
 }
 
 @media (max-width:35rem) {
-  .header.noHome {
-    padding: 20px 10px;
-  }
-  .header.headerMobile,
-  .header.styleHome,
-  .header.styleHome.style2,
-  .header.style2
-  {
-    padding: 0 10px;
-  }
+
+
   .objetos {
     width: 80px;
     position: relative;
     right: -30px;
     gap: 16px;
   }
-  .nav.mobile {
-    grid-template-columns: 80px 100px;
-    padding: 0;
-    height: 50px;
-  }
-  .style2 .logo2 svg,
+
   .logo svg{
-    width: 80px;
+    width: 120px;
   }
     .logo svg {
       height: 50px;

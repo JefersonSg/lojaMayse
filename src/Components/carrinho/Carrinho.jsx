@@ -126,7 +126,14 @@ const Carrinho = () => {
                 return `*${item.name}* %0ACor: *${item.color}* %0ATamanho: *${item.size}*%0AQuantidade: *${item.amount}*,%0Acodigo: ${item.id}%0A%0A`;
               },
             )} 
-            Valor Total: *${valorCarrinho}*`;
+            Valor Total: *R$ ${preco[0] ? preco[0] : '0'},${
+              preco[1]
+                ? preco[1].length === 2
+                  ? preco[1]
+                  : `${preco[1]}0`
+                : '00'
+            }*`;
+
             const urlWhatsapp = `https://wa.me/22992339289?text=${mensagem}`;
             window.open(urlWhatsapp, '_blank');
           }}

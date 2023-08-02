@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import useFetch from '../../Hooks/useFetch';
 import styles from './ProdutoSingle.module.css';
-import Button from '../forms/Button';
 import { useParams, useNavigate } from 'react-router-dom';
 import Photos from '../photo/Photos';
 import api from '../../helpers/api';
-import { color } from 'framer-motion';
 import BreadCrumbs from './Breadcrumbs';
-import Infos from '../Infos';
-import Header from '../../Header';
+import useMedia from '../../Hooks/useMedia';
 
 const ProdutoSingle = () => {
   const [product, setProduct] = React.useState('');
@@ -21,6 +18,7 @@ const ProdutoSingle = () => {
   const [errorForm, setErrorForm] = React.useState('');
   const [indexColorActive, setIndexColorActive] = React.useState(0);
   const [travarCarrinho, setTravarCarrinho] = React.useState(false);
+  const mobile = useMedia('(max-width: 35rem)');
 
   React.useEffect(() => {
     const temporizador = setTimeout(function closeError() {
@@ -197,7 +195,7 @@ const ProdutoSingle = () => {
   return (
     <>
       <div className="containerSingle">
-        {product && (
+        {product && !mobile && (
           <BreadCrumbs
             categoriaAtual={product.category}
             nomeProduto={product.name}
