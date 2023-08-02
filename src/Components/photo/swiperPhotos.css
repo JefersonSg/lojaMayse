@@ -12,8 +12,14 @@
 
 @media (max-width:30rem) {
   .swiperPhotos{
-    height: 600px;
-  width: calc(100vw - 17px);
+    height: 500px;
+    width: calc(100vw - 17px);
+  }
+}
+@media (max-width:24rem) {
+  .swiperPhotos{
+    height: 450px;
+    width: calc(100vw - 17px);
   }
 }
 

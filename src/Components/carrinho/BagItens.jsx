@@ -1,6 +1,4 @@
 import React from 'react';
-import api from '../../helpers/api';
-import { color } from 'framer-motion';
 import styles from './BagItens.module.css';
 import { ReactComponent as Trash } from '../../assets/svg/svgCarrinho/delete.svg';
 import { ReactComponent as ExpandMore } from '../../assets/svg/svgCarrinho/expand_more.svg';
@@ -17,7 +15,6 @@ const BagItens = ({
   codes,
   sizeSelected,
   colorSelected,
-  amountSelected,
   valorCarrinho,
   setValorCarrinho,
   index,
@@ -34,7 +31,6 @@ const BagItens = ({
   );
   const [amounts, setAmounts] = React.useState(itens);
   const [descricao, setDescricao] = React.useState(description);
-
   const [modalDelete, setModalDelete] = React.useState(false);
   const [modalColors, setModalColors] = React.useState(false);
   const [modalSizes, setModalSizes] = React.useState(false);
@@ -57,8 +53,6 @@ const BagItens = ({
     },
     [stock],
   );
-
-  const total = amountSelected * price;
 
   React.useEffect(() => {
     handleCheckColor('', colorsIndex);
@@ -89,7 +83,9 @@ const BagItens = ({
               let quantidade = [...amounts];
               quantidade[index].amount = +amounts[index].amount + 1;
               setAmounts(quantidade);
+
               setValorCarrinho(valorCarrinho + price);
+
               window.localStorage.setItem('bag', JSON.stringify(amounts));
             }}
           >
@@ -102,6 +98,7 @@ const BagItens = ({
               quantidade[index].amount =
                 +amounts[index].amount > 1 ? +amounts[index].amount - 1 : 1;
               setAmounts(quantidade);
+
               if (valorCarrinho >= price && quantidade[index].amount > 1) {
                 setValorCarrinho(valorCarrinho - price);
               }

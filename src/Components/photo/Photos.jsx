@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Photo.module.css';
 import api from '../../helpers/api';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './swiperPhotos.css';
 import ImageSingle from '../../helpers/ImageSingle';
+import SwiperCore from 'swiper';
 
 const Photos = ({ imagesAll, image1 }) => {
   const [imagePrincipal, setImagePrincipal] = React.useState(image1);
@@ -16,6 +17,7 @@ const Photos = ({ imagesAll, image1 }) => {
   const [images, setImages] = React.useState(imagesAll);
   const [slideAtual, setSlideAtual] = React.useState(1);
   const [totalSlides, setTotalSlides] = React.useState(0);
+  SwiperCore.use([Pagination]);
 
   const url = import.meta.env.VITE_APP_IMAGE_URL;
   React.useEffect(() => {
@@ -42,6 +44,17 @@ const Photos = ({ imagesAll, image1 }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const swiperRef = React.useRef(null);
+
+  useEffect(() => {
+    const slides = swiperRef.current
+      ? swiperRef.current.querySelectorAll('.swiper-slide')
+      : [1];
+
+    setTotalSlides(slides.length);
+  }, []);
+
   const handleSlideChange = (swiper) => {
     setSlideAtual(`${swiper.realIndex + 1}`);
     setTotalSlides(swiper.slides.length);
@@ -54,9 +67,9 @@ const Photos = ({ imagesAll, image1 }) => {
           <Swiper
             className="swiperPhotos"
             modules={[Navigation, Pagination, A11y, Virtual, Thumbs]}
+            ref={swiperRef}
             slidesPerView={1}
             loop={true}
-            thumbs={true}
             watchSlidesProgress
             onSlideChange={handleSlideChange}
           >
@@ -73,7 +86,7 @@ const Photos = ({ imagesAll, image1 }) => {
               ))}
             {slideAtual ? (
               <span className={styles.totalSlides}>
-                {slideAtual}/{totalSlides}
+                {slideAtual}/{swiperRef.current ? totalSlides : 0}
               </span>
             ) : (
               <></>

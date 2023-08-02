@@ -42,21 +42,13 @@ const Carrinho = () => {
     let valorInicial = 0;
     if (itensCarrinho) {
       itens.forEach((item, i) => {
-        item.amount;
         valorInicial += +itensCarrinho[i].price * +item.amount;
       });
       setValorCarrinho(valorInicial);
     }
   }, [itens, itensCarrinho]);
 
-  function removeBag() {
-    if (itensCarrinho) {
-      return;
-    }
-    return localStorage.removeItem('bag');
-  }
   const url = import.meta.env.VITE_APP_IMAGE_URL;
-  console.log(preco);
   return (
     <div className={styles.bagItens}>
       <h2 className="subtitle">Seus itens no carrinho</h2>
@@ -112,7 +104,35 @@ const Carrinho = () => {
               : '00'}
           </span>
         </p>
-        <button className="">FINALIZAR</button>
+        <button
+          className=""
+          onClick={() => {
+            const itensPayment = localStorage.getItem('bag')
+              ? JSON.parse(localStorage.getItem('bag'))
+              : '';
+
+            const itensPagamento = itensPayment.map(
+              ({ size, color, amount, id }, index) => ({
+                name: itensCarrinho[index].name,
+                size,
+                color,
+                amount,
+                id,
+              }),
+            );
+
+            let mensagem = `Olá, eu selecionei os seguintes itens no site :%0A${itensPagamento.map(
+              (item) => {
+                return `*${item.name}* %0ACor: *${item.color}* %0ATamanho: *${item.size}*%0AQuantidade: *${item.amount}*,%0Acodigo: ${item.id}%0A%0A`;
+              },
+            )} 
+            Valor Total: *${valorCarrinho}*`;
+            const urlWhatsapp = `https://wa.me/22992339289?text=${mensagem}`;
+            window.open(urlWhatsapp, '_blank');
+          }}
+        >
+          FINALIZAR
+        </button>
       </section>
     </div>
   );

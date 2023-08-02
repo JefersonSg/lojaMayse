@@ -5,7 +5,6 @@ import styles from './Login.module.css';
 import Button from '../forms/Button';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../../../context/UserContext';
-import { UserProvider } from '../../../context/UserContext';
 
 const Login = () => {
   const email = useForm();
