@@ -134,12 +134,11 @@ const ProdutoSingle = () => {
       const scroll = Math.floor(window.scrollY);
 
       // HOME
-      console.log(scroll);
-      if (scroll > 100) {
-        console.log(-scroll - 200);
-        return setTop((-scroll + 100) * 0.22);
+      if (scroll) {
+        console.log(scroll);
+        return setTop((-scroll - 60) * 0.1);
       }
-      return setTop(0);
+      // return setTop(0);
     }
     infiniteScroll();
 

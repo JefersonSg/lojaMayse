@@ -17,6 +17,7 @@ const Header = () => {
   const mobile = useMedia('(max-width: 43.75rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
   const [scroll1, setScroll1] = React.useState(false);
+
   const itensBag = React.useState(
     JSON.parse(localStorage.getItem('bag')) || false,
   );

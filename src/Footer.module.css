@@ -2,11 +2,11 @@
   min-height: 300px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 64px;
   background-color: #f8f7f5;
   width: 100%;
-  padding: 3rem 10px calc(3rem + 64px);
+  padding: 0 10px calc(3rem + 64px);
   gap: 32px;
+  z-index: 10000;
 }
 
 .footer h2 {
@@ -36,7 +36,7 @@
   @media (max-width:50rem) {
     .footer {
       grid-template-columns: repeat(3,1fr);
-      padding: 2rem 1rem;
+      padding: 0 1rem 2rem 1rem;
     }
     .sobre {
       grid-column: 1/-1;
