@@ -1,6 +1,6 @@
 .homeContainer {
   margin: 0 auto;
-  margin-top: -150px;
+  /* margin-top: -150px; */
 }
 .homeInit{
   position: relative;
@@ -8,7 +8,6 @@
   min-height: 40vh;
 }
 .fotoHome {
-
   max-width: 100%;
   width: 100%;
   max-height: 700px;
@@ -83,6 +82,7 @@ content: '';
   transform: translate(-50%, -50%);
   animation: ring 1.5s infinite;
   opacity: 0;
+  pointer-events: none;
 }
 
 .buttonInit:hover::after, .buttonInit:focus::after {
@@ -100,8 +100,8 @@ content: '';
     opacity: 1;
   }
   100% {
-    width: 350px;
-    height:150px;
+    width: 370px;
+    height:170px;
     opacity: 0;
   }
 }
@@ -123,7 +123,10 @@ content: '';
         border: 6px solid white;
       }
       @keyframes ring {
-        0% {
+        0%{
+          opacity: 0;
+        }
+        5% {
           width: 250px;
           height: 60px;
           opacity: 1;
@@ -138,12 +141,11 @@ content: '';
 @media (max-width: 700px) {
   .fotoHome {
     position: relative;
-    top: 50px;
     min-height: 32vh;
     height: 32vh;
   }
   .wrapInit {
-    bottom: 20px;
+    bottom: 70px;
   }
   .buttonInit {
     font-size: 12px;
@@ -163,7 +165,10 @@ content: '';
         border: 6px solid white;
       }
       @keyframes ring {
-        0% {
+        0%{
+          opacity: 0;
+        }
+        5% {
           width: 200px;
           height: 40px;
           opacity: 1;
@@ -193,17 +198,28 @@ content: '';
       .buttonInit::after {
         width: 150px; height: 40px;
         border: 4px solid white;
+        opacity: 0;
       }
       @keyframes ring {
-        0% {
+        0%{
+          opacity: 0;
           width: 170px;
           height: 40px;
-          opacity: 1;
         }
-        100% {
+        3% {
+          width: 170px;
+          height: 40px;
+          opacity: 0.7;
+        }
+        90% {
           width: 190px;
           height:60px;
           opacity: 0;
+        }
+        100%{
+          opacity: 0;
+          width: 170px;
+          height: 40px;
         }
       }
 }

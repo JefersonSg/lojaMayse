@@ -153,7 +153,7 @@ h1 {
 }
 
 .sizes {
-  border: 1px solid #616161;
+  border: 1px solid rgba(61, 61, 61, 0.5);
   box-sizing: border-box;
   display: grid;
   width: 43px;

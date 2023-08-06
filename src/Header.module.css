@@ -5,6 +5,7 @@
   padding: 20px 0;
 }
 .header.styleHome {
+  position: absolute;
   padding: 20px;
 }
 
@@ -29,6 +30,7 @@
 
 .noHome {
   box-shadow: 0 0 0px 1px rgba(0, 0, 0, .2);
+  top: -39px;
 }
 
 .noHome .mobile .logo svg{

@@ -10,7 +10,7 @@ import { ReactComponent as Whatsapp } from '../assets/svg/svgFooter/whatsapp.svg
 const ProdutosRoute = () => {
   return (
     <>
-      <Infos />
+      {/* <Infos /> */}
       <Header />
       <Routes>
         <Route path="/" element={<Lancamentos />} />
