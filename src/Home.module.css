@@ -82,6 +82,7 @@ content: '';
   left: 50%;
   transform: translate(-50%, -50%);
   animation: ring 1.5s infinite;
+  opacity: 0;
 }
 
 .buttonInit:hover::after, .buttonInit:focus::after {
@@ -90,7 +91,10 @@ content: '';
 }
 
 @keyframes ring {
-  0% {
+  0%{
+    opacity: 0;
+  }
+  5% {
     width: 300px;
     height: 60px;
     opacity: 1;

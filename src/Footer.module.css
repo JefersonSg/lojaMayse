@@ -36,6 +36,7 @@
   @media (max-width:50rem) {
     .footer {
       grid-template-columns: repeat(3,1fr);
+      padding: 2rem 1rem;
     }
     .sobre {
       grid-column: 1/-1;

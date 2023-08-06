@@ -26,7 +26,7 @@
   .produtos {
   grid-template-columns: repeat(2, minmax(140px, 1fr));
   padding: 0 10px;
-  gap: 8px;
+  gap: 32px 16px;
   }
   .produtosContainer h3 {
     margin-bottom: 16px;

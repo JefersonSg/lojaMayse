@@ -2,6 +2,9 @@
   padding: 20px;
   min-height: 80vh;
 }
+.bagItens h2 {
+  margin-bottom: 32px;
+}
 .nada {
   margin-top: 32px;
   font-size: 12px;
@@ -9,9 +12,6 @@
 .checkCompra {
   width: 100%;
   background-color: white;
-  /* border-top: 1px solid rgba(0, 0, 0, .5); */
-  display: grid;
-  grid-template-columns: 1fr 100px;
   align-items: center;
   position: fixed;
   bottom: 0;
@@ -19,6 +19,14 @@
   height: max-content;
   padding: 10px 20px;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, .5),0 0 4px 0 rgba(0, 0, 0, .2)
+}
+.containerCheck {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
 }
 
 .checkCompra button {
@@ -38,6 +46,82 @@
   font-size: 8px;
 }
 
+/* Porcentagem */
+.containerPorcent {
+  display: grid;
+  justify-content: center;
+}
+.porcentagemContainer {
+  width: 230px;
+  height: 8px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  border-radius: 10px;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  position: relative;
+}
+.containerPorcent p {
+  font-size: 12px;
+  font-family: var(--type-second);
+  letter-spacing: 1.5px;
+}
+.containerPorcent p span {
+  color: #F3453C;
+  font-weight: 600;
+}
+.porcentagemDoPresente {
+  max-width: 300px;
+  display: block;
+  height: 100%;
+  background: linear-gradient(45deg,#FEC135,#F3453C,#FEC135,#F3453C,#FEC135,#F3453C,#FEC135
+  ,#F3453C,#FEC135);
+  background-size: 600px;
+  animation: loading 10s linear infinite ;
+  border-radius: 10px;
+  transition: all .3s;
+}
+.giftBox {
+  position: absolute;
+  right: -50px;
+  top: -13px;
+}
+.giftBox.ativo {
+  cursor: pointer;
+}
+.giftBox.ativo::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: #FEC135;
+  top: -1px;
+  left: -2px;
+  border-radius: 99999px;
+  animation:scale-up-center .4s both;
+  opacity: 0;
+  box-shadow: 0 0 6px 2px #FEC135;
+}
+.giftBox div{
+  pointer-events: none;
+}
+
+
+@keyframes scale-up-center{
+  0%{transform:scale(.5);
+  opacity: 0;}
+  100%{transform:scale(1);
+  opacity: .75;}}
+@keyframes loading {
+  0% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+
+}
 @media (max-width:550px) {
   .bagItens {
     padding: 10px;

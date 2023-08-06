@@ -98,12 +98,7 @@ const CreateProduct = ({ productData }) => {
       setErrorForm('informe as cores disponiveis');
       return;
     }
-    if (
-      !amountP.length &&
-      !amountM.value &&
-      !amountG.value &&
-      !amountGG.value
-    ) {
+    if (!amountP[0] && !amountM[0] && !amountG[0] && !amountGG[0]) {
       setErrorForm(
         'informe a quantidade disponivel, seguindo a ordem de cores',
       );

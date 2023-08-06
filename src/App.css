@@ -93,6 +93,16 @@ a {
   margin-bottom: 16px;
 }
 
+.btnZap {
+  position: fixed;
+  bottom: 30px;
+  right: 10px;
+  z-index: 10000;
+}
+.btnZap svg {
+  cursor: pointer;
+}
+
 @media (max-width:50rem) {
   .containerSingle {
     padding: 0;
@@ -134,8 +144,8 @@ a {
 
 .animeLeft{
   opacity: 0;
-  transform: translateX(-20px);
-  animation: animeLeft .3s forwards;
+  transform: translateX(-220px);
+  animation: animeLeft 1s forwards;
 }
 .animeLeftRight{
   opacity: 0;
@@ -160,6 +170,9 @@ a {
     transform: translate(100vw);
   }
 }
+
+
+
 @keyframes animeLeft {
   to {
     opacity: 1;

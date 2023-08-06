@@ -91,7 +91,7 @@ const Header = () => {
               className={`${mobile ? styles.navMobile : styles.navComputer} ${
                 mobileMenu ? styles.active : ''
               }
-          ${mobileMenu ? 'animeLeft' : ''}`}
+          ${mobileMenu ? 'animeLeft' : styles.animeLeftBack}`}
             >
               <li>
                 {' '}
@@ -113,17 +113,13 @@ const Header = () => {
                 ))}
             </ul>
             <div className={styles.objetos}>
-              <NavLink to={'/checkout'}>
-                <div className={`${styles.bag}`}>
-                  {itensBag[0] ? (
-                    <span className={styles.itensBag}>
-                      {itensBag[0].length}
-                    </span>
-                  ) : (
-                    ''
-                  )}
-                  {pathname === '/' ? <BagWhite /> : <Bag />}
-                </div>
+              <NavLink to={'/checkout'} className={`${styles.bag}`}>
+                {itensBag[0] ? (
+                  <span className={styles.itensBag}>{itensBag[0].length}</span>
+                ) : (
+                  ''
+                )}
+                {pathname === '/' ? <BagWhite /> : <Bag />}
               </NavLink>
               {mobile && (
                 <button

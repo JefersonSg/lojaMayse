@@ -16,17 +16,19 @@
 }
 .nav .bag {
   position: absolute;
-  bottom: 20px;
-  right: 40px;
+  bottom: 0px;
+  right: -100px;
 }
 .mobile .bag {
+  width: 100%;
   position: relative;
   bottom: initial;
   right: initial;
+  cursor: pointer;
 }
 
 .noHome {
-  box-shadow: 0 0 0px 1px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, .2);
 }
 
 .noHome .mobile .logo svg{
@@ -38,24 +40,26 @@
 }
 
 .logo {
-  justify-self: center;
+  width: max-content;
+  margin: 0 auto;
   margin-bottom: 16px;
 }
 
 .nav {
   max-width: 1280px;
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-.nav ul {
+.navComputer {
   display: flex;
   gap: 32px;
+  width: max-content;
+  margin: 0 auto;
 }
-.bag {
-  cursor: pointer;
-}
+
 
 
 .links:global(.active) {
@@ -80,15 +84,15 @@
   justify-content: space-between;
   padding: 0 20px;
 }
-.styleHome .nav.mobile {
-  padding: 0 ;
-}
+
 .objetos {
   display: flex;
+  width: 80%;
+  max-width: 1280px;
   align-items: center;
   justify-content: center;
-  width: 120px;
   gap: 32px;
+  position: relative;
 }
 .links {
   display: inline-grid;
@@ -123,8 +127,7 @@
   left:0 ;
   padding: 135px 30px 20px 45px;
   z-index: 100;
-  opacity: 0;
-  pointer-events: none;
+  transition: all .5s;
 }
 .mobile .logo {
   justify-self: initial;
@@ -142,6 +145,28 @@
 .navMobile.active {
   opacity: 1;
   pointer-events: initial;
+}
+
+.navMobile.animeLeftBack{
+  opacity: 0;
+  transform: translateX(0px);
+  animation: animeLeftBack 1s ease forwards;
+}
+
+@keyframes animeLeftBack {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(-280px);
+  }
+  100%{
+    opacity: 0;
+    transform: translateX(-280px);
+    pointer-events: none;
+  }
 }
 .mobileButton {
   background-color: transparent;
@@ -220,25 +245,21 @@
 @media (max-width:700px) {
 
   .nav.mobile {
+    display: grid;
+    align-items: center;
+    padding: 0 10px 0 20px;
     height: 60px;
-    padding: 0;
   }
-
-  .header.noHome {
-    padding: 20px 10px;
-  }
+.mobile .bag {
+  width: max-content;
+}
+.objetos {
+  width: max-content;
+  justify-self: end;
+}
   .header.headerMobile,
   .header.styleHome {
-    padding: 0 10px;
-  }
-  .header.styleHome {
-    padding: 10px 0px;
-  }
-
-  .nav.mobile {
-    height: 60px;
     padding: 0;
-    align-items: center;
   }
 
   .logo svg{
@@ -250,11 +271,9 @@
 
 @media (max-width:35rem) {
 
-
   .objetos {
     width: 80px;
     position: relative;
-    right: -30px;
     gap: 16px;
   }
 

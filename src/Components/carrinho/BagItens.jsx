@@ -19,6 +19,10 @@ const BagItens = ({
   setValorCarrinho,
   index,
   itens,
+  setPause,
+  setStop,
+  pause,
+  stop,
 }) => {
   const [corSelecionada, setCorSelecionada] = React.useState(
     colorSelected || '',
@@ -54,6 +58,9 @@ const BagItens = ({
     [stock],
   );
 
+  let Timeout = null;
+  let teste = null;
+
   React.useEffect(() => {
     handleCheckColor('', colorsIndex);
   }, [handleCheckColor, colorsIndex, setValorCarrinho]);
@@ -81,11 +88,12 @@ const BagItens = ({
           <button
             onClick={() => {
               let quantidade = [...amounts];
+
               quantidade[index].amount = +amounts[index].amount + 1;
               setAmounts(quantidade);
+              setStop(false);
 
               setValorCarrinho(valorCarrinho + price);
-
               window.localStorage.setItem('bag', JSON.stringify(amounts));
             }}
           >
@@ -95,14 +103,17 @@ const BagItens = ({
           <button
             onClick={() => {
               let quantidade = [...amounts];
-              quantidade[index].amount =
-                +amounts[index].amount > 1 ? +amounts[index].amount - 1 : 1;
-              setAmounts(quantidade);
-
-              if (valorCarrinho >= price && quantidade[index].amount > 1) {
-                setValorCarrinho(valorCarrinho - price);
+              if (+amounts[index].amount === 1) {
+                return;
               }
-              window.localStorage.setItem('bag', JSON.stringify(amounts));
+              quantidade[index].amount = +amounts[index].amount - 1;
+              setStop(true);
+              setAmounts(quantidade);
+              setValorCarrinho(valorCarrinho - price);
+              return window.localStorage.setItem(
+                'bag',
+                JSON.stringify(amounts),
+              );
             }}
           >
             -

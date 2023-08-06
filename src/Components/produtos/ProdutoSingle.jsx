@@ -38,6 +38,7 @@ const ProdutoSingle = () => {
   );
 
   const [active, setActive] = React.useState('');
+  const [top, setTop] = React.useState(0);
 
   // Seletor de cores
   const [cores, setCores] = React.useState('');
@@ -128,6 +129,26 @@ const ProdutoSingle = () => {
     produtoId();
   }, [params, request, token]);
 
+  React.useEffect(() => {
+    function infiniteScroll() {
+      const scroll = Math.floor(window.scrollY);
+
+      // HOME
+      console.log(scroll);
+      if (scroll > 100) {
+        console.log(-scroll - 200);
+        return setTop((-scroll + 100) * 0.22);
+      }
+      return setTop(0);
+    }
+    infiniteScroll();
+
+    window.addEventListener('scroll', infiniteScroll);
+    return () => {
+      window.removeEventListener('scroll', infiniteScroll);
+    };
+  }, []);
+
   function handleCores(e) {
     const tamanho = 'size' + e.target.innerText;
     const letra = e.target.innerText;
@@ -203,7 +224,7 @@ const ProdutoSingle = () => {
         )}
         {product.images && (
           <main className={styles.ProductView_container}>
-            <section className={styles.ProductView_images}>
+            <section className={styles.ProductView_images} style={{ top: top }}>
               <Photos image1={image} imagesAll={images} />
             </section>
             <section className={styles.ProductView_details}>

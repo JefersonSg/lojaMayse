@@ -397,8 +397,13 @@ const EditProduct = () => {
                 e.preventDefault();
                 if (coresInputs.length > 1) {
                   const removecor = coresInputs.filter(
-                    (index) => index != coresInputs.length,
+                    (index) => index !== coresInputs[coresInputs.length - 1],
                   );
+                  const remove = product;
+
+                  remove.colors = removecor;
+                  setProduct(remove);
+
                   setCoresInputs(removecor);
                 }
               }}

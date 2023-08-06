@@ -34,6 +34,7 @@ function App() {
             <Route path="/dashboard/*" element={<DashboardRoute />} />
             <Route path="/checkout/*" element={<CarrinhoRouter />} />
           </Routes>
+
           <Footer />
         </UserProvider>
       </BrowserRouter>

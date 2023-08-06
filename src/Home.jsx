@@ -6,6 +6,7 @@ import imageHome from '../public/fotoHome.png';
 import { NavLink } from 'react-router-dom';
 import Infos from './Components/Infos';
 import Header from './Header';
+import { ReactComponent as Whatsapp } from './assets/svg/svgFooter/whatsapp.svg';
 
 const Home = () => {
   return (
@@ -23,6 +24,15 @@ const Home = () => {
         </div>
         <Categorias />
         <Produtos />
+        <div
+          onClick={() => {
+            const urlWhatsapp = `https://wa.me/22992339289?text=Olá, gostaria de tirar uma duvida`;
+            window.open(urlWhatsapp, '_blank');
+          }}
+          className="btnZap"
+        >
+          <Whatsapp />
+        </div>
       </main>
     </>
   );
