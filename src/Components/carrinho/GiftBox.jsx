@@ -18,6 +18,7 @@ const GiftBox = ({ pause, stop, valor }) => {
       height={30}
       isPaused={pause}
       isStopped={stop}
+      onClick
     />
   );
 };

@@ -11,8 +11,8 @@ const GiftBox = ({ pause, stop, valor }) => {
   return (
     <Lottie
       options={defaultOptions}
-      width={30}
-      height={30}
+      width={300}
+      height={180}
       isPaused={pause}
       isStopped={stop}
     />

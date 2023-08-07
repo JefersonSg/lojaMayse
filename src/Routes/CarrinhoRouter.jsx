@@ -7,7 +7,6 @@ import Carrinho from '../Components/carrinho/Carrinho';
 const CarrinhoRouter = () => {
   return (
     <>
-      <Infos />
       <Header />
       <Routes>
         <Route path="/" element={<Carrinho />} />

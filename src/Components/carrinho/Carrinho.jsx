@@ -12,7 +12,7 @@ const Carrinho = () => {
   const [valorCarrinho, setValorCarrinho] = React.useState(0);
   const [width, setWidth] = React.useState(0);
   const [restante, setRestante] = React.useState(0);
-  const [openBox, setOpenBox] = React.useState(true);
+  const [openBox, setOpenBox] = React.useState(false);
 
   const [itens, setItens] = React.useState(
     localStorage.getItem('bag')
@@ -26,10 +26,8 @@ const Carrinho = () => {
   const [stop, setStop] = React.useState(false);
 
   React.useEffect(() => {
-    console.log(stop);
     const temporizador = setTimeout(() => {
       setStop(true);
-      console.log('ok');
     }, 2000);
 
     return () => {
@@ -107,7 +105,7 @@ const Carrinho = () => {
             <span>{'R$ ' + restante.toLocaleString('pt-BR')}</span>
           )}
 
-          {restante <= 0 && 'PRESENTE DESBLOQUEADO'}
+          {restante <= 0 && <span>PRESENTE DESBLOQUEADO</span>}
         </p>
         <div className={styles.porcentagemContainer}>
           <span
@@ -115,14 +113,19 @@ const Carrinho = () => {
             style={{ width: `${width}%` }}
           ></span>
           <div
-            className={`${styles.giftBox} ${restante < 0 ? styles.ativo : ''}`}
+            className={`${styles.giftBox} ${restante <= 0 ? styles.ativo : ''}`}
+            onClick={() => {
+              if (restante <= 0) {
+                setOpenBox(true);
+              }
+            }}
           >
             <GiftBox pause={pause} stop={stop} valor={restante} />
           </div>
         </div>
       </div>
 
-      {/* {openBox && <OpenBox />} */}
+      {openBox && <OpenBox setOpenBox={setOpenBox} />}
 
       {itensCarrinho ? (
         itensCarrinho.map(
