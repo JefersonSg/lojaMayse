@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate, useParams, NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import useMedia from './Hooks/useMedia';
 import { ReactComponent as Logo } from './assets/svg/svgHeader/logoWhite.svg';
@@ -13,6 +13,8 @@ const Header = () => {
   const [categorias, setCategorias] = React.useState('');
   const [token] = React.useState(window.localStorage.getItem('token') || '');
   const { data, error, loading, request } = useFetch();
+
+  const [moveLeft, setMoveLeft] = React.useState(false);
 
   const mobile = useMedia('(max-width: 43.75rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
@@ -71,10 +73,13 @@ const Header = () => {
     return setMobileMenu(false);
   }, [pathname]);
 
+  const teste = pathname.split('/');
+
   return (
     <header
       className={`${styles.header}
       ${pathname === '/' ? styles.styleHome : styles.noHome}
+      ${teste[2] && teste[2].length > 21 ? styles.productSingle : ''}
       ${mobile ? styles.headerMobile : ''}
       `}
     >
@@ -92,7 +97,8 @@ const Header = () => {
               className={`${mobile ? styles.navMobile : styles.navComputer} ${
                 mobileMenu ? styles.active : ''
               }
-          ${mobileMenu ? 'animeLeft' : styles.animeLeftBack}`}
+          ${mobileMenu ? 'animeLeft' : ''}
+          ${moveLeft ? styles.animeLeftBack : ''}`}
             >
               <li>
                 {' '}
@@ -127,7 +133,11 @@ const Header = () => {
                   className={`${styles.mobileButton} ${
                     pathname === '/' && styles.buttonWhite
                   } ${mobileMenu ? styles.mobileButtonActive : ''}`}
-                  onClick={() => setMobileMenu(!mobileMenu)}
+                  onClick={() => {
+                    setMobileMenu(!mobileMenu);
+
+                    setMoveLeft(mobileMenu);
+                  }}
                 ></button>
               )}
             </div>

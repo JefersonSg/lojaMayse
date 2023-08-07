@@ -23,7 +23,7 @@ const Produtos = () => {
   return (
     <>
       <section className={styles.produtosContainer}>
-        <h3 className="subtitle">Mais Vendidos</h3>
+        <h3 className="subtitle">Lançamentos</h3>
         <div className={styles.produtos}>
           {data &&
             data.products.map(
