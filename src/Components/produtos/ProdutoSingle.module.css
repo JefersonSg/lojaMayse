@@ -122,8 +122,8 @@ h1 {
   display: grid;
   position: relative;
   grid-template-columns: repeat(auto-fill, 4rem);
-  gap: 2rem;
-  height: 35px;
+  gap: 1rem;
+  height: max-content;
   align-items: center;
 }
 .spanColor {
@@ -234,6 +234,26 @@ left: -2.25rem;
   line-height: 20px;
 }
 
+/* Slide Full-Screnn */
+.containerFullScrenn {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  z-index: 999999;
+}
+.fechar {
+  position: absolute;
+  color: white;
+  cursor: pointer;
+  padding: 20px;
+}
+.imageFullScren {
+  margin-top: 60px;
+}
+
 @media (max-width:700px) {
   .ProductView_container {
     display: flex ;
@@ -267,13 +287,11 @@ left: -2.25rem;
 }
 
 @media (max-width:35rem) {
-  .ProductView_container {
-    width: 100%;
-    gap: 0;
-  }
+
   .form_radio_container {
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, 2rem);
+    height: max-content;
   }
   .ProductView_images{
     padding-top: 60px;

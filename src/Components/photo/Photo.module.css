@@ -28,6 +28,7 @@
 }
 .imagemPrincipal {
   justify-self: end;
+  cursor: pointer;
 }
 .imagens img {
   pointer-events: none;

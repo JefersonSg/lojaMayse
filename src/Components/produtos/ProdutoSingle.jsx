@@ -31,7 +31,6 @@ const ProdutoSingle = () => {
   }, [errorForm]);
 
   // Botão de adição
-  const [quantidade, setQuantidade] = React.useState(1);
   const [addBag, setAddBag] = React.useState(1);
   const [storageBag, setStorageBag] = React.useState(
     localStorage.getItem('bag') && JSON.parse(localStorage.getItem('bag')),
@@ -45,6 +44,9 @@ const ProdutoSingle = () => {
   const [codeColorActive, setCodeColorActive] = React.useState('');
   const [codes, setCodes] = React.useState('');
   const [corOn, setCorOn] = React.useState([]);
+
+  // Full Screen
+  const [fullSlide, setFullSlide] = React.useState(undefined);
 
   // FORM BAG
   const [colorSelected, setColorSelected] = React.useState('');
@@ -147,6 +149,14 @@ const ProdutoSingle = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (fullSlide) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [fullSlide]);
+
   function handleCores(e) {
     const tamanho = 'size' + e.target.innerText;
     const letra = e.target.innerText;
@@ -211,9 +221,26 @@ const ProdutoSingle = () => {
     }
     setEmFalta(verify);
   }
+  const url = import.meta.env.VITE_APP_IMAGE_URL;
+
   return (
     <>
       <div className="containerSingle">
+        {fullSlide && (
+          <div className={`${styles.containerFullScrenn}`}>
+            <span
+              className={styles.fechar}
+              onClick={() => {
+                setFullSlide(false);
+              }}
+            >
+              X
+            </span>
+            <div className={`${styles.imageFullScren} ${'animeTop'}`}>
+              <img src={url + fullSlide} alt="" />
+            </div>
+          </div>
+        )}
         {product && !mobile && (
           <BreadCrumbs
             categoriaAtual={product.category}
@@ -223,7 +250,11 @@ const ProdutoSingle = () => {
         {product.images && (
           <main className={styles.ProductView_container}>
             <section className={styles.ProductView_images} style={{ top: top }}>
-              <Photos image1={image} imagesAll={images} />
+              <Photos
+                image1={image}
+                imagesAll={images}
+                setFullSlide={setFullSlide}
+              />
             </section>
             <section className={styles.ProductView_details}>
               <span className={styles.brand}>{product.brand}</span>

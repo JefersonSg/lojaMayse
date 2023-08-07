@@ -10,19 +10,22 @@ import './swiperPhotos.css';
 import ImageSingle from '../../helpers/ImageSingle';
 import SwiperCore from 'swiper';
 
-const Photos = ({ imagesAll, image1 }) => {
+const Photos = ({ imagesAll, image1, setFullSlide }) => {
   const [imagePrincipal, setImagePrincipal] = React.useState(image1);
   const [mobile, setMobile] = React.useState(false);
 
   const [images, setImages] = React.useState(imagesAll);
   const [slideAtual, setSlideAtual] = React.useState(1);
   const [totalSlides, setTotalSlides] = React.useState(0);
-  const [widthAtual, setWidthAtual] = React.useState(undefined);
   SwiperCore.use([Pagination]);
+  const [larguraJanela, setLarguraJanela] = React.useState(
+    document.documentElement.scrollWidth,
+  );
+  const swiperRef = React.useRef(null);
 
   const url = import.meta.env.VITE_APP_IMAGE_URL;
+
   React.useEffect(() => {
-    setWidthAtual(window.innerWidth);
     if (window.innerWidth >= 560) {
       setMobile(false);
       return;
@@ -46,7 +49,6 @@ const Photos = ({ imagesAll, image1 }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  const swiperRef = React.useRef(null);
 
   useEffect(() => {
     const slides = swiperRef.current
@@ -56,10 +58,7 @@ const Photos = ({ imagesAll, image1 }) => {
     setTotalSlides(slides.length);
   }, []);
 
-  const [larguraJanela, setLarguraJanela] = React.useState(
-    document.documentElement.scrollWidth,
-  );
-
+  // resize
   useEffect(() => {
     let medidaAnterior = document.documentElement.scrollWidth;
     const handleResize = () => {
@@ -102,7 +101,12 @@ const Photos = ({ imagesAll, image1 }) => {
             {imagesAll &&
               imagesAll.map((imagem, index) => (
                 <SwiperSlide key={imagem} virtualIndex={index}>
-                  <div className={styles.slides}>
+                  <div
+                    className={styles.slides}
+                    onClick={() => {
+                      setFullSlide(imagem);
+                    }}
+                  >
                     <ImageSingle
                       src={`${url}${imagem}`}
                       alt={'Fotos do produto'}
@@ -139,7 +143,12 @@ const Photos = ({ imagesAll, image1 }) => {
                 </div>
               ))}
             </div>
-            <div className={styles.imagemPrincipal}>
+            <div
+              className={styles.imagemPrincipal}
+              onClick={() => {
+                setFullSlide(imagePrincipal);
+              }}
+            >
               <ImageSingle src={url + imagePrincipal} alt="" />
             </div>
           </div>

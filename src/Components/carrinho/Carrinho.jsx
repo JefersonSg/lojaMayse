@@ -94,6 +94,14 @@ const Carrinho = () => {
     setRestante(resto);
   }, [valorCarrinho]);
 
+  React.useEffect(() => {
+    if (openBox) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [openBox]);
+
   const url = import.meta.env.VITE_APP_IMAGE_URL;
   return (
     <div className={styles.bagItens}>

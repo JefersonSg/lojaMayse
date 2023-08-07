@@ -16,9 +16,8 @@ const Header = () => {
 
   const [moveLeft, setMoveLeft] = React.useState(false);
 
-  const mobile = useMedia('(max-width: 43.75rem)');
+  const mobile = useMedia('(max-width: 64rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
-  const [scroll1, setScroll1] = React.useState(false);
 
   const itensBag = React.useState(
     JSON.parse(localStorage.getItem('bag')) || false,
@@ -40,114 +39,121 @@ const Header = () => {
   }, [request, token]);
 
   // Scrolls
-  React.useEffect(() => {
-    function infiniteScroll() {
-      const scroll = Math.floor(window.scrollY);
-      const heigth = document.body.offsetHeight - window.innerHeight;
-      const scrollagem = scroll < heigth * 0.5;
-      // HOME
-      setScroll1(false);
+  // React.useEffect(() => {
+  //   function infiniteScroll() {
+  //     const scroll = Math.floor(window.scrollY);
+  //     const heigth = document.body.offsetHeight - window.innerHeight;
+  //     const scrollagem = scroll < heigth * 0.5;
+  //     // HOME
+  //     setScroll1(false);
 
-      //Home Computer
+  //     //Home Computer
 
-      if (!scroll) {
-        setScroll1(false);
-      } else {
-        setScroll1(true);
-      }
-    }
-    infiniteScroll();
+  //     if (!scroll) {
+  //       setScroll1(false);
+  //     } else {
+  //       setScroll1(true);
+  //     }
+  //   }
+  //   infiniteScroll();
 
-    window.addEventListener('scroll', infiniteScroll);
-    return () => {
-      window.removeEventListener('scroll', infiniteScroll);
-    };
-  }, [pathname]);
+  //   window.addEventListener('scroll', infiniteScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', infiniteScroll);
+  //   };
+  // }, [pathname]);
 
   function handleOutsideClick({ target, currentTarget }) {
     if (target === currentTarget) {
       setMobileMenu(false);
+      setMoveLeft(true);
     }
   }
   React.useEffect(() => {
     return setMobileMenu(false);
   }, [pathname]);
 
-  const teste = pathname.split('/');
+  React.useEffect(() => {
+    if (mobileMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [mobileMenu]);
+
+  const urlPath = pathname.split('/');
 
   return (
     <header
       className={`${styles.header}
       ${pathname === '/' ? styles.styleHome : styles.noHome}
-      ${teste[2] && teste[2].length > 21 ? styles.productSingle : ''}
+      ${urlPath[2] && urlPath[2].length > 21 ? styles.productSingle : ''}
       ${mobile ? styles.headerMobile : ''}
       `}
     >
-      {pathname !== '/dashboard' && (
-        <>
-          <nav className={`${styles.nav} ${mobile ? styles.mobile : ''}`}>
-            {/* HOME PAGE SEM SCROLL */}
-            <div className={styles.logo}>
-              <NavLink to="/" end>
-                {pathname === '/' ? <Logo /> : <LogoBlack />}
-              </NavLink>
-            </div>
+      <>
+        <nav className={`${styles.nav} ${mobile ? styles.mobile : ''}`}>
+          {/* HOME PAGE SEM SCROLL */}
+          {mobile && (
+            <button
+              className={`${styles.mobileButton} ${
+                pathname === '/' && styles.buttonWhite
+              } ${mobileMenu ? styles.mobileButtonActive : ''}`}
+              onClick={() => {
+                setMobileMenu(!mobileMenu);
+                setMoveLeft(mobileMenu);
+              }}
+            ></button>
+          )}
+          <div className={styles.logo}>
+            <NavLink to="/" end>
+              {pathname === '/' ? <Logo /> : <LogoBlack />}
+            </NavLink>
+          </div>
 
-            <ul
-              className={`${mobile ? styles.navMobile : styles.navComputer} ${
-                mobileMenu ? styles.active : ''
-              }
+          <ul
+            className={`${mobile ? styles.navMobile : styles.navComputer} ${
+              mobileMenu ? styles.active : ''
+            }
           ${mobileMenu ? 'animeLeft' : ''}
           ${moveLeft ? styles.animeLeftBack : ''}`}
-            >
-              <li>
-                {' '}
-                <NavLink className={styles.links} to={`/produtos/lancamentos`}>
-                  LANÇAMENTOS
-                </NavLink>
-              </li>
-              {categorias &&
-                categorias.map((categoria) => (
-                  <li key={categoria._id}>
-                    <NavLink
-                      className={styles.links}
-                      to={`/produtos/categoria/${categoria._id}`}
-                      key={categoria._id}
-                    >
-                      {categoria.Category.toUpperCase()}
-                    </NavLink>
-                  </li>
-                ))}
-            </ul>
-            <div className={styles.objetos}>
-              <NavLink to={'/checkout'} className={`${styles.bag}`}>
-                {itensBag[0] ? (
-                  <span className={styles.itensBag}>{itensBag[0].length}</span>
-                ) : (
-                  ''
-                )}
-                {pathname === '/' ? <BagWhite /> : <Bag />}
+          >
+            <li>
+              {' '}
+              <NavLink className={styles.links} to={`/produtos/lancamentos`}>
+                LANÇAMENTOS
               </NavLink>
-              {mobile && (
-                <button
-                  className={`${styles.mobileButton} ${
-                    pathname === '/' && styles.buttonWhite
-                  } ${mobileMenu ? styles.mobileButtonActive : ''}`}
-                  onClick={() => {
-                    setMobileMenu(!mobileMenu);
+            </li>
+            {categorias &&
+              categorias.map((categoria) => (
+                <li key={categoria._id}>
+                  <NavLink
+                    className={styles.links}
+                    to={`/produtos/categoria/${categoria._id}`}
+                    key={categoria._id}
+                  >
+                    {categoria.Category.toUpperCase()}
+                  </NavLink>
+                </li>
+              ))}
+          </ul>
 
-                    setMoveLeft(mobileMenu);
-                  }}
-                ></button>
-              )}
-            </div>
-          </nav>
+          <NavLink to={'/checkout'} className={`${styles.bag}`}>
+            {itensBag[0] ? (
+              <span className={styles.itensBag}>{itensBag[0].length}</span>
+            ) : (
+              ''
+            )}
+            {pathname === '/' ? <BagWhite /> : <Bag />}
+          </NavLink>
+        </nav>
+        {mobile && (
           <div
             className={`${mobileMenu ? styles.navContainer : styles.off}`}
             onClick={handleOutsideClick}
           ></div>
-        </>
-      )}
+        )}
+      </>
     </header>
   );
 };
