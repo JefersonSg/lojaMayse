@@ -267,8 +267,11 @@
   align-items: center;
   padding: 0 10px 0 20px;
   height: 60px;
+  z-index: 101;
   }
-
+.noHome {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3),0 0 4px 1px rgba(0, 0, 0, 0.1);
+}
   /* LOGO */
   .logo svg{
     width: 150px;
@@ -280,11 +283,10 @@
   width: max-content;
 }
 .navContainer {
-  top: 61px;
+  top: 60px;
 }
 .navMobile {
   top:61px;
-
 }
 
 }

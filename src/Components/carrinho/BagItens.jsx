@@ -46,24 +46,34 @@ const BagItens = ({
 
   const url = import.meta.env.VITE_APP_IMAGE_URL;
 
-  const colorsIndex = colors.findIndex((cor) => cor === colorSelected);
+  const colorsIndex = colors.findIndex((cor) => cor === corSelecionada);
 
   const handleCheckColor = React.useCallback(
     (e, i) => {
-      +stock.sizeP.amount[i] ? setP((P) => true) : setP((P) => false),
-        +stock.sizeM.amount[i] ? setM((M) => true) : setM((M) => false),
-        +stock.sizeG.amount[i] ? setG((G) => true) : setG((G) => false),
-        +stock.sizeGG.amount[i] ? setGG((GG) => true) : setGG((GG) => false);
+      +stock.sizeP.amount[i] ? setP(true) : setP(false),
+        +stock.sizeM.amount[i] ? setM(true) : setM(false),
+        +stock.sizeG.amount[i] ? setG(true) : setG(false),
+        +stock.sizeGG.amount[i] ? setGG(true) : setGG(false);
+
+      if (+stock.sizeP.amount[i]) {
+        return +stock.sizeP.amount[i] && setSizeSelecionada('P');
+      } else if (+stock.sizeM.amount[i]) {
+        return +stock.sizeM.amount[i] && setSizeSelecionada('M');
+      } else if (+stock.sizeG.amount[i]) {
+        return +stock.sizeG.amount[i] && setSizeSelecionada('G');
+      } else if (+stock.sizeGG.amount[i]) {
+        return +stock.sizeGG.amount[i] && setSizeSelecionada('GG');
+      } else {
+        return setSizeSelecionada('');
+      }
     },
     [stock],
   );
 
-  let Timeout = null;
-  let teste = null;
-
   React.useEffect(() => {
     handleCheckColor('', colorsIndex);
-  }, [handleCheckColor, colorsIndex, setValorCarrinho]);
+  }, [handleCheckColor, colorsIndex, setValorCarrinho, corSelecionada]);
+
   return (
     <div className={styles.bagItem}>
       <div
@@ -147,10 +157,9 @@ const BagItens = ({
                           setCorSelecionada(cor);
                           setCodigoCorSelecionada(codes[i]);
                           setModalColors(false);
-                          handleCheckColor('', index);
+                          handleCheckColor(i);
 
                           let quantidade = [...amounts];
-                          console.log(quantidade);
                           quantidade[index].color = cor;
                           quantidade[index].codeColor = codes[i];
                           window.localStorage.setItem(
@@ -172,7 +181,6 @@ const BagItens = ({
               </div>
             )}
           </span>
-
           <span
             className={`${styles.sizes} ${modalSizes ? styles.selectSize : ''}`}
           >
@@ -193,7 +201,6 @@ const BagItens = ({
                         setModalSizes(false);
 
                         let quantidade = [...amounts];
-                        console.log(quantidade);
                         quantidade[index].size = 'P';
                         window.localStorage.setItem(
                           'bag',
@@ -211,7 +218,6 @@ const BagItens = ({
                         setModalSizes(false);
 
                         let quantidade = [...amounts];
-                        console.log(quantidade);
                         quantidade[index].size = 'M';
                         window.localStorage.setItem(
                           'bag',
@@ -229,7 +235,6 @@ const BagItens = ({
                         setModalSizes(false);
 
                         let quantidade = [...amounts];
-                        console.log(quantidade);
                         quantidade[index].size = 'G';
                         window.localStorage.setItem(
                           'bag',
@@ -247,7 +252,6 @@ const BagItens = ({
                         setModalSizes(false);
 
                         let quantidade = [...amounts];
-                        console.log(quantidade);
                         quantidade[index].size = 'GG';
                         window.localStorage.setItem(
                           'bag',
@@ -285,7 +289,6 @@ const BagItens = ({
               <button
                 onClick={(e) => {
                   const newItens = JSON.parse(localStorage.getItem('bag'));
-                  console.log(newItens);
                   newItens.splice(index, 1);
 
                   window.localStorage.setItem('bag', JSON.stringify(newItens));

@@ -25,6 +25,7 @@ const Carrinho = () => {
   const [pause, setPause] = React.useState(false);
   const [stop, setStop] = React.useState(false);
 
+  // Timeout para stop da animação
   React.useEffect(() => {
     const temporizador = setTimeout(() => {
       setStop(true);
@@ -34,6 +35,15 @@ const Carrinho = () => {
       clearTimeout(temporizador);
     };
   }, [stop]);
+
+  // Esconder Overflow ao abrir a animação
+  React.useEffect(() => {
+    if (openBox) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [openBox]);
 
   React.useEffect(() => {
     const fetchBag = async () => {
@@ -61,7 +71,6 @@ const Carrinho = () => {
           }
 
           localStorage.setItem('bag', JSON.stringify(itensRemove));
-          setItens(itensRemove);
         });
       }
 
@@ -77,6 +86,7 @@ const Carrinho = () => {
     fetchBag();
   }, [itens, request]);
 
+  // Valor do carrinho
   React.useEffect(() => {
     let valorInicial = 0;
     if (itensCarrinho) {
@@ -89,6 +99,7 @@ const Carrinho = () => {
     }
   }, [itens, itensCarrinho]);
 
+  // Porcentagem da barra
   React.useEffect(() => {
     const porcentagem = (valorCarrinho / 249.9) * 100;
     const resto = Number((249.9 - valorCarrinho).toFixed(2));
@@ -96,14 +107,6 @@ const Carrinho = () => {
     setWidth(porcentagem);
     setRestante(resto);
   }, [valorCarrinho]);
-
-  React.useEffect(() => {
-    if (openBox) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [openBox]);
 
   const url = import.meta.env.VITE_APP_IMAGE_URL;
   return (

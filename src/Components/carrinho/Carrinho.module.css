@@ -1,6 +1,9 @@
 .bagItens {
+  position: relative;
   padding: 20px;
   min-height: 80vh;
+  padding-bottom: 64px;
+  z-index: 10001;
 }
 .bagItens h2 {
   margin-bottom: 32px;
@@ -126,5 +129,6 @@
 @media (max-width:550px) {
   .bagItens {
     padding: 10px;
+    padding-bottom: 64px;
   }
 }

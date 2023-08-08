@@ -52,9 +52,28 @@ const ProdutoSingle = () => {
   const [colorSelected, setColorSelected] = React.useState('');
 
   React.useEffect(() => {
+    async function produtoId() {
+      const data = await request(`${api.getUri()}products/${params['id']}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setProduct(data.json.product);
+      setImages(data.json.product.images);
+      setImage(data.json.product.images[0]);
+      setCodes(data.json.product.codeColors);
+      setCores(data.json.product.colors);
+      setCodeColorActive(data.json.product.codeColors[0]);
+      setColorSelected(data.json.product.colors[0]);
+    }
+    produtoId();
+  }, [params, request, token]);
+
+  // Seleção da cor inicial
+  React.useEffect(() => {
     if (product) {
-      if (product.stock.sizeP.amount) {
-        setActive('P');
+      if (product.stock.sizeP.amount[0]) {
         const amounts = product.stock.sizeP.amount;
 
         let coresOn = [];
@@ -66,8 +85,10 @@ const ProdutoSingle = () => {
         return;
       }
 
-      if (product.stock.sizeM.amount) {
-        setActive('M');
+      if (product.stock.sizeM.amount[0]) {
+        if (product.stock.sizeM.amount[0]) {
+          setActive('M');
+        }
 
         const amounts = product.stock.sizeM.amount;
 
@@ -80,7 +101,7 @@ const ProdutoSingle = () => {
 
         return;
       }
-      if (product.stock.sizeG.amount) {
+      if (product.stock.sizeG.amount[0]) {
         setActive('G');
         const amounts = product.stock.sizeG.amount;
 
@@ -92,7 +113,7 @@ const ProdutoSingle = () => {
         setCorOn(coresOn);
         return;
       }
-      if (product.stock.sizeGG.amount) {
+      if (product.stock.sizeGG.amount[0]) {
         setActive('GG');
         const amounts = product.stock.sizeGG.amount;
 
@@ -112,25 +133,7 @@ const ProdutoSingle = () => {
     }
   }, [product]);
 
-  React.useEffect(() => {
-    async function produtoId() {
-      const data = await request(`${api.getUri()}products/${params['id']}`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setProduct(data.json.product);
-      setImage(data.json.product.images[0]);
-      setImages(data.json.product.images);
-      setCodes(data.json.product.codeColors);
-      setCodeColorActive(data.json.product.codeColors[0]);
-      setCores(data.json.product.colors);
-      setColorSelected(data.json.product.colors[0]);
-    }
-    produtoId();
-  }, [params, request, token]);
-
+  // Scroll
   React.useEffect(() => {
     function infiniteScroll() {
       const scroll = Math.floor(window.scrollY);
@@ -149,6 +152,7 @@ const ProdutoSingle = () => {
     };
   }, []);
 
+  // FullSize
   useEffect(() => {
     if (fullSlide) {
       document.body.style.overflow = 'hidden';
@@ -176,6 +180,32 @@ const ProdutoSingle = () => {
     setCorOn(coresOn);
   }
 
+  // Seta os tamanhos em falta no primeiro carregamento
+  useEffect(() => {
+    async function handleCheckColor() {
+      // verify amount
+      let verify = [];
+
+      if (data) {
+        const emFaltaP = +data.product.stock.sizeP.amount[0]
+          ? (verify[0] = false)
+          : (verify[0] = true);
+        const emFaltaM = +data.product.stock.sizeM.amount[0]
+          ? (verify[1] = false)
+          : (verify[1] = true);
+        const emFaltaG = +data.product.stock.sizeG.amount[0]
+          ? (verify[2] = false)
+          : (verify[2] = true);
+        const emFaltaGG = +data.product.stock.sizeGG.amount[0]
+          ? (verify[3] = false)
+          : (verify[3] = true);
+        setEmFalta(verify);
+      }
+    }
+
+    handleCheckColor();
+  }, [data]);
+
   function selectColor(e) {
     const color = e.target.getAttribute('value');
     setColorSelected(color);
@@ -185,6 +215,7 @@ const ProdutoSingle = () => {
     // verify amount
     setIndexColorActive(i);
     let verify = [...emFalta];
+
     const emFaltaP = +product.stock.sizeP.amount[i]
       ? (verify[0] = false)
       : (verify[0] = true);
@@ -221,6 +252,7 @@ const ProdutoSingle = () => {
     }
     setEmFalta(verify);
   }
+
   const url = import.meta.env.VITE_APP_IMAGE_URL;
 
   return (
@@ -305,8 +337,8 @@ const ProdutoSingle = () => {
                     handleCores(e);
                   }}
                   className={`${styles.sizes} ${
-                    product.stock.sizeP.amount[0] ? '' : styles.emFalta
-                  } ${!emFalta[0] && active === 'P' ? styles.active : ''}
+                    !emFalta[0] && active === 'P' ? styles.active : ''
+                  }
                   ${emFalta[0] ? styles.emFalta : ''}
                   
                   `}
