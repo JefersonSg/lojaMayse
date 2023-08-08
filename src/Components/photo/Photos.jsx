@@ -81,6 +81,7 @@ const Photos = ({ imagesAll, image1, setFullSlide }) => {
   const handleSlideChange = (swiper) => {
     setSlideAtual(`${swiper.realIndex + 1}`);
     setTotalSlides(swiper.slides.length);
+    setImagePrincipal(imagesAll[swiper.realIndex]);
   };
 
   return (
@@ -97,17 +98,13 @@ const Photos = ({ imagesAll, image1, setFullSlide }) => {
             style={{ width: larguraJanela }}
             watchSlidesProgress
             onSlideChange={handleSlideChange}
+            onClick={() => {
+              setFullSlide(imagePrincipal);
+            }}
           >
             {imagesAll &&
               imagesAll.map((imagem, index) => (
-                <SwiperSlide
-                  key={imagem}
-                  virtualIndex={index}
-                  onClick={() => {
-                    console.log(swiperRef.current);
-                    setFullSlide(imagem);
-                  }}
-                >
+                <SwiperSlide key={imagem} virtualIndex={index}>
                   <div className={styles.slides}>
                     <ImageSingle
                       src={`${url}${imagem}`}
