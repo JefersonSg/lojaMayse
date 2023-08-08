@@ -61,6 +61,7 @@ const Carrinho = () => {
           }
 
           localStorage.setItem('bag', JSON.stringify(itensRemove));
+          setItens(itensRemove);
         });
       }
 
@@ -80,7 +81,9 @@ const Carrinho = () => {
     let valorInicial = 0;
     if (itensCarrinho) {
       itens.forEach((item, i) => {
-        valorInicial += +itensCarrinho[i].price * +item.amount;
+        if (itensCarrinho[i]) {
+          valorInicial += +itensCarrinho[i].price * +item.amount;
+        }
       });
       setValorCarrinho(valorInicial);
     }

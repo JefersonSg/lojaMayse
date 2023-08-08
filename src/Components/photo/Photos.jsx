@@ -100,13 +100,15 @@ const Photos = ({ imagesAll, image1, setFullSlide }) => {
           >
             {imagesAll &&
               imagesAll.map((imagem, index) => (
-                <SwiperSlide key={imagem} virtualIndex={index}>
-                  <div
-                    className={styles.slides}
-                    onClick={() => {
-                      setFullSlide(imagem);
-                    }}
-                  >
+                <SwiperSlide
+                  key={imagem}
+                  virtualIndex={index}
+                  onClick={() => {
+                    console.log(swiperRef.current);
+                    setFullSlide(imagem);
+                  }}
+                >
+                  <div className={styles.slides}>
                     <ImageSingle
                       src={`${url}${imagem}`}
                       alt={'Fotos do produto'}

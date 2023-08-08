@@ -252,6 +252,14 @@ left: -2.25rem;
 }
 .imageFullScren {
   margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imageFullScren img {
+  width: 100%;
+  display: block;
+  max-height: 90vh;
 }
 
 @media (max-width:700px) {
