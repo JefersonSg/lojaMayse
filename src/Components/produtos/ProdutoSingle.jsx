@@ -9,6 +9,8 @@ import useMedia from '../../Hooks/useMedia';
 
 const ProdutoSingle = () => {
   const [product, setProduct] = React.useState('');
+  const [temStock, setTemStock] = React.useState(false);
+
   const { data, request, error, loading } = useFetch();
   const [token] = React.useState(window.localStorage.getItem('token') || '');
   const [image, setImage] = React.useState('');
@@ -19,6 +21,7 @@ const ProdutoSingle = () => {
   const [indexColorActive, setIndexColorActive] = React.useState(0);
   const [travarCarrinho, setTravarCarrinho] = React.useState(false);
   const mobile = useMedia('(max-width: 35rem)');
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const temporizador = setTimeout(function closeError() {
@@ -73,61 +76,34 @@ const ProdutoSingle = () => {
   // Seleção da cor inicial
   React.useEffect(() => {
     if (product) {
-      if (product.stock.sizeP.amount[0]) {
-        const amounts = product.stock.sizeP.amount;
-
+      if (product.colors) {
         let coresOn = [];
-        for (let i = 0; i < amounts.length; i++) {
-          const compare = +amounts[i] > 0;
+        for (let i = 0; i < product.colors; i++) {
+          const compare = +product.colors[i] ? true : false;
           coresOn[i] = compare;
         }
         setCorOn(coresOn);
-        return;
       }
 
-      if (product.stock.sizeM.amount[0]) {
-        if (product.stock.sizeM.amount[0]) {
-          setActive('M');
-        }
-
-        const amounts = product.stock.sizeM.amount;
-
-        let coresOn = [];
-        for (let i = 0; i < amounts.length; i++) {
-          const compare = +amounts[i] > 0;
-          coresOn[i] = compare;
-        }
-        setCorOn(coresOn);
+      if (+product.stock.sizeP.amount[0]) {
+        setActive('P');
 
         return;
-      }
-      if (product.stock.sizeG.amount[0]) {
+      } else if (+product.stock.sizeM.amount[0]) {
+        setActive('M');
+
+        return;
+      } else if (+product.stock.sizeG.amount[0]) {
         setActive('G');
-        const amounts = product.stock.sizeG.amount;
 
-        let coresOn = [];
-        for (let i = 0; i < amounts.length; i++) {
-          const compare = +amounts[i] > 0;
-          coresOn[i] = compare;
-        }
-        setCorOn(coresOn);
         return;
-      }
-      if (product.stock.sizeGG.amount[0]) {
+      } else if (+product.stock.sizeGG.amount[0]) {
         setActive('GG');
-        const amounts = product.stock.sizeGG.amount;
-
-        let coresOn = [];
-        for (let i = 0; i < amounts.length; i++) {
-          const compare = +amounts[i] > 0;
-          coresOn[i] = compare;
-        }
-        setCorOn(coresOn);
 
         return;
       } else {
         setActive('');
-        setCores('');
+        setTravarCarrinho(true);
         return;
       }
     }
@@ -156,10 +132,26 @@ const ProdutoSingle = () => {
   useEffect(() => {
     if (fullSlide) {
       document.body.style.overflow = 'hidden';
+
+      navigate();
+
+      const disableBackButton = () => {
+        window.onpopstate = (e) => {
+          setFullSlide(false);
+        };
+      };
+
+      disableBackButton();
+
+      return () => {
+        setFullSlide(false);
+        window.onpopstate = null; // Limpar o manipulador quando o componente for desmontado
+        document.body.style.overflow = 'auto';
+      };
     } else {
       document.body.style.overflow = 'auto';
     }
-  }, [fullSlide]);
+  }, [fullSlide, navigate]);
 
   function handleCores(e) {
     const tamanho = 'size' + e.target.innerText;
@@ -199,6 +191,7 @@ const ProdutoSingle = () => {
         const emFaltaGG = +data.product.stock.sizeGG.amount[0]
           ? (verify[3] = false)
           : (verify[3] = true);
+
         setEmFalta(verify);
       }
     }
@@ -243,7 +236,6 @@ const ProdutoSingle = () => {
       setTravarCarrinho(true);
     } else {
       setErrorForm('');
-      setTravarCarrinho(false);
       setAddBag({
         size: active,
         color: colorSelected,
@@ -348,8 +340,8 @@ const ProdutoSingle = () => {
                 <div
                   onClick={handleCores}
                   className={`${styles.sizes} ${
-                    product.stock.sizeM.amount[0] ? '' : styles.emFalta
-                  }${!emFalta[1] && active === 'M' ? styles.active : ''}
+                    !emFalta[1] && active === 'M' ? styles.active : ''
+                  }
                   ${emFalta[1] ? styles.emFalta : ''}`}
                 >
                   <h4>M</h4>
@@ -366,9 +358,9 @@ const ProdutoSingle = () => {
                 <div
                   onClick={handleCores}
                   className={`${styles.sizes} ${
-                    product.stock.sizeGG.amount[0] ? '' : styles.emFalta
-                  }${!emFalta[2] && active === 'GG' ? styles.active : ''}
-                  ${emFalta[2] ? styles.emFalta : ''}`}
+                    !emFalta[3] && active === 'GG' ? styles.active : ''
+                  }
+                  ${emFalta[3] ? styles.emFalta : ''}`}
                 >
                   <h4>GG</h4>
                 </div>
