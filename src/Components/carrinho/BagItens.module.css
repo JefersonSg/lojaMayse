@@ -39,12 +39,14 @@
   letter-spacing: 1.2px;
   color: red;
 }
-.addAmount span {
+.amount {
   font-family: var(--type-second);
   letter-spacing: 1.2px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   padding: 4px 0 ;}
+
+
 
 .addAmount button {
   border: 1px solid rgba(0, 0, 0, .5);
@@ -60,7 +62,10 @@
 .addAmount button:last-child {
   border-radius: 0 5px  5px 0;
 }
-
+.addAmount .disabled {
+  opacity: 0.6;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
 .description {
   font-family: var(--type-second);
   font-weight: 400;

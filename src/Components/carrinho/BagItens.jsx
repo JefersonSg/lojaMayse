@@ -3,6 +3,8 @@ import styles from './BagItens.module.css';
 import { ReactComponent as Trash } from '../../assets/svg/svgCarrinho/delete.svg';
 import { ReactComponent as ExpandMore } from '../../assets/svg/svgCarrinho/expand_more.svg';
 import { NavLink } from 'react-router-dom';
+import Produto from '../produtos/Produto';
+import Produtos from '../produtos/Produtosall';
 
 const BagItens = ({
   name,
@@ -21,6 +23,7 @@ const BagItens = ({
   itens,
   setPause,
   setStop,
+  setErrorForm,
   pause,
   stop,
 }) => {
@@ -34,6 +37,7 @@ const BagItens = ({
     sizeSelected || '',
   );
   const [amounts, setAmounts] = React.useState(itens);
+  const [buttonOf, setButtonOf] = React.useState(false);
   const [descricao, setDescricao] = React.useState(description);
   const [modalDelete, setModalDelete] = React.useState(false);
   const [modalColors, setModalColors] = React.useState(false);
@@ -96,30 +100,40 @@ const BagItens = ({
         </span>
         <div className={styles.addAmount}>
           <button
+            className={`${buttonOf ? styles.disabled : ''}`}
             onClick={() => {
               let quantidade = [...amounts];
+              const limite = stock[`size${sizeSelected}`].amount[colorsIndex];
 
-              quantidade[index].amount = +amounts[index].amount + 1;
-              setAmounts(quantidade);
-              setStop(false);
-
-              setValorCarrinho(valorCarrinho + price);
-              window.localStorage.setItem('bag', JSON.stringify(amounts));
+              if (limite < +amounts[index].amount) {
+                quantidade[index].amount = +amounts[index].amount + 1;
+                setAmounts(quantidade);
+                setStop(false);
+                setValorCarrinho(valorCarrinho + price);
+                window.localStorage.setItem('bag', JSON.stringify(amounts));
+              } else {
+                setErrorForm('Limite de itens adicionados');
+                setButtonOf(true);
+              }
             }}
           >
             +
           </button>
-          <span className={styles.amount}>{amounts[index].amount || 1}</span>
+          <span className={`${styles.amount} `}>
+            {amounts[index].amount || 1}
+          </span>
           <button
             onClick={() => {
               let quantidade = [...amounts];
               if (+amounts[index].amount === 1) {
-                return;
+                return null;
               }
               quantidade[index].amount = +amounts[index].amount - 1;
               setStop(true);
               setAmounts(quantidade);
               setValorCarrinho(valorCarrinho - price);
+              setButtonOf(false);
+
               return window.localStorage.setItem(
                 'bag',
                 JSON.stringify(amounts),

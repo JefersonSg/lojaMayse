@@ -21,9 +21,21 @@ const Carrinho = () => {
   );
   const preco = valorCarrinho.toLocaleString('pt-BR').split(',');
 
+  const [errorForm, setErrorForm] = React.useState('');
+
   // Hoocks da animação
   const [pause, setPause] = React.useState(false);
   const [stop, setStop] = React.useState(false);
+
+  React.useEffect(() => {
+    const temporizador = setTimeout(function closeError() {
+      setErrorForm(false);
+    }, 7000);
+
+    return () => {
+      clearTimeout(temporizador);
+    };
+  }, [errorForm]);
 
   // Timeout para stop da animação
   React.useEffect(() => {
@@ -154,6 +166,7 @@ const Carrinho = () => {
               stock,
               codeColors,
             },
+
             index,
           ) => (
             <div key={index}>
@@ -174,6 +187,7 @@ const Carrinho = () => {
                 valorCarrinho={valorCarrinho}
                 setPause={setPause}
                 setStop={setStop}
+                setErrorForm={setErrorForm}
                 stop={stop}
                 pause={pause}
                 setValorCarrinho={setValorCarrinho}
@@ -236,6 +250,7 @@ const Carrinho = () => {
           </button>
         </div>
       </section>
+      {errorForm && <span className={`error animeLeftRight`}>{errorForm}</span>}
     </div>
   );
 };
