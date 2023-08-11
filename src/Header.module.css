@@ -288,16 +288,17 @@
 .navMobile {
   top:61px;
 }
-
-}
-
-@media (max-width:35rem) {
-/* HEADER / NAV */
 .header.noHome.productSingle {
   position: fixed;
   top: 0;
   background-color: white;
 }
+
+}
+
+@media (max-width:35rem) {
+/* HEADER / NAV */
+
 
 
 /* LOGO */

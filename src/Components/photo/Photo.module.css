@@ -1,18 +1,21 @@
 .imagens {
   display: grid;
-  grid-template-columns: 75px minmax(250px, 500px);
+  grid-template-columns: 75px minmax(44px, 500px);
   gap: 16px;
   max-width:600px;
   margin: 0 auto;
 }
 
 .miniImages {
-  display: grid;
-  grid-template-rows: repeat(auto-fill , 75px );
+  display: flex;
+  flex-direction: column;
+  width: 44px;
   gap: 16px 0px;
+  max-height: 450px;
 }
-.miniImages div{
-  width: minmax(80px, 100%);
+.miniImagensDiv{
+  width: 44px;
+  max-height: 44px;
   display: flex;
   object-fit: contain;
   border: 3px solid #FFBFD0;

@@ -25,17 +25,9 @@ const Photos = ({ imagesAll, image1, setFullSlide }) => {
 
   const url = import.meta.env.VITE_APP_IMAGE_URL;
 
-  React.useEffect(() => {
-    if (window.innerWidth >= 560) {
-      setMobile(false);
-      return;
-    }
-    return setMobile(true);
-  }, []);
-
   React.useState(() => {
     function handleResize() {
-      if (window.innerWidth <= 560) {
+      if (window.innerWidth <= 700) {
         setMobile(true);
       } else {
         setMobile(false);
@@ -64,7 +56,6 @@ const Photos = ({ imagesAll, image1, setFullSlide }) => {
     const handleResize = () => {
       let medidaAtual = document.documentElement.scrollWidth;
       if (medidaAnterior > medidaAtual) {
-        console.log('é maior');
         return setLarguraJanela(document.documentElement.scrollWidth - 1);
       }
       return setLarguraJanela(document.documentElement.scrollWidth);
@@ -132,7 +123,7 @@ const Photos = ({ imagesAll, image1, setFullSlide }) => {
                   key={imagem + i}
                   className={`${
                     imagem === imagePrincipal ? styles.active : ''
-                  }`}
+                  } ${styles.miniImagensDiv}`}
                 >
                   <ImageSingle
                     key={`${imagem + i}2`}

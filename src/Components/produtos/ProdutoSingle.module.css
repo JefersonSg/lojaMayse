@@ -306,6 +306,28 @@ left: -2.25rem;
   .descricao {
     margin-top: 16px;
   }
+  .form_radio_container {
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, 2rem);
+    height: max-content;
+  }
+  .ProductView_images{
+    height: 600px;
+    position: sticky;
+    top: 0;
+  }
+  .ProductView_details {
+    background-color: white;
+    padding-top: 0.5rem;
+    z-index: 1000;
+  }
+  .brand{
+    display: block;
+    padding-bottom: 8px;
+  }
+  .name {
+    line-height: 24px;
+  }
 }
 
 @media (max-width:35rem) {

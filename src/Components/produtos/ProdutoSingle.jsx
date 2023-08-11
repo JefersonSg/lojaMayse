@@ -20,7 +20,7 @@ const ProdutoSingle = () => {
   const [errorForm, setErrorForm] = React.useState('');
   const [indexColorActive, setIndexColorActive] = React.useState(0);
   const [travarCarrinho, setTravarCarrinho] = React.useState(false);
-  const mobile = useMedia('(max-width: 35rem)');
+  const mobile = useMedia('(max-width: 43.75rem)');
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -376,7 +376,6 @@ const ProdutoSingle = () => {
                 <button
                   onClick={(e) => {
                     const infos = storageBag ? [...storageBag] : [];
-                    console.log(infos);
                     if (!travarCarrinho) {
                       const bag = {
                         size: active,
@@ -385,7 +384,6 @@ const ProdutoSingle = () => {
                         codeColor: codeColorActive,
                         amount: 1,
                       };
-                      console.log(bag);
                       infos.push(bag);
 
                       localStorage.setItem('bag', JSON.stringify(infos));
