@@ -38,6 +38,7 @@ const BagItens = ({
   );
   const [amounts, setAmounts] = React.useState(itens);
   const [buttonOf, setButtonOf] = React.useState(false);
+  const [buttonMenosOf, setButtonMenosOf] = React.useState(false);
   const [descricao, setDescricao] = React.useState(description);
   const [modalDelete, setModalDelete] = React.useState(false);
   const [modalColors, setModalColors] = React.useState(false);
@@ -75,6 +76,22 @@ const BagItens = ({
   );
 
   React.useEffect(() => {
+    const limite = +stock[`size${sizeSelected}`].amount[colorsIndex];
+
+    if (limite === +amounts[index].amount) {
+      setButtonOf(true);
+    } else {
+      setButtonOf(false);
+    }
+
+    if (+amounts[index].amount <= 1) {
+      setButtonMenosOf(true);
+    } else {
+      setButtonMenosOf(false);
+    }
+  }, [stock, sizeSelected, index, amounts, colorsIndex]);
+
+  React.useEffect(() => {
     handleCheckColor('', colorsIndex);
   }, [handleCheckColor, colorsIndex, setValorCarrinho, corSelecionada]);
 
@@ -103,9 +120,10 @@ const BagItens = ({
             className={`${buttonOf ? styles.disabled : ''}`}
             onClick={() => {
               let quantidade = [...amounts];
-              const limite = stock[`size${sizeSelected}`].amount[colorsIndex];
+              const limite = +stock[`size${sizeSelected}`].amount[colorsIndex];
 
-              if (limite < +amounts[index].amount) {
+              console.log(limite > +amounts[index].amount);
+              if (limite > +amounts[index].amount) {
                 quantidade[index].amount = +amounts[index].amount + 1;
                 setAmounts(quantidade);
                 setStop(false);
@@ -113,7 +131,6 @@ const BagItens = ({
                 window.localStorage.setItem('bag', JSON.stringify(amounts));
               } else {
                 setErrorForm('Limite de itens adicionados');
-                setButtonOf(true);
               }
             }}
           >
@@ -123,6 +140,7 @@ const BagItens = ({
             {amounts[index].amount || 1}
           </span>
           <button
+            className={`${buttonMenosOf ? styles.disabled : ''}`}
             onClick={() => {
               let quantidade = [...amounts];
               if (+amounts[index].amount === 1) {
