@@ -83,12 +83,6 @@ const BagItens = ({
     } else {
       setButtonOf(false);
     }
-
-    if (+amounts[index].amount <= 1) {
-      setButtonMenosOf(true);
-    } else {
-      setButtonMenosOf(false);
-    }
   }, [stock, sizeSelected, index, amounts, colorsIndex]);
 
   React.useEffect(() => {
@@ -146,6 +140,7 @@ const BagItens = ({
             onClick={() => {
               let quantidade = [...amounts];
               if (+amounts[index].amount === 1) {
+                setModalDelete(true);
                 return null;
               }
               quantidade[index].amount = +amounts[index].amount - 1;

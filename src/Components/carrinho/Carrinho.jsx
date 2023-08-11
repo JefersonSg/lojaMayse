@@ -104,7 +104,9 @@ const Carrinho = () => {
     if (itensCarrinho) {
       itens.forEach((item, i) => {
         if (itensCarrinho[i]) {
-          valorInicial += +itensCarrinho[i].price * +item.amount;
+          if (+item.amount > 0) {
+            valorInicial += +itensCarrinho[i].price * +item.amount;
+          }
         }
       });
       setValorCarrinho(valorInicial);
