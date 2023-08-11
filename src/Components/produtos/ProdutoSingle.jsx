@@ -251,7 +251,14 @@ const ProdutoSingle = () => {
     <>
       <div className="containerSingle">
         {fullSlide && (
-          <div className={`${styles.containerFullScrenn}`}>
+          <div
+            className={`${styles.containerFullScrenn}`}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                setFullSlide(false);
+              }
+            }}
+          >
             <span
               className={styles.fechar}
               onClick={() => {

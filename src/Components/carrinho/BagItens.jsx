@@ -97,10 +97,12 @@ const BagItens = ({
 
   return (
     <div className={styles.bagItem}>
-      <div
-        style={{ backgroundImage: `url('${url}${image}')` }}
-        className={styles.image}
-      ></div>
+      <NavLink to={`/produtos/${itens[index].id}`}>
+        <div
+          style={{ backgroundImage: `url('${url}${image}')` }}
+          className={styles.image}
+        ></div>
+      </NavLink>
       <div className={styles.infos}>
         <h2 className={styles.name}>
           <NavLink to={`/produtos/${itens[index].id}`}>
