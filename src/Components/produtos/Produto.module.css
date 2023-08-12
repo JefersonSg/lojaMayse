@@ -1,16 +1,21 @@
 .produto {
-  display: grid;
-  grid-template-rows: 460px 50px;
-  gap: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   height: max-content;
+  flex-basis: calc(32% - 10px);
+  max-width: 350px;
 }
 .divImage {
   height:100%;
 }
 .produto img {
   border-radius: .2rem;
-  min-height: 460px;
   object-fit: cover;
+  min-height: 350px;
+  height: 40vw;
+  max-height: 400px;
+
 }
 .infos {
   display: flex;
@@ -46,13 +51,18 @@
   top: -5px;
 }
 
-@media (max-width:1100px) {
+@media (max-width:920px) {
+
   .produto {
-    grid-template-rows: 500px 50px;
+    flex-basis: calc(48% - 10px);
+    max-width: 400px;
   }
   .produto img {
-    min-height: 500px;
+    max-height: 500px;
+    height: 60vw;
+    min-height: 200px;
   }
+
 }
 
 @media (max-width: 50rem) {
@@ -60,7 +70,6 @@
     grid-template-rows: 400px 50px;
   }
   .produto img {
-    min-height: 400px;
     max-height: 400px;
   }
   .price {
@@ -73,7 +82,6 @@
     grid-template-rows: 300px 50px;
   }
   .produto img {
-    min-height: 300px;
     max-height: 300px;
   }
   .price {
@@ -82,11 +90,8 @@
 }
 
 @media (max-width: 550px) {
-  .produto {
-    grid-template-rows: 280px 50px;
-  }
+
   .produto img {
-    min-height: 280px;
     max-height: 280px;
   }
   .price {
@@ -99,7 +104,6 @@
     grid-template-rows: 230px 50px;
   }
   .produto img {
-    min-height: 230px;
     max-height: 230px;
   }
   .price {

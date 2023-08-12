@@ -330,7 +330,7 @@ const ProdutoSingle = () => {
                 </div>
               </div>
               <div className={styles.estoque}>
-                <h3 className="subtitle">Tamanhos</h3>
+                <h3 className="subtitle">Selecione o tamanho</h3>
                 <div
                   onClick={(e) => {
                     handleCores(e);

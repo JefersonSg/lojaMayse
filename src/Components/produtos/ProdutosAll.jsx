@@ -35,38 +35,16 @@ const Produtos = () => {
                 { _id, name, price, brand, description, images, colors, stock },
                 index,
               ) => {
-                let emStockColorP;
-                let emStockColorM;
-                let emStockColorG;
-                let emStockColorGG;
+                let emStockColor;
 
                 for (let i = 0; i < colors.length; i++) {
-                  const element = +stock.sizeP.amount[i];
+                  const elementP = +stock.sizeP.amount[i];
+                  const elementM = +stock.sizeM.amount[i];
+                  const elementG = +stock.sizeG.amount[i];
+                  const elementGG = +stock.sizeGG.amount[i];
 
-                  if (element) {
-                    emStockColorP = true;
-                  }
-                }
-                for (let i = 0; i < colors.length; i++) {
-                  const element = +stock.sizeM.amount[i];
-
-                  if (element) {
-                    emStockColorM = true;
-                  }
-                }
-                for (let i = 0; i < colors.length; i++) {
-                  const element = +stock.sizeG.amount[i];
-
-                  if (element) {
-                    emStockColorG = true;
-                  }
-                }
-
-                for (let i = 0; i < colors.length; i++) {
-                  const element = +stock.sizeGG.amount[i];
-
-                  if (element) {
-                    emStockColorGG = true;
+                  if (elementP || elementM || elementG || elementGG) {
+                    emStockColor = true;
                   }
                 }
 
@@ -79,12 +57,7 @@ const Produtos = () => {
                   );
                 });
 
-                if (
-                  emStockColorP ||
-                  emStockColorM ||
-                  emStockColorG ||
-                  emStockColorGG
-                ) {
+                if (emStockColor) {
                   return (
                     <Produto
                       key={_id}

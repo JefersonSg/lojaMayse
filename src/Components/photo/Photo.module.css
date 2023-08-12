@@ -1,6 +1,6 @@
 .imagens {
   display: grid;
-  grid-template-columns: 75px minmax(44px, 500px);
+  grid-template-columns: 44px minmax(150px, 500px);
   gap: 16px;
   max-width:600px;
   margin: 0 auto;

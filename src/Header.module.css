@@ -1,7 +1,7 @@
 .header {
   position: relative;
   width: 100%;
-  z-index: 99999;
+  z-index: 100;
   padding: 20px 0;
 }
 .header.styleHome {
@@ -90,7 +90,7 @@
   top: 85px;
   left:0 ;
   padding: 135px 30px 20px 45px;
-  z-index: 100;
+  z-index: 104;
   transform: translateX(-100%);
 }
 .navMobile.active {
@@ -117,7 +117,7 @@
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, .4);
-  z-index: 2;
+  z-index: 102;
   backdrop-filter: blur(3px);
 }
 
@@ -195,9 +195,9 @@
 .mobileButton {
   background-color: transparent;
   border-radius: 0.2rem;
-  height: 40px;
-  width: 40px;
-  display: flex;
+  height: 30px;
+  width: 30px;
+  display: grid;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
@@ -209,16 +209,29 @@
   color: #fff;
 }
 
+
+
 .mobileButton::after {
   content: "";
   display: block;
-  width: 40px;
+  width: 30px;
   height: 2px;
-  background: currentColor;
   border-radius: 2px;
-  box-shadow: 0 6px currentColor,0 -6px currentColor;
-  transition: .1s;
+  transition: .2s;
 }
+.styleHome .mobileButton::after {
+  background: white;
+  box-shadow: 0 0.5rem white,0 -0.5rem white;
+}
+.styleHome .mobileButtonActive::after {
+  background: black;
+  box-shadow: 0 0.5rem black,0 -0.5rem black;
+}
+.noHome .mobileButton::after {
+  background: black;
+  box-shadow: 0 0.5rem black,0 -0.5rem black;
+}
+
 
 .mobileButton.buttonWhite:focus ,
 .mobileButton.buttonWhite:hover,
@@ -267,7 +280,7 @@
   align-items: center;
   padding: 0 10px 0 20px;
   height: 60px;
-  z-index: 101;
+  z-index: 103;
   }
 .noHome {
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3),0 0 4px 1px rgba(0, 0, 0, 0.1);
@@ -317,8 +330,9 @@
 
 /* MOBILE BUTTON */
 .mobileButton {
-    width: 35px;
+    width: 30px;
     height: 30px;
+
   }
 }
 
@@ -340,4 +354,20 @@
 
   /* BAG */
 
+  /* BUTTON */
+
+  .styleHome .mobileButton::after {
+    background: white;
+    max-width: 30px;
+    box-shadow: 0 0.35rem white,0 -0.35rem white;
+  }
+  .styleHome .mobileButtonActive::after {
+    width: 4px;
+    background: black;
+    box-shadow: 0 0.35rem black,0 -0.35rem black;
+  }
+  .noHome .mobileButton::after {
+    background: black;
+    box-shadow: 0 0.35rem black,0 -0.35rem black;
+  }
 }
