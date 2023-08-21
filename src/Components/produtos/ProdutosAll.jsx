@@ -14,8 +14,6 @@ const Produtos = () => {
 
   const { request, error, loading, data } = useFetch();
 
-  let emStock;
-
   React.useEffect(() => {
     request(`${api.getUri()}products/`, {
       headers: {
@@ -48,20 +46,12 @@ const Produtos = () => {
                   }
                 }
 
-                const emStock = colors.every((cor, i) => {
-                  return (
-                    +stock.sizeP.amount[i] ||
-                    +stock.sizeM.amount[i] ||
-                    +stock.sizeG.amount[i] ||
-                    +stock.sizeGG.amount[i]
-                  );
-                });
-
                 if (emStockColor) {
                   return (
                     <Produto
                       key={_id}
-                      src={images[0]}
+                      img={images[0]}
+                      img2={images[1]}
                       title={name}
                       price={price}
                       brand={brand}

@@ -58,6 +58,7 @@ a {
   margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 64px;
+  min-height: 100vh;
 }
 .mainContainer {
   margin-top: 4rem;

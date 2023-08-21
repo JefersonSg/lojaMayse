@@ -9,6 +9,7 @@
 .divImage {
   height:100%;
 }
+
 .produto img {
   border-radius: .2rem;
   object-fit: cover;

@@ -122,6 +122,36 @@ const Carrinho = () => {
     setRestante(resto);
   }, [valorCarrinho]);
 
+  function finalizarCompra() {
+    const itensPayment = localStorage.getItem('bag')
+      ? JSON.parse(localStorage.getItem('bag'))
+      : '';
+
+    const itensPagamento = itensPayment.map(
+      ({ size, color, amount, id }, index) => ({
+        name: itensCarrinho[index].name,
+        size,
+        color,
+        amount,
+        id,
+      }),
+    );
+
+    let mensagem = `Olá, eu selecionei os seguintes itens no site :%0A%0A${itensPagamento
+      .map((item) => {
+        return `Nome: *${item.name.trim()}* %0ACor: *${item.color.trim()}* %0ATamanho: *${
+          item.size
+        }*%0AQuantidade: *${item.amount}* %0Acodigo: ${item.id}%0A%0A`;
+      })
+      .join('')} 
+Valor Total: *R$ ${preco[0] ? preco[0] : '0'},${
+      preco[1] ? (preco[1].length === 2 ? preco[1] : `${preco[1]}0`) : '00'
+    }*`;
+
+    const urlWhatsapp = `https://wa.me/22992339289?text=${mensagem}`;
+    window.open(urlWhatsapp, '_blank');
+  }
+
   const url = import.meta.env.VITE_APP_IMAGE_URL;
   return (
     <div className={styles.bagItens}>
@@ -214,40 +244,7 @@ const Carrinho = () => {
                 : '00'}
             </span>
           </p>
-          <button
-            className=""
-            onClick={() => {
-              const itensPayment = localStorage.getItem('bag')
-                ? JSON.parse(localStorage.getItem('bag'))
-                : '';
-
-              const itensPagamento = itensPayment.map(
-                ({ size, color, amount, id }, index) => ({
-                  name: itensCarrinho[index].name,
-                  size,
-                  color,
-                  amount,
-                  id,
-                }),
-              );
-
-              let mensagem = `Olá, eu selecionei os seguintes itens no site :%0A${itensPagamento.map(
-                (item) => {
-                  return `*${item.name}* %0ACor: *${item.color}* %0ATamanho: *${item.size}*%0AQuantidade: *${item.amount}*,%0Acodigo: ${item.id}%0A%0A`;
-                },
-              )} 
-            Valor Total: *R$ ${preco[0] ? preco[0] : '0'},${
-                preco[1]
-                  ? preco[1].length === 2
-                    ? preco[1]
-                    : `${preco[1]}0`
-                  : '00'
-              }*`;
-
-              const urlWhatsapp = `https://wa.me/22992339289?text=${mensagem}`;
-              window.open(urlWhatsapp, '_blank');
-            }}
-          >
+          <button className="" onClick={finalizarCompra}>
             FINALIZAR
           </button>
         </div>

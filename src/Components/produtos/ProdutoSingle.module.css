@@ -246,7 +246,7 @@ left: -2.25rem;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.85);
-  z-index: 999999;
+  z-index: 101;
   opacity: 0;
   animation: toAppear .4s ease forwards;
 }
@@ -320,7 +320,7 @@ left: -2.25rem;
   .ProductView_details {
     background-color: white;
     padding-top: 0.5rem;
-    z-index: 1000;
+    z-index: 100;
   }
   .brand{
     display: block;
@@ -347,7 +347,7 @@ left: -2.25rem;
   .ProductView_details {
     background-color: white;
     padding-top: 0.5rem;
-    z-index: 1000;
+    z-index: 100;
   }
   .brand{
     display: block;

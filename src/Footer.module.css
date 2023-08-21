@@ -19,7 +19,7 @@
   text-transform: uppercase;
   padding: 16px 0;
   cursor: pointer;
-
+  width: max-content;
 }
 .footer li,
 .sobre p {
