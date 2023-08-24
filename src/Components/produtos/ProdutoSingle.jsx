@@ -295,7 +295,9 @@ const ProdutoSingle = () => {
               </span>
 
               <div className={styles.colors}>
-                <span className={styles.spanCor}>cores:</span>
+                <span className={styles.spanCor}>
+                  cores: {<span>{colorSelected}</span>}
+                </span>
                 <div className={styles.form_radio_container}>
                   {cores &&
                     cores.map((cor, i) => (

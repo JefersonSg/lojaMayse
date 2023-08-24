@@ -3,7 +3,7 @@ import styles from './Image.module.css';
 
 const Image = ({ alt, src, src2 }) => {
   const [skeleton, setSkeleton] = React.useState(true);
-  const [img2, setImg2] = React.useState(!src2.includes('undefined'));
+  const [img2, setImg2] = React.useState(src2 && !src2.includes('undefined'));
 
   function handleLoad({ target }) {
     target.style.opacity = 1;
@@ -11,7 +11,7 @@ const Image = ({ alt, src, src2 }) => {
   }
 
   return (
-    <div className={styles.wrapperImg}>
+    <div className={`${styles.wrapperImg} ${img2 && styles.imgHover}`}>
       {skeleton && <div className={styles.skeleton}></div>}
       <img onLoad={handleLoad} className={styles.img} alt={alt} src={src} />
       {img2 ? (

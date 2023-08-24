@@ -22,6 +22,11 @@
   background-size: 200%;
   animation: skeleton 1.5s infinite linear;
 }
+@media (max-width:700px) {
+  .wrapperImg {
+    height: 70vh;
+  }
+}
 
 @keyframes skeleton {
   from{

@@ -60,7 +60,7 @@ const DashboardRoute = () => {
           }
         />
         <Route
-          path="/produto/:id"
+          path="/produtos/:id"
           element={
             <ProtectedRoute>
               <SingleProduct />

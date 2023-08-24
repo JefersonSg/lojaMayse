@@ -27,7 +27,7 @@
 }
 
 .noHome {
-  box-shadow: 0 0 0px 1px rgba(0, 0, 0, .2);
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, .1);
 }
 
 /* Logo */
@@ -51,6 +51,9 @@
   color: white;
 }
 .links:global(.active) {
+  box-shadow: 0 1px black;
+}
+.links:hover {
   box-shadow: 0 1px black;
 }
 
@@ -92,6 +95,7 @@
   padding: 135px 30px 20px 45px;
   z-index: 104;
   transform: translateX(-100%);
+  gap: 32px;
 }
 .navMobile.active {
   opacity: 1;
@@ -145,10 +149,11 @@
   color: #333;
 }
 .navMobile .links {
-  font-size: 14px;
+  font-size: .75rem;
+  font-weight: 400;
+  font-family: var(--type-second);
   cursor: pointer;
-  letter-spacing: 1.2px;
-  box-shadow: 0 1px #0000001a;
+  letter-spacing: 1.3px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 32px;
@@ -156,10 +161,11 @@
 }
 .navMobile .links::after {
   content: "";
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     display: inline-block;
     background: url('/src/assets/svg/svgHeader/chevron_right.svg') no-repeat center center;
+    background-size: 15px;
     align-self: flex-end;
 }
 
@@ -195,8 +201,8 @@
 .mobileButton {
   background-color: transparent;
   border-radius: 0.2rem;
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 25px;
   display: grid;
   align-items: center;
   justify-content: center;
@@ -205,32 +211,38 @@
   cursor: pointer;
   z-index: 2000;
 }
-.mobileButton.buttonWhite {
-  color: #fff;
-}
-
-
 
 .mobileButton::after {
   content: "";
   display: block;
-  width: 30px;
+  width: 26px;
   height: 2px;
   border-radius: 2px;
   transition: .2s;
 }
 .styleHome .mobileButton::after {
   background: white;
-  box-shadow: 0 0.5rem white,0 -0.5rem white;
+  max-width: 25px;
+  box-shadow: 0 6px white,0 -6px white;
 }
 .styleHome .mobileButtonActive::after {
+  width: 4px;
   background: black;
-  box-shadow: 0 0.5rem black,0 -0.5rem black;
+  box-shadow: 0 8px black,0 -8px black;
 }
 .noHome .mobileButton::after {
+  width: 25px;
   background: black;
-  box-shadow: 0 0.5rem black,0 -0.5rem black;
+  box-shadow: 0 6px black,0 -6px black;
 }
+.noHome .mobileButtonActive::after {
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 8px currentColor, 0 -8px currentColor;
+}
+
+
+
 
 
 .mobileButton.buttonWhite:focus ,
@@ -256,55 +268,58 @@
 .itensBag {
   position: absolute;
   display: flex;
-  top: -10px;
-  right: -20px;
+  top: -8px;
+  right: -10px;
   background-color: red;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   justify-content: center;
   align-items: center;
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
   border-radius: 50%;
   pointer-events: none;
 }
-@media (max-width:700px) {
+@media (max-width:1024px) {
 
   /* Header/Nav */
   .header.headerMobile,
   .header.styleHome {
     padding: 0;
   }
-.nav.mobile {
+  .nav.mobile {
   display: grid;
   align-items: center;
   padding: 0 10px 0 20px;
-  height: 60px;
-  z-index: 103;
+  height: 50px;
   }
-.noHome {
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3),0 0 4px 1px rgba(0, 0, 0, 0.1);
-}
+
   /* LOGO */
-  .logo svg{
-    width: 150px;
-    height: 70px;
+  .logo svg {
+    width: 100px;
+    height: 50px;
   }
 
   /* BAG */
-.mobile .bag {
-  width: max-content;
-}
+  .bag svg{
+    width: 20px;
+    height: 20px;
+  }
 .navContainer {
-  top: 60px;
+  top: 50px;
 }
 .navMobile {
-  top:61px;
+  top:51px;
 }
 .header.noHome.productSingle {
   position: fixed;
   top: 0;
   background-color: white;
+}
+/* Button */
+.mobileButton {
+  width: 25px;
+  height: 20px;
 }
 
 }
@@ -315,40 +330,21 @@
 
 
 /* LOGO */
-.logo svg{
-  width: 120px;
-}
-.logo svg {
-  height: 50px;
-}
+
+
 
 /* BAG */
-.bag svg{
-  width: 20px;
-  height: 20px;
-}
+
 
 /* MOBILE BUTTON */
-.mobileButton {
-    width: 30px;
-    height: 30px;
-  }
+
 }
 
 @media (max-width:450px) {
   /* HEADER / NAV */
-  .navMobile {
-    width: 230px;
-    padding: 135px 20px 20px 20px;
-  }
-  .nav ul {
-    gap: 16px;
-  }
 
   /* LINKS */
-  .navMobile .links {
-    font-size: 12px;
-  }
+
   /* LOGO */
 
   /* BAG */
@@ -365,8 +361,5 @@
     background: black;
     box-shadow: 0 0.35rem black,0 -0.35rem black;
   }
-  .noHome .mobileButton::after {
-    background: black;
-    box-shadow: 0 0.35rem black,0 -0.35rem black;
-  }
+
 }

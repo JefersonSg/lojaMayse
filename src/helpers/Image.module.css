@@ -25,7 +25,7 @@
   max-height:400px;
 }
 
-.wrapperImg:hover .img {
+.imgHover:hover .img {
   animation: trocaImg1 .2s ease-in forwards;
 }
 

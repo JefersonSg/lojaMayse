@@ -98,7 +98,7 @@ a {
   position: fixed;
   bottom: 30px;
   right: 10px;
-  z-index: 99999;
+  z-index: 999;
 }
 .btnZap svg {
   cursor: pointer;

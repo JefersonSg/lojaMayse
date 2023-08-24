@@ -6,7 +6,7 @@ const Produto = ({ src, title, price, model, id }) => {
   const url = import.meta.env.VITE_APP_IMAGE_URL;
 
   return (
-    <a className={styles.produto} href={`/dashboard/produto/${id}`}>
+    <a className={styles.produto} href={`/dashboard/produtos/${id}`}>
       <div>
         <img src={`${url}${src}`} alt={title} />
       </div>

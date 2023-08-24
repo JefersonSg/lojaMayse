@@ -1,24 +1,15 @@
 .swiperPhotos {
-  height: 600px;
+  height: 70vh;
   width: calc(100vw - 1%);
-}
-
-
-@media (max-width:40rem) {
-  .swiperPhotos{
-    height: 600px;
-  }
 }
 
 @media (max-width:30rem) {
   .swiperPhotos{
-    height: 500px;
     width: calc(100vw - 17px);
   }
 }
 @media (max-width:24rem) {
   .swiperPhotos{
-    height: 450px;
     width: calc(100vw - 17px);
   }
 }

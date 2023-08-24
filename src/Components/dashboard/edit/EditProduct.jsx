@@ -228,7 +228,7 @@ const EditProduct = () => {
         },
       })
       .then((response) => {
-        navigate(`/dashboard/produto/${product._id}`);
+        navigate(`/dashboard/produtos/${product._id}`);
         return response.data;
       })
       .catch((err) => {
@@ -537,7 +537,7 @@ const EditProduct = () => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                navigate(`/dashboard/produto/${product._id}`);
+                navigate(`/dashboard/produtos/${product._id}`);
               }}
             >
               VOLTAR

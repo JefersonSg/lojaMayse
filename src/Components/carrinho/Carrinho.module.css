@@ -3,7 +3,7 @@
   padding: 20px;
   min-height: 80vh;
   padding-bottom: 64px;
-  z-index: 10001;
+  z-index: 101;
 }
 .bagItens h2 {
   margin-bottom: 32px;
@@ -22,8 +22,8 @@
   height: max-content;
   padding: 10px 20px;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, .5),0 0 4px 0 rgba(0, 0, 0, .2);
-  z-index: 11000;
-}
+  z-index: 101;
+}beijos na cama lingerie
 .containerCheck {
   width: 100%;
   max-width: 600px;
@@ -31,7 +31,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-}
+}caras e bocas
 
 .checkCompra button {
   border: none;

@@ -20,7 +20,6 @@ const Categorias = () => {
   const { data, error, loading, request } = useFetch();
   const navigate = useNavigate();
 
-  const swiper = useSwiper();
   const [navigation, setNavigate] = React.useState(true);
   const [between, setBetween] = React.useState(150);
 
@@ -76,15 +75,13 @@ const Categorias = () => {
           spaceBetween={between}
           pagination={{ clickable: true }}
           navigation={navigation}
-          virtual
         >
-          {slides &&
-            slides.map((categoria, index) => (
+          {categorias &&
+            categorias.map((categoria, index) => (
               <SwiperSlide
                 className="swiperSlide-category"
                 onClick={() => navigate(`/produtos/categoria/${categoria._id}`)}
                 key={categoria._id}
-                virtualIndex={index}
               >
                 <div className={styles.slides}>
                   <ImageCategory

@@ -180,9 +180,9 @@ content: '';
       }
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 700px) {
   .homeInit {
-    height: 400px;
+    height: 350px;
   }
 
 }
@@ -190,7 +190,7 @@ content: '';
 @media (max-width: 35rem) {
 
   .homeInit {
-    height: 350px;
+    height: 250px;
   }
 
   .buttonInit {
