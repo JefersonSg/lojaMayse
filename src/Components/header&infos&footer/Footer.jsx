@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.css';
-import useMedia from './Hooks/useMedia';
+import useMedia from '../../Hooks/useMedia';
 
 const Footer = () => {
   const mobile = useMedia('(max-width: 43.75rem)');

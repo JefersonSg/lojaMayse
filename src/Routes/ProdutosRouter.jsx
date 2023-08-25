@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from '../Header';
+import Infos from '../Components/header&infos&footer/Infos';
+import Header from '../Components/header&infos&footer/Header';
 import Lancamentos from '../Components/produtos/Lancamentos';
 import ProdutosCategorias from '../Components/produtos/ProdutosCategorias';
-import Infos from '../Components/Infos';
 import ProdutoSingle from '../Components/produtos/ProdutoSingle';
 import { ReactComponent as Whatsapp } from '../assets/svg/svgFooter/whatsapp.svg';
 
 const ProdutosRoute = () => {
   return (
     <>
-      {/* <Infos /> */}
+      <Infos />
       <Header />
       <Routes>
         <Route path="/" element={<Lancamentos />} />

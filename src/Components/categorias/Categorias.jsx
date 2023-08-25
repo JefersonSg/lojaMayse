@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Categoria from './Categoria';
 import styles from './Categorias.module.css';
-import useFetch from '../Hooks/useFetch';
-import api from '../helpers/api';
-import './slides.css';
+import useFetch from '../../Hooks/useFetch';
+import api from '../../helpers/api';
+import './../slides.css';
 
 import { useNavigate } from 'react-router-dom';
-import ImageCategory from '../helpers/ImageCategory';
+import ImageCategory from '../../helpers/ImageCategory';
 
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Navigation, Pagination, Virtual, A11y } from 'swiper/modules';
@@ -22,16 +22,27 @@ const Categorias = () => {
 
   const [navigation, setNavigate] = React.useState(true);
   const [between, setBetween] = React.useState(150);
+  const [slidesPerView, setSlidesPerView] = React.useState(5);
 
   // ajusta os itens
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth <= 800) {
+      if (window.innerWidth > 800 && data && data.categorys.length > 5) {
+        setNavigate(true);
+        setBetween(32);
+        setSlidesPerView(5);
+      } else if (window.innerWidth <= 800 && window.innerWidth >= 561) {
+        setNavigate(false);
+        setBetween(120);
+        setSlidesPerView(3);
+      } else if (window.innerWidth < 561) {
         setNavigate(false);
         setBetween(50);
+        setSlidesPerView(3);
       } else {
-        setNavigate(true);
-        setBetween(100);
+        setNavigate(false);
+        setBetween(32);
+        setSlidesPerView(5);
       }
     }
     handleResize();
@@ -41,7 +52,7 @@ const Categorias = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [data]);
 
   React.useEffect(() => {
     async function getCategory() {
@@ -55,12 +66,6 @@ const Categorias = () => {
     getCategory();
   }, [request, token]);
 
-  let slides;
-
-  if (categorias) {
-    slides = categorias.map((categoria, index) => categoria);
-  }
-
   const url = import.meta.env.VITE_APP_IMAGE_URL;
 
   return (
@@ -71,7 +76,7 @@ const Categorias = () => {
         <Swiper
           className="swiperCategory"
           modules={[Navigation, Pagination, A11y, Virtual]}
-          slidesPerView={3}
+          slidesPerView={slidesPerView}
           spaceBetween={between}
           pagination={{ clickable: true }}
           navigation={navigation}

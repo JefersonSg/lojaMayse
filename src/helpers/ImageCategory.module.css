@@ -1,13 +1,13 @@
 .wrapperImg {
   display: grid;
-  height: 100%;
-  width: 100%;
-
+  height: 125px;
+  width: 125px;
 }
 
 .img {
   display: block;
   max-width: 125px;
+  max-height: 125px;
   grid-area: 1/1;
   opacity: 0;
 }
@@ -35,8 +35,10 @@
 @media (max-width: 35rem) {
   .wrapperImg {
     width: 100px;
+    height: 100px;
   }
   .skeleton{
     width: 100px;
+    height: 100px;
   }
 }

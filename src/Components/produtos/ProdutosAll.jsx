@@ -8,9 +8,27 @@ import api from '../../helpers/api';
 
 const Produtos = () => {
   const [token] = React.useState(window.localStorage.getItem('token') || '');
+  const [itens, setItens] = React.useState(null);
+  const [totalItens, setTotalItens] = React.useState(8);
 
-  // const [emStock, setEmStock] = React.useState(true);
-  const navigate = useNavigate();
+  // Scrolls
+  React.useEffect(() => {
+    function infiniteScroll() {
+      const scroll = Math.floor(window.scrollY);
+      const heigth = document.body.offsetHeight - window.innerHeight;
+      const scrollagem = scroll > heigth * 0.6;
+
+      if (itens && scrollagem && totalItens < itens.products.length) {
+        setTotalItens(totalItens + 8);
+      }
+    }
+    infiniteScroll();
+
+    window.addEventListener('scroll', infiniteScroll);
+    return () => {
+      window.removeEventListener('scroll', infiniteScroll);
+    };
+  }, [itens, totalItens]);
 
   const { request, error, loading, data } = useFetch();
 
@@ -19,8 +37,14 @@ const Produtos = () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    })
+      .then((response) => setData(response.json))
+      .catch((err) => console.log(err));
   }, [request, token]);
+
+  function setData(infos) {
+    setItens(infos);
+  }
 
   return (
     <>
@@ -46,7 +70,7 @@ const Produtos = () => {
                   }
                 }
 
-                if (emStockColor) {
+                if (emStockColor && index < totalItens) {
                   return (
                     <Produto
                       key={_id}

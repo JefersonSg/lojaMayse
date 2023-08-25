@@ -3,8 +3,6 @@
   height: 40px;
   width: 100%;
   z-index: 100;
-  position: absolute;
-  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,8 +18,6 @@
   box-sizing: border-box;
   width: 100%;
   z-index: 100;
-  position: absolute;
-  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,19 +38,23 @@
   display: block;
   width: 25px;
   height: 15px;
-  background: url('../assets/svg/svgHeader/caminhaoWhite.svg') no-repeat center center;
+  background: url('../../assets/svg/svgHeader/caminhaoWhite.svg') no-repeat center center;
 }
 
 
 .infos2::before {
   content: '';
   display: block;
-  width: 25px;
+  width: 24px;
   height: 15px;
-  background: url('../assets/svg/svgHeader/caminhao.svg') no-repeat center center;
+  background: url('../../assets/svg/svgHeader/caminhao.svg') no-repeat center center;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
+  .infos,
+  .infos2 {
+    height: 30px;
+  }
   .infos p,
   .infos span{
     font-size: 12px;

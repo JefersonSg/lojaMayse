@@ -8,6 +8,8 @@
 }
 .divImage {
   height:100%;
+  box-shadow:  0px 0px 3px 1px rgba(185, 185, 185, 0.2);
+  border-radius: 5px;
 }
 
 .produto img {
@@ -53,7 +55,6 @@
 }
 
 @media (max-width:920px) {
-
   .produto {
     flex-basis: calc(48% - 10px);
     max-width: 400px;
@@ -81,12 +82,21 @@
 @media (max-width: 40rem) {
   .produto {
     grid-template-rows: 300px 50px;
+    gap: 8px;
   }
   .produto img {
     max-height: 300px;
   }
   .price {
   margin-right: 10px;
+  }
+  .bag {
+    top: 0;
+    width: 20px;
+    height: 20px;
+  }
+  .bag svg{
+    width: 15px;
   }
 }
 

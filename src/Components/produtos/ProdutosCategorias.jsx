@@ -10,10 +10,32 @@ import BreadCrumbs from './Breadcrumbs';
 const ProdutosCategorias = () => {
   const [token] = React.useState(window.localStorage.getItem('token') || '');
   const [categoria, setCategoria] = React.useState('');
-  const navigate = useNavigate();
   const params = useParams();
 
   const { request, error, loading, data } = useFetch();
+
+  // Infinit Scrolls
+
+  const [itens, setItens] = React.useState(null);
+  const [totalItens, setTotalItens] = React.useState(8);
+
+  React.useEffect(() => {
+    function infiniteScroll() {
+      const scroll = Math.floor(window.scrollY);
+      const heigth = document.body.offsetHeight - window.innerHeight;
+      const scrollagem = scroll > heigth * 0.6;
+
+      if (itens && scrollagem && totalItens < itens.products.length) {
+        setTotalItens(totalItens + 8);
+      }
+    }
+    infiniteScroll();
+
+    window.addEventListener('scroll', infiniteScroll);
+    return () => {
+      window.removeEventListener('scroll', infiniteScroll);
+    };
+  }, [itens, totalItens]);
 
   React.useEffect(() => {
     request(`${api.getUri()}products/categories/${params['id']}`, {
@@ -59,7 +81,7 @@ const ProdutosCategorias = () => {
                   }
                 }
 
-                if (emStockColor) {
+                if (emStockColor && index < totalItens) {
                   return (
                     <Produto
                       key={_id}

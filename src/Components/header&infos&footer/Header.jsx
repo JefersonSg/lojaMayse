@@ -1,13 +1,14 @@
 import React from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
-import useMedia from './Hooks/useMedia';
-import { ReactComponent as Logo } from './assets/svg/svgHeader/logoWhite.svg';
-import { ReactComponent as Bag } from './assets/svg/svgHeader/bag.svg';
-import { ReactComponent as BagWhite } from './assets/svg/svgHeader/bagWhite.svg';
-import { ReactComponent as LogoBlack } from './assets/svg/svgHeader/logo2.svg';
-import useFetch from './Hooks/useFetch';
-import api from './helpers/api';
+import useMedia from '../../Hooks/useMedia';
+
+import useFetch from '../../Hooks/useFetch';
+import api from '../../helpers/api';
+import Bag from './Bag/Bag';
+import Logo from './Logo/Logo';
+import Favoritos from './Favoritos/Favoritos';
+import ButtonMobile from './ButtonMobile/ButtonMobile';
 
 const Header = () => {
   const [categorias, setCategorias] = React.useState('');
@@ -17,11 +18,8 @@ const Header = () => {
   const [moveLeft, setMoveLeft] = React.useState(false);
 
   const mobile = useMedia('(max-width: 64rem)');
-  const [mobileMenu, setMobileMenu] = React.useState(false);
 
-  const itensBag = React.useState(
-    JSON.parse(localStorage.getItem('bag')) || false,
-  );
+  const [mobileMenu, setMobileMenu] = React.useState(false);
 
   const { pathname } = useLocation();
 
@@ -37,31 +35,6 @@ const Header = () => {
     }
     getCategory();
   }, [request, token]);
-
-  // Scrolls
-  // React.useEffect(() => {
-  //   function infiniteScroll() {
-  //     const scroll = Math.floor(window.scrollY);
-  //     const heigth = document.body.offsetHeight - window.innerHeight;
-  //     const scrollagem = scroll < heigth * 0.5;
-  //     // HOME
-  //     setScroll1(false);
-
-  //     //Home Computer
-
-  //     if (!scroll) {
-  //       setScroll1(false);
-  //     } else {
-  //       setScroll1(true);
-  //     }
-  //   }
-  //   infiniteScroll();
-
-  //   window.addEventListener('scroll', infiniteScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', infiniteScroll);
-  //   };
-  // }, [pathname]);
 
   function handleOutsideClick({ target, currentTarget }) {
     if (target === currentTarget) {
@@ -93,22 +66,19 @@ const Header = () => {
     >
       <>
         <nav className={`${styles.nav} ${mobile ? styles.mobile : ''}`}>
-          {/* HOME PAGE SEM SCROLL */}
           {mobile && (
-            <button
-              className={`${styles.mobileButton} ${
-                pathname === '/' && styles.buttonWhite
-              } ${mobileMenu ? styles.mobileButtonActive : ''}`}
-              onClick={() => {
-                setMobileMenu(!mobileMenu);
-                setMoveLeft(mobileMenu);
-              }}
-            ></button>
+            <ButtonMobile
+              mobileMenu={mobileMenu}
+              setMobileMenu={setMobileMenu}
+              setMoveLeft={setMoveLeft}
+            />
           )}
-          <div className={styles.logo}>
-            <NavLink to="/" end>
-              {pathname === '/' ? <Logo /> : <LogoBlack />}
-            </NavLink>
+          <div className={styles.objetos}>
+            <Logo />
+            <div className={styles.outros}>
+              <Favoritos />
+              <Bag />
+            </div>
           </div>
 
           <ul
@@ -137,19 +107,14 @@ const Header = () => {
                 </li>
               ))}
           </ul>
-
-          <NavLink to={'/checkout'} className={`${styles.bag}`}>
-            {itensBag[0] ? (
-              <span className={styles.itensBag}>{itensBag[0].length}</span>
-            ) : (
-              ''
-            )}
-            {pathname === '/' ? <BagWhite /> : <Bag />}
-          </NavLink>
         </nav>
         {mobile && (
           <div
-            className={`${mobileMenu ? styles.navContainer : styles.off}`}
+            className={`${
+              mobileMenu ? styles.navContainer : styles.off
+            }       ${
+              urlPath[2] && urlPath[2].length > 21 ? styles.productSingle : ''
+            }`}
             onClick={handleOutsideClick}
           ></div>
         )}

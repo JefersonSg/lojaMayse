@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import Home from './Home';
+import Infos from './Components/header&infos&footer/Infos';
+import Header from './Components/header&infos&footer/Header';
+import Footer from './Components/header&infos&footer/Footer';
+import Home from './Components/Home';
 import './App.css';
-import Infos from './Components/Infos';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import ProdutosRoute from './Routes/ProdutosRoute';
-import DashboardRoute from './Routes/DashboardRoute';
-import ProdutoSingle from './Components/produtos/ProdutoSingle';
+import ProdutosRouter from './Routes/ProdutosRouter';
+import DashboardRouter from './Routes/DashboardRouter';
+import FavoritosRouter from './Routes/FavoritosRouter';
 
 import { UserProvider } from './context/UserContext';
 import CarrinhoRouter from './Routes/CarrinhoRouter';
@@ -30,9 +30,10 @@ function App() {
         <UserProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/produtos/*" element={<ProdutosRoute />} />
-            <Route path="/dashboard/*" element={<DashboardRoute />} />
+            <Route path="/produtos/*" element={<ProdutosRouter />} />
+            <Route path="/dashboard/*" element={<DashboardRouter />} />
             <Route path="/checkout/*" element={<CarrinhoRouter />} />
+            <Route path="/favoritos/*" element={<FavoritosRouter />} />
           </Routes>
 
           <Footer />

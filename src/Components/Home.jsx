@@ -1,12 +1,12 @@
 import React from 'react';
-import Produtos from './Components/produtos/Produtosall';
+import Produtos from './produtos/Produtosall';
 import styles from './Home.module.css';
-import Categorias from './Components/Categorias';
-import imageHome from '../public/fotoHome.png';
+import Categorias from './categorias/Categorias';
+import imageHome from '../assets/fotoHome.png';
 import { NavLink } from 'react-router-dom';
-import Infos from './Components/Infos';
-import Header from './Header';
-import { ReactComponent as Whatsapp } from './assets/svg/svgFooter/whatsapp.svg';
+import Infos from './header&infos&footer/Infos';
+import Header from './header&infos&footer/Header';
+import { ReactComponent as Whatsapp } from '../assets/svg/svgFooter/whatsapp.svg';
 
 const Home = () => {
   return (

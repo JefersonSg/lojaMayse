@@ -23,7 +23,7 @@
   padding: 10px 20px;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, .5),0 0 4px 0 rgba(0, 0, 0, .2);
   z-index: 101;
-}beijos na cama lingerie
+}
 .containerCheck {
   width: 100%;
   max-width: 600px;
@@ -31,7 +31,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-}caras e bocas
+}
 
 .checkCompra button {
   border: none;
@@ -56,6 +56,7 @@
   justify-content: center;
 }
 .porcentagemContainer {
+  position: relative;
   width: 230px;
   height: 8px;
   margin-bottom: 16px;
@@ -63,7 +64,6 @@
   border-radius: 10px;
   box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.1);
   display: flex;
-  position: relative;
 }
 .containerPorcent p {
   font-size: 12px;
@@ -89,10 +89,10 @@
   position: absolute;
   right: -50px;
   top: -13px;
-}
-.giftBox.ativo {
   cursor: pointer;
+
 }
+
 .giftBox.ativo::before {
   content: '';
   display: block;

@@ -8,10 +8,21 @@ const ImageCategory = ({ alt, ...props }) => {
     target.style.opacity = 1;
     setSkeleton(false);
   }
+
+  const [call, setCall] = React.useState(false);
+
+  const tempo = Math.floor(Math.random() * 500 + 5);
+
+  setTimeout(() => {
+    setCall(true);
+  }, tempo);
+
   return (
     <div className={styles.wrapperImg}>
       {skeleton && <div className={styles.skeleton}></div>}
-      <img onLoad={handleLoad} className={styles.img} alt={alt} {...props} />
+      {call && (
+        <img onLoad={handleLoad} className={styles.img} alt={alt} {...props} />
+      )}
     </div>
   );
 };

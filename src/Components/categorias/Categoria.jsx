@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './Categoria.module.css';
-import api from '../helpers/api';
 import { useNavigate } from 'react-router-dom';
 
 const Categoria = ({ img, title, link }) => {

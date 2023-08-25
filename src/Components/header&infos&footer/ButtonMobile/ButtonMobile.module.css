@@ -1,0 +1,90 @@
+.mobileButton {
+  background-color: transparent;
+  border-radius: 0.2rem;
+  height: 20px;
+  width: 25px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  transition: .1s;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+.mobileButton::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  transition: .2s;
+}
+
+.mobileButton.buttonWhite::after {
+  width: 25px;
+  background: white;
+  box-shadow: 0 6px white,0 -6px white;
+}
+
+.mobileButtonActive.buttonWhite::after {
+  width: 4px;
+  height: 4px;
+  background: black ;
+  box-shadow: 0 8px black,0 -8px black ;
+}
+.mobileButton::after {
+  width: 25px;
+  background: black;
+  box-shadow: 0 6px black,0 -6px black;
+}
+.mobileButtonActive::after {
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 8px currentColor, 0 -8px currentColor;
+}
+
+.mobileButton.buttonWhite:focus ,
+.mobileButton.buttonWhite:hover,
+.mobileButton.buttonWhiteActive{
+  outline: none;
+  color:black;
+}
+
+.mobileButton:focus ,
+.mobileButton:hover,
+.mobileButtonActive{
+  outline: none;
+  color:#333;
+}
+
+.mobileButtonActive::after {
+  transform: rotate(90deg);
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 8px currentColor, 0 -8px currentColor;
+}
+
+@media (max-width:1024px) {
+.mobileButton {
+  width: 25px;
+  height: 20px;
+}
+}
+
+@media (max-width:450px) {
+
+  /* BUTTON */
+
+  .styleHome .mobileButton::after {
+    background: white;
+    max-width: 30px;
+    box-shadow: 0 0.35rem white,0 -0.35rem white;
+  }
+  .styleHome .mobileButtonActive::after {
+    width: 4px;
+    background: black;
+    box-shadow: 0 0.35rem black,0 -0.35rem black;
+  }
+
+}

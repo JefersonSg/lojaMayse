@@ -3,8 +3,10 @@ import styles from './Carrinho.module.css';
 import api from '../../helpers/api';
 import useFetch from '../../Hooks/useFetch';
 import BagItens from './BagItens';
-import GiftBox from './GiftBox';
-import OpenBox from './OpenBox';
+import GiftBox from '../lottie/GiftBox';
+import OpenBox from '../lottie/OpenBox';
+import Porcentagem from './Porcentagem';
+import InfosPresente from './InfosPresente';
 
 const Carrinho = () => {
   const { data, error, loading, request } = useFetch();
@@ -13,6 +15,7 @@ const Carrinho = () => {
   const [width, setWidth] = React.useState(0);
   const [restante, setRestante] = React.useState(0);
   const [openBox, setOpenBox] = React.useState(false);
+  const [infosPresente, setInfosPresente] = React.useState(false);
 
   const [itens, setItens] = React.useState(
     localStorage.getItem('bag')
@@ -154,17 +157,23 @@ Valor Total: *R$ ${preco[0] ? preco[0] : '0'},${
 
   const url = import.meta.env.VITE_APP_IMAGE_URL;
   return (
-    <div className={styles.bagItens}>
+    <div
+      className={styles.bagItens}
+      onClick={(e) => {
+        if (infosPresente) {
+          if (
+            e.target.parentElement.classList[0] &&
+            e.target.parentElement.classList[0].includes('informacoes')
+          ) {
+            return;
+          }
+          setInfosPresente(false);
+        }
+      }}
+    >
       <h2 className="subtitle">Seus itens no carrinho</h2>
       <div className={styles.containerPorcent}>
-        <p>
-          {restante > 0 && 'PRESENTE SURPRESA EM '}
-          {restante > 0 && (
-            <span>{'R$ ' + restante.toLocaleString('pt-BR')}</span>
-          )}
-
-          {restante <= 0 && <span>PRESENTE DESBLOQUEADO</span>}
-        </p>
+        <Porcentagem restante={restante} />
         <div className={styles.porcentagemContainer}>
           <span
             className={styles.porcentagemDoPresente}
@@ -175,11 +184,15 @@ Valor Total: *R$ ${preco[0] ? preco[0] : '0'},${
             onClick={() => {
               if (restante <= 0) {
                 setOpenBox(true);
+              } else {
+                setInfosPresente(!infosPresente);
+                console.log(infosPresente);
               }
             }}
           >
             <GiftBox pause={pause} stop={stop} valor={restante} />
           </div>
+          {infosPresente && <InfosPresente />}
         </div>
       </div>
 
