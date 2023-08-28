@@ -12,6 +12,7 @@ const CreateProduct = ({ productData }) => {
 
   const [token] = React.useState(window.localStorage.getItem('token') || '');
   const [errorForm, setErrorForm] = React.useState('');
+  const [okForm, setOkForm] = React.useState('');
 
   const navigate = useNavigate();
   const [images, setImages] = React.useState('');
@@ -90,11 +91,7 @@ const CreateProduct = ({ productData }) => {
       return;
     }
 
-    if (!sizeP.value && !sizeM.value && !sizeG.value && !sizeGG.value) {
-      setErrorForm('informe os tamanhos disponiveis');
-      return;
-    }
-    if (!colorProduct) {
+    if (!colorProduct[0][0]) {
       setErrorForm('informe as cores disponiveis');
       return;
     }
@@ -108,6 +105,18 @@ const CreateProduct = ({ productData }) => {
       setErrorForm('Envie as imagens do produto');
       return;
     }
+    let codigosCores = [];
+
+    if (codeColor[0]) {
+      codeColor.forEach((code) => {
+        if (code) {
+          return codigosCores.push(code);
+        }
+        return codigosCores.push(['#000000']);
+      });
+    } else {
+      codigosCores.push(['#000000']);
+    }
 
     // form Data
     const formData = new FormData();
@@ -120,7 +129,7 @@ const CreateProduct = ({ productData }) => {
       description: description,
 
       colors: colorProduct,
-      codeColors: codeColor,
+      codeColors: codigosCores,
 
       sizeP: sizeP.value,
       amountP: amountP,
@@ -138,25 +147,36 @@ const CreateProduct = ({ productData }) => {
     await Object.keys(productData).forEach((key) =>
       formData.append(key, productData[key]),
     );
+
+    for (let i = 0; i < imagesProducts.images.length; i++) {
+      const name = imagesProducts.images[i].name.split('.');
+
+      const extensao = name[name.length - 1];
+      const type = imagesProducts.images[i].type;
+
+      if (
+        type !== 'image/jpeg' &&
+        type !== 'image/png' &&
+        type !== 'image/heic'
+      ) {
+        return setErrorForm(
+          'Um dos arquivos não é compativel, envie fotos JPG ou PNG',
+        );
+      }
+      if (extensao !== 'jpeg' && extensao !== 'png' && extensao !== 'heic') {
+        return setErrorForm(
+          'Parece que um dos arquivos não é compativel, envie uma fotos JPG ou PNG',
+        );
+      }
+    }
+
     if (imagesProducts.images) {
       imagesProducts.images.forEach((image) => {
         formData.append('images', image);
       });
     }
 
-    for (let i = 0; i < imagesProducts.images.length; i++) {
-      const imagemAtual = imagesProducts.images[i].type;
-      if (
-        imagemAtual !== 'image/jpeg' &&
-        imagemAtual !== 'image/jpg' &&
-        imagemAtual !== 'image/png'
-      ) {
-        setErrorForm(
-          'Envie apenas arquivos de imagens no formato PNG, JPG ou JPEG',
-        );
-        return;
-      }
-    }
+    setOkForm('Processando as informações');
 
     await request(`${api.getUri()}products/create`, {
       method: 'POST',
@@ -165,8 +185,12 @@ const CreateProduct = ({ productData }) => {
       },
       body: formData, // Defina o corpo da solicitação como o objeto FormData
     })
-      .then((response) => response.json)
-      .then((json) => navigate(`/dashboard/produto/${json.newProduct._id}`));
+      .then((response) => response.json, setOkForm('Processando Produto'))
+      .then((json) => navigate(`/dashboard/produtos/${json.newProduct._id}`))
+      .catch(function (err) {
+        setErrorForm('OCORREU UM ERRO ' + `(${err})`);
+        setOkForm(false);
+      });
   };
 
   function handleCLick(e) {
@@ -223,6 +247,16 @@ const CreateProduct = ({ productData }) => {
       clearTimeout(temporizador);
     };
   }, [errorForm]);
+
+  React.useEffect(() => {
+    const temporizador = setTimeout(function closeError() {
+      setOkForm(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(temporizador);
+    };
+  }, [okForm]);
 
   function onFileChange(e) {
     setPreview(Array.from(e.target.files));
@@ -457,6 +491,7 @@ const CreateProduct = ({ productData }) => {
           )}{' '}
         </form>
         {errorForm && <span className={`error animeRight`}>{errorForm}</span>}
+        {okForm && <span className={`ok animeRight`}>{okForm}</span>}
       </div>
     </>
   );

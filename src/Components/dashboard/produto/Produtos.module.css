@@ -13,8 +13,8 @@
 .produtos {
   display: grid;
   grid-template-columns: repeat(3, minmax(170px, 1fr));
-  gap: 32px;
   padding: 0 20px;
+  gap: 16px;
 }
 @media (max-width:50rem) {
   .produtosContainer {

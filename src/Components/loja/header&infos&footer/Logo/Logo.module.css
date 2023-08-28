@@ -1,0 +1,39 @@
+/* Logo */
+
+.logo a:global(.active){
+  border: none;
+}
+.logo2 a:global(.active){
+  border: none;
+}
+
+.logo {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  margin-left: 50%;
+  transform: translate(-50%, 10%);
+}
+.logo svg {
+  width: 160px;
+  height: 50px;
+}
+
+@media (max-width:1024px) {
+  .logo svg {
+    width: 100px;
+    height: 50px;
+  }
+  .logo {
+    margin-bottom: .5rem;
+    transform: translate(-75%, 15%);
+  }
+}
+
+@media (max-width:35rem) {
+  .logo svg {
+    width: 80px;
+    height: 40px;
+  }
+
+
+}

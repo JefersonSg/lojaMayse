@@ -1,0 +1,37 @@
+/* Botão */
+.adicionar {
+  margin-top: 32px;
+  border-top: 1px solid #D9D9D9;
+  width: 100%;
+  display: grid;
+}
+.addBag{
+margin-top: 16px;
+min-height: 44px;
+padding-left: 1rem;
+padding-right: 1rem;
+font-size: 12px;
+font-family: var(--type-second);
+background-color: #27251f;
+outline: none;
+color: white;
+border: none;
+cursor: pointer;
+font-weight: 400;
+letter-spacing: 1.5px;
+line-height: 22px;
+width: calc(100% - 4.5rem);
+position: relative;
+left: -2.25rem;
+}
+.bagOff {
+  cursor: not-allowed;
+  background: #666;
+  color: #E7E7E7;
+}
+
+@media (max-width:700px) {
+  .adicionar{
+    margin-top: 16px;
+  }
+}

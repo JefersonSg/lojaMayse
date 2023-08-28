@@ -18,13 +18,16 @@ const Photos = ({ imagesAll, image1, previewAll, preview1 }) => {
         <div className={styles.imagens}>
           <div className={styles.miniImages}>
             {images.map((imagem, i) => (
-              <Image
-                key={`${imagem + i}2`}
-                src={url + imagem}
-                alt=""
-                onClick={(e) => setImagePrincipal(imagem)}
-                className={`${imagem === imagePrincipal ? styles.active : ''}`}
-              />
+              <div onClick={(e) => setImagePrincipal(imagem)}>
+                <Image
+                  key={`${imagem + i}`}
+                  src={url + imagem}
+                  alt=""
+                  className={`${
+                    imagem === imagePrincipal ? styles.active : ''
+                  }`}
+                />
+              </div>
             ))}
           </div>
           <div className={styles.imagemPrincipal}>

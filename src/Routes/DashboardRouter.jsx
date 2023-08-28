@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from '../Components/dashboard/login/Login';
-import Infos from '../Components/dashboard/Infos';
-import Header from '../Components/dashboard/Header';
+import Infos from '../Components/dashboard/header&infos/Infos';
+import Header from '../Components/dashboard/header&infos/Header';
 import Home from '../Components/dashboard/Home';
 import CreateCategory from '../Components/dashboard/categories/CreateCategory';
 import EditCategory from '../Components/dashboard/categories/EditCategory';

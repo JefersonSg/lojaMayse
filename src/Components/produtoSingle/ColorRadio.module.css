@@ -1,0 +1,56 @@
+.colorInput {
+  display: grid;
+  position: relative;
+  width: 20px;
+}
+.colorInput label {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inherit;
+  line-height: 1;
+  padding: 0.1875rem;
+  font-size: 0;
+  line-height: 1;
+}
+.colorInput label.active {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+.colorInput input {
+  background-color: #fff;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  bottom: 0;
+}
+
+.spanColor {
+  display: inline-block;
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  z-index: 100;
+  box-shadow: inset 0 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+.cores {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 16px;
+  box-shadow: 0 0px 0px 4px transparent inset;
+  color: transparent;
+  padding: 2px;
+}
+.formRadio:checked {
+  border-color: #333;
+  box-shadow: 0 0 0 1px #333;
+  border-radius: 50%;
+}

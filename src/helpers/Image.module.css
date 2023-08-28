@@ -29,11 +29,6 @@
   animation: trocaImg1 .2s ease-in forwards;
 }
 
-/* .wrapperImg:hover .imagem2 {
-  opacity: 1;
-  transition: all .2s;
-} */
-
 @keyframes trocaImg1 {
   from {
     opacity: 1;

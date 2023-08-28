@@ -1,0 +1,30 @@
+
+.ProductView_images{
+  height: 400px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes toAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width:700px) {
+  .ProductView_images {
+    width: 100%;
+    padding-top: 0px;
+    height: 70vh;
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media (max-width:35rem) {
+  .ProductView_images{
+    position: sticky;
+    top: 0;
+  }
+}

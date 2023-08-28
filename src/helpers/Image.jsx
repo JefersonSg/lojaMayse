@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Image.module.css';
 
-const Image = ({ alt, src, src2 }) => {
+const Image = ({ alt, src, src2, setCarregou }) => {
   const [skeleton, setSkeleton] = React.useState(true);
   const [img2, setImg2] = React.useState(src2 && !src2.includes('undefined'));
   const [loadImg2, setLoadImg2] = React.useState(false);
@@ -9,6 +9,9 @@ const Image = ({ alt, src, src2 }) => {
   function handleLoad({ target }) {
     target.style.opacity = 1;
     setSkeleton(false);
+    if (setCarregou) {
+      setCarregou(true);
+    }
   }
 
   const [call, setCall] = React.useState(false);
@@ -18,7 +21,6 @@ const Image = ({ alt, src, src2 }) => {
   setTimeout(() => {
     setCall(true);
   }, tempo);
-
   return (
     <div
       className={`${styles.wrapperImg} ${loadImg2 && img2 && styles.imgHover}`}
@@ -37,7 +39,7 @@ const Image = ({ alt, src, src2 }) => {
           src={src2}
         />
       ) : (
-        <img className={styles.imagem2} alt={alt} src={src} />
+        ''
       )}
     </div>
   );

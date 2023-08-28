@@ -1,8 +1,8 @@
 import React from 'react';
-import Infos from './Components/header&infos&footer/Infos';
-import Header from './Components/header&infos&footer/Header';
-import Footer from './Components/header&infos&footer/Footer';
-import Home from './Components/Home';
+import Infos from './Components/loja/header&infos&footer/Infos';
+import Header from './Components/loja/header&infos&footer/Header';
+import Footer from './Components/loja/header&infos&footer/Footer';
+import Home from './Components/loja/home';
 import './App.css';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import ProdutosRouter from './Routes/ProdutosRouter';
@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <BrowserRouter>
         <ScrollToTop />
         <UserProvider>
@@ -39,7 +39,7 @@ function App() {
           <Footer />
         </UserProvider>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

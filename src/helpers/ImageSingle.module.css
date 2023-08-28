@@ -12,6 +12,7 @@
   grid-area: 1/1;
   opacity: 0;
   object-fit: cover;
+  object-position: center top;
 }
 
 .skeleton {

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Infos from '../Components/header&infos&footer/Infos';
-import Header from '../Components/header&infos&footer/Header';
-import Favoritos from '../Components/Favoritos/Favoritos';
+import Infos from '../Components/loja/header&infos&footer/Infos';
+import Header from '../Components/loja/header&infos&footer/Header';
+import Favoritos from '../Components/loja/Favoritos/Favoritos';
 
 // SVG
 

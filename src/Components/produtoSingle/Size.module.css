@@ -1,0 +1,36 @@
+/* Tamanhos */
+.sizes {
+  border: 1px solid transparent;
+  box-shadow: 0 0 1px 0px  rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  display: grid;
+  width: 43px;
+  height: 43px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(247, 247, 248);
+}
+
+.sizes:hover {
+  border-color: black;
+}
+.sizes h4 {
+  font-weight: 400;
+  font-family:var(--type-second);
+  font-size: 12px;
+}
+.sizes.active h4 {
+  font-weight: 700;
+}
+.sizes.emFalta {
+  color: #999;
+  border-color: #C3C3C3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.sizes.active {
+  border: 1px solid black;
+  font-weight: 600;
+  background-color: #f6f4f2;
+}

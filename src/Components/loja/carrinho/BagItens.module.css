@@ -1,0 +1,376 @@
+.bagItem {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, .3);
+  margin-bottom: 16px;
+  border-radius: 10px;
+  gap: 16px;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, .2);
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+.image {
+  height: 100px;
+  width: 100px;
+  grid-column: 1;
+  grid-row: 1/ -1;
+  background: center center;
+  background-size: cover;
+  border-radius: 10px;
+}
+.infos {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+}
+.name {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  font-style: var(--type-fisrt);
+  margin-bottom: 4px;
+  width: max-content;
+}
+.price {
+  font-family: var(--type-second);
+  letter-spacing: 1.2px;
+  color: red;
+}
+.amount {
+  font-family: var(--type-second);
+  letter-spacing: 1.2px;
+  border-top:  1px solid rgba(0, 0, 0, .5);
+  border-bottom: 1px solid rgba(0, 0, 0, .5);
+  padding: 4px 0 ;
+}
+
+.description {
+  font-family: var(--type-second);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.1px;
+}
+/* Cores */
+.colorSizes {
+  display: flex;
+  align-items: center;
+  grid-column: 1;
+  grid-row: 3;
+  gap: 16px;
+}
+
+
+.color {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, .3);
+  width: max-content;
+  padding: 0px 10px 0px 10px;
+  text-align: center;
+  font-style: var(--type-second);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.1px;
+  border-radius: 9999px;
+  cursor: pointer;
+
+}
+.color.selectMode {
+  border-bottom: 1px solid transparent;
+  border-radius: 15px 15px 0 0;
+}
+.divColorSelected {
+  display: grid;
+  grid-template-columns: 15px 70px 20px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.corSelecionada {
+  width: 11px;
+  height: 11px;
+  border-radius: 99999px;
+  margin-right: 4px;
+}
+.opcoesColors {
+  position: absolute;
+  background: white;
+  top: 24px;
+  left: -1px;
+  width: 127px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 0 0 15px 15px;
+  padding: 10px 10px 10px 10px;
+  z-index: 10000;
+}
+.opcoesColors ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.1px;
+}
+.opcoesColors ul li {
+  display: grid;
+  grid-template-columns: 15px 70px 20px;
+}
+
+.sizes {
+  width: max-content;
+  position: relative;
+}
+
+
+.sizes div {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, .3);
+  font-family: var(--type-second);
+  font-weight: 400;
+  padding: 1px;
+  width: 45px;
+  height: 24px;
+  font-size: 12px;
+  justify-content: end;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.sizes.selectSize div:first-child {
+  border-bottom: 1px solid transparent;
+  border-radius: 10px 10px 0 0;
+}
+.sizes .opcoesSizes {
+  position: absolute;
+  background: white;
+  top: 24px;
+  left: 0px;
+  height: auto;
+  text-align: start;
+  border: 1px solid rgba(0, 0, 0, .2);
+  z-index: 10000;
+  border-radius: 0 0 10px 10px;
+}
+
+.opcoesSizes ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.1px;
+}
+
+.opcoesSizes ul li {
+  display: grid;
+  grid-template-columns: 17px 1fr;
+  text-align: end;
+  padding: 3px 0;
+}
+
+.addAmount {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  grid-column: 2;
+  grid-row: 3;
+}
+.addAmount span {
+  display: block;
+  width: 30px;
+}
+
+
+.lixeira {
+  position: absolute;
+  display:block ;
+  top: 5px;
+  right: 10px;
+  fill: #999;
+  cursor: pointer;
+  width: max-content;
+  z-index: 100;
+}
+
+.modalDelete {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .4);
+  z-index: 3000;
+}
+
+.gridDelete {
+  margin: 0 auto;
+  background-color: white;
+  padding: 40px 40px;
+  color: #333;
+  letter-spacing: 1.1px;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+}
+.botoes {
+  display: flex;
+  margin-top: 32px;
+  gap: 16px;
+}
+.botoes button {
+  border: none;
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  font-family: var(--type-second);
+  cursor: pointer;
+  border-radius: 1px;
+}
+
+.botoes button:last-child{
+  background-color: #333;
+  border: 1px solid #333;
+  color: white;
+}
+.botoes button:first-child{
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, .3);
+  color: 
+  #333;
+}
+.botoes button:hover {
+  box-shadow: 0 0 0px 2px rgba(240, 240, 240, .8);
+}
+
+@media (max-width:35rem) {
+  .bagItem {
+    grid-template-columns: 80px 1fr;
+    padding: 20px;
+    gap: 16px;
+  }
+  .image {
+    height: 80px;
+    width: 80px;
+  }
+  .infos {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+  }
+  .name {
+    font-size: 18px;
+  }
+  .price {
+    font-size: 14px;
+  }
+  .gridDelete {
+    padding: 40px 20px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    position: relative;
+    top: -80px;
+  }
+  .botoes button {
+    width: 120px;
+    font-size: 14px;
+  }
+
+}
+@media (max-width:450px) {
+
+  .bagItem {
+    grid-template-columns: 70px 1fr;
+    padding: 20px 10px;
+    gap: 8px;
+  }
+  .image {
+    height: 80px;
+    width: 70px;
+    border-radius: 5px;
+  }
+  .name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .price {
+    font-size: 12px;
+  }
+  .infos {
+    display: grid;
+    grid-template-columns: 1fr 70px;
+  }
+ 
+  .description{
+    font-size: 11px;
+  }
+  .lixeira {
+    right: 5px;
+  }
+  .lixeira svg {
+    width: 18px;
+  }
+  .colorSizes {
+    gap: 8px;
+  }
+  .divColorSelected {
+    grid-template-columns: 12px 48px 13px;
+    font-size: 10px;
+  }
+  .opcoesColors ul li{
+    grid-template-columns: 12px 48px 13px;
+    align-items: center;
+    font-size: 10px;
+  }
+  .opcoesColors {
+    width: 95px;
+  }
+  .corSelecionada {
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 1);
+  }
+
+
+  .sizes svg,
+  .divColorSelected svg {
+    width: 20px;
+    width: 18px;
+  }
+
+  .sizes div {
+    width: 35px;
+    font-size: 10px;
+    border-radius: 10px;
+  }
+  .sizes .opcoesSizes ul li{
+    font-size: 10px;
+  }
+
+  .addAmount span {
+    display: block;
+    width: 20px;
+    height: 25px;
+    font-size: 12px;
+  }
+  .addAmount button {
+    width: 20px;
+    height: 25px;
+  }
+  
+}

@@ -50,6 +50,7 @@ a {
 .container {
   max-width: 80rem;
   margin: 0 auto;
+  padding-top: 82px;
 }
 
 .containerSingle {
@@ -261,6 +262,22 @@ a {
   font-weight: 500;
   font-size: 16px;
   color: white;
+  max-width: 45ch;
+}
+.ok {
+  margin: 0 auto;
+  text-align: center;
+  padding: 8px 15px;
+  border-radius: 5px;
+  position: fixed;
+  top: 100px;
+  right: 10px;
+  background: #00BC13;
+  width: max-content;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+  max-width: 45ch;
 }
 @media (max-width:35rem) {
   .error {

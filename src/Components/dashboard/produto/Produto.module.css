@@ -1,6 +1,6 @@
 .produto {
   display: grid;
-  gap: 16px;
+  gap: 16px 0;
 }
 .produto img {
   border-radius: .2rem;
@@ -10,7 +10,6 @@
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr auto;
-  gap: 16px;
   font-family: var(--type-second);
   font-weight: 500;
   font-size: 18px;

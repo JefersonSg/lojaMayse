@@ -1,0 +1,21 @@
+/* Desc */
+.descricao {
+  margin-top: 32px;
+}
+.descricao p{
+  font-family: var(--type-second);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  line-height: 20px;
+  border-bottom: 2px solid black;
+  width: max-content;
+  margin-bottom: 1rem;
+}
+.descricaoTexto {
+  font-family: var(--type-second);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  line-height: 20px;
+}

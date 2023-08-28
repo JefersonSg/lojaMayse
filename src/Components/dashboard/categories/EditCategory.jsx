@@ -16,6 +16,8 @@ const CreateCategory = () => {
   const [image, setImage] = React.useState(false);
   const category = useForm();
   const navigate = useNavigate();
+  const [errorForm, setErrorForm] = React.useState('');
+  const [okForm, setOkForm] = React.useState('');
 
   const params = useParams();
 
@@ -38,22 +40,69 @@ const CreateCategory = () => {
     setImage({ image: [...e.target.files] });
   }
 
+  React.useEffect(() => {
+    const temporizador = setTimeout(function closeError() {
+      setErrorForm(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(temporizador);
+    };
+  }, [errorForm]);
+
+  React.useEffect(() => {
+    const temporizador = setTimeout(function closeError() {
+      setOkForm(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(temporizador);
+    };
+  }, [okForm]);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append('Category', categorias.Category);
     if (image.image) {
+      const name = image.image[0].name.split('.');
+
+      const extensao = name[name.length - 1];
+      const type = image.image[0].type;
+      if (
+        type !== 'image/jpeg' &&
+        type !== 'image/png' &&
+        type !== 'image/heic'
+      ) {
+        return setErrorForm(
+          'Este arquivo não é compativel, envie uma foto JPG ou PNG',
+        );
+      }
+      if (extensao !== 'jpeg' && extensao !== 'png' && extensao !== 'heic') {
+        return setErrorForm(
+          'Parece que o arquivo não é compativel, envie uma foto JPG ou PNG',
+        );
+      }
+
       formData.append('image', image.image[0]);
     }
 
-    await api
-      .patch(`categorys/${params['id']}`, formData, {
+    const response = await api.patch(
+      `categorys/edit/${params['id']}`,
+      formData,
+      {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      .then(() => navigate('/dashboard/categorias'));
+      },
+    );
+    setOkForm('Processando as informações');
+    const data = await response.data;
+
+    if (data.category) {
+      navigate('/dashboard/categorias');
+    }
   }
 
   const url = import.meta.env.VITE_APP_IMAGE_URL;
@@ -90,6 +139,8 @@ const CreateCategory = () => {
           <button className="ButtonCriar">Concluir Edição</button>
         </form>
       </>
+      {errorForm && <span className={`error animeRight`}>{errorForm}</span>}
+      {okForm && <span className={`ok animeRight`}>{okForm}</span>}
     </section>
   );
 };
